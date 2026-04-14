@@ -1,0 +1,41 @@
+﻿using AkiSister.AkiSisterCode.Cards;
+using AkiSister.AkiSisterCode.Powers;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
+
+namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+
+public class Protector() : AkiSisterCard(2,
+    CardType.Skill, CardRarity.Uncommon,
+    TargetType.AnyAlly)
+{
+    public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+    
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new PowerVar<AutumnAuraPower>(6),
+        new PowerVar<FragrancePower>(6)
+    ];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<AutumnAuraPower>(),
+        HoverTipFactory.FromPower<FragrancePower>(),
+    ];
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        //await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<FragrancePower>(Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<CoveredPower>(cardPlay.Target, 1m, base.Owner.Creature, this);
+    }
+
+    protected override void OnUpgrade()
+    {
+        base.DynamicVars["AutumnAuraPower"].UpgradeValueBy(2);
+        base.DynamicVars["FragrancePower"].UpgradeValueBy(2);
+    }
+}

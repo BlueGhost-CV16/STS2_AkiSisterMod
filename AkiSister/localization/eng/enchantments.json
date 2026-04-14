@@ -1,0 +1,8 @@
+{
+  "RED_LEAF_MARK_ENCHANTMENT.description": "保留1回合。\n当使用或消耗带有[orange]「红叶标记」[/orange]的技能时，获得1层[gold]秋意[/gold]。\n可以覆盖[orange]「番薯标记」[/orange]，覆盖后获得2层[gold]秋意[/gold]。\n进入[gold]弃牌堆[/gold]后解除。",
+  "RED_LEAF_MARK_ENCHANTMENT.extraCardText": "「红叶标记」。",
+  "RED_LEAF_MARK_ENCHANTMENT.title": "「红叶标记」",
+  "SWEET_POTATO_MARK_ENCHANTMENT.description": "保留1回合。\n当使用或消耗带有[orange]「番薯标记」[/orange]的技能时，获得1层[gold]香气[/gold]。\n可以覆盖[orange]「红叶标记」[/orange]，覆盖后获得2层[gold]香气[/gold]。\n进入[gold]弃牌堆[/gold]后解除。",
+  "SWEET_POTATO_MARK_ENCHANTMENT.extraCardText": "「番薯标记」。",
+  "SWEET_POTATO_MARK_ENCHANTMENT.title": "「番薯标记」"
+}

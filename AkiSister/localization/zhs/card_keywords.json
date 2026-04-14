@@ -1,0 +1,14 @@
+{
+  "AKISISTER-REDLEAFMARK.description": "保留1回合。\n当使用或消耗带有[orange]「红叶标记」[/orange]的技能时，获得1层[gold]秋意[/gold]。\n可以覆盖[orange]「番薯标记」[/orange]，覆盖后获得2层[gold]秋意[/gold]。\n进入弃牌堆后解除。",
+  "AKISISTER-REDLEAFMARK.title": "「红叶标记」",
+  "AKISISTER-SWEETPOTATOMARK.description": "保留1回合。\n当使用或消耗带有[orange]「番薯标记」[/orange]的技能时，获得1层[gold]香气[/gold]。\n可以覆盖[orange]「红叶标记」[/orange]，覆盖后获得2层[gold]香气[/gold]。\n进入弃牌堆后解除。",
+  "AKISISTER-SWEETPOTATOMARK.title": "「番薯标记」",
+  "AKISISTER-REDLEAFFAVOR.description": "这张卡初始自带[orange]「红叶标记」[/orange]。",
+  "AKISISTER-REDLEAFFAVOR.title": "红叶眷顾",
+  "AKISISTER-SWEETPOTATOFAVOR.description": "这张卡初始自带[orange]「番薯标记」[/orange]。",
+  "AKISISTER-SWEETPOTATOFAVOR.title": "番薯眷顾",
+  "AKISISTER-REDLEAFRESONANCE.description": "这张牌带有[orange]「红叶标记」[/orange]时，触发额外效果。",
+  "AKISISTER-REDLEAFRESONANCE.title": "「红叶共鸣」",
+  "AKISISTER-SWEETPOTATORESONANCE.description": "这张牌带有[orange]「番薯标记」[/orange]时，触发额外效果。",
+  "AKISISTER-SWEETPOTATORESONANCE.title": "「番薯共鸣」"
+}

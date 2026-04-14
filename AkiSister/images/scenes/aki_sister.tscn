@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4my2u8254tyy"]
+
+[ext_resource type="Texture2D" uid="uid://drpymhjn0guq7" path="res://AkiSister/images/scenes/AkiSister.png" id="1_27j4g"]
+
+[node name="AkiSister" type="Node2D"]
+
+[node name="Visuals" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(7.6293945e-06, -150.74998)
+scale = Vector2(0.3847632, 0.38476318)
+texture = ExtResource("1_27j4g")
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -140.0
+offset_top = -274.0
+offset_right = 145.01587
+offset_bottom = -6.0
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2, -205)
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2, -202)

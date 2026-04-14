@@ -1,0 +1,14 @@
+{
+  "AKISISTER-STRIKE_AKI_SISTER.description": "Deal {Damage:diff()} damage.",
+  "AKISISTER-STRIKE_AKI_SISTER.title": "Strike",
+  "AKISISTER-DEFEND_AKI_SISTER.description": "Gain {Block:diff()} [gold]Block[/gold].",
+  "AKISISTER-DEFEND_AKI_SISTER.title": "Defend",
+  "AKISISTER-GLOWOF_AUTUMN_SUNSET.description": "Deal {Damage:diff()} damage.",
+  "AKISISTER-GLOWOF_AUTUMN_SUNSET.title": "Autumn Sign 「Glow of Autumn Sunset」",
+  "AKISISTER-RESENTMENTOF_AUTUMN_COLORS.description": "Gain {Block:diff()} [gold]Block[/gold].",
+  "AKISISTER-RESENTMENTOF_AUTUMN_COLORS.title": "Autumn Sign 「Resentment of Autumn Colors」",
+  "AKISISTER-HARVESTERAND_PEAR_BLOSSOM.description": "Draw 1 card.",
+  "AKISISTER-HARVESTERAND_PEAR_BLOSSOM.title": "「Harvester and Pear Blossom」",
+  "AKISISTER-SHEPHERDAND_APRICOT_BLOSSOM.description": "Draw 1 card.",
+  "AKISISTER-SHEPHERDAND_APRICOT_BLOSSOM.title": "「Shepherd and Apricot Blossom」"
+}

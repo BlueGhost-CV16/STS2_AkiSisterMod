@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhv8mqba8vlyl"]
+
+[ext_resource type="Texture2D" uid="uid://cng6wc7sfw3nh" path="res://AkiSister/images/scenes/AkiSister_BG.jpg" id="1_f4okb"]
+
+[node name="TestBg" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1790.0
+offset_top = -1043.0
+offset_right = 1790.0
+offset_bottom = 1043.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.54901963, 0.11764706, 1)
+metadata/_edit_lock_ = true
+
+[node name="AkiSisterPortrait" type="Sprite2D" parent="."]
+position = Vector2(1851.0055, 1123.5)
+scale = Vector2(1.4980344, 1.4980341)
+texture = ExtResource("1_f4okb")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnbsq31nl02rj"]
+
+[ext_resource type="Texture2D" uid="uid://b4xaofmfd30qx" path="res://AkiSister/images/scenes/商店.png" id="1_qwskg"]
+
+[node name="IroncladMerchant" type="Node2D"]
+
+[node name="MarisaModelv2Idle" type="Sprite2D" parent="."]
+position = Vector2(0, -185)
+scale = Vector2(0.40486607, 0.404866)
+texture = ExtResource("1_qwskg")

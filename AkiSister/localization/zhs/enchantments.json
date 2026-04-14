@@ -1,0 +1,8 @@
+{
+  "AKISISTER-RED_LEAF_MARK_ENCHANTMENT.description": "保留1回合。\n当使用或消耗带有[orange]「红叶标记」[/orange]的牌时，获得1层[gold]秋意[/gold]。\n会被[orange]「番薯标记」[/orange]覆盖。\n进入[gold]弃牌堆[/gold]或[gold]消耗牌堆[/gold]后解除。",
+  "AKISISTER-RED_LEAF_MARK_ENCHANTMENT.extraCardText": "「红叶标记」。",
+  "AKISISTER-RED_LEAF_MARK_ENCHANTMENT.title": "「红叶标记」",
+  "AKISISTER-SWEET_POTATO_MARK_ENCHANTMENT.description": "保留1回合。\n当使用或消耗带有[orange]「番薯标记」[/orange]的牌时，获得1层[gold]香气[/gold]。\n会被[orange]「红叶标记」[/orange]覆盖。\n进入[gold]弃牌堆[/gold]或[gold]消耗牌堆[/gold]后解除。",
+  "AKISISTER-SWEET_POTATO_MARK_ENCHANTMENT.extraCardText": "「番薯标记」。",
+  "AKISISTER-SWEET_POTATO_MARK_ENCHANTMENT.title": "「番薯标记」"
+}
