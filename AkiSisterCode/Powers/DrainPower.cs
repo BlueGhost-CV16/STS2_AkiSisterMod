@@ -19,7 +19,7 @@ public class DrainPower : AkiSisterPower
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DamageDecrease", 0.9m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DamageDecrease", 0.85m)];
 
     public override IEnumerable<HealthBarForecastSegment>
         GetHealthBarForecastSegments(HealthBarForecastContext context) =>
@@ -48,7 +48,7 @@ public class DrainPower : AkiSisterPower
         ReturningWheelofAutumnFrostPower? power = dealer.GetPower<ReturningWheelofAutumnFrostPower>();
         if (power != null)
         {
-            num = power.ModifyDrainMultiplier(dealer, num, props, dealer, cardSource);
+            num = power.ModifyDrainMultiplier(target, num, props, dealer, cardSource);
         }
         return num;
     }
@@ -72,8 +72,8 @@ public class DrainPower : AkiSisterPower
         var num3 = Amount;
         for (int i = 0; i < num2; i++)
         {
-            decimal damage = num3 / 5;
-            num3 -= num3 / 5;
+            decimal damage = num3;
+            num3 -= Math.Max(num3 / 5, 1);
             damage = Hook.ModifyDamage(base.Owner.CombatState.RunState, base.Owner.CombatState, base.Owner, null,
                 damage, ValueProp.Unblockable | ValueProp.Unpowered, null, ModifyDamageHookType.All,
                 CardPreviewMode.None, out IEnumerable<AbstractModel> _);
@@ -96,7 +96,7 @@ public class DrainPower : AkiSisterPower
             //var num = ;
             if (base.Owner.IsAlive)
             {
-                await PowerCmd.Apply<DrainPower>(Owner, -base.Amount / 5, null, null);
+                await PowerCmd.Apply<DrainPower>(Owner, -Math.Max(base.Amount / 5, 1), null, null);
                 //await PowerCmd.Decrement(this);
             }
             else

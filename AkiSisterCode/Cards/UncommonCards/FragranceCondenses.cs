@@ -13,11 +13,12 @@ public class FragranceCondenses() : AkiSisterCard(2,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new PowerVar<FragrancePower>(13m),
+        new PowerVar<FragrancePower>(6m),
         new PowerVar<FragranceLostPower>(7m)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<FragranceLostPower>(),
         HoverTipFactory.FromPower<FragrancePower>()
     ];
 
@@ -25,13 +26,16 @@ public class FragranceCondenses() : AkiSisterCard(2,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<FragrancePower>(Owner.Creature, DynamicVars["FragrancePower"].BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<FragranceLostPower>(Owner.Creature, DynamicVars["FragranceLostPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<FragrancePower>(Owner.Creature,
+            DynamicVars["FragrancePower"].BaseValue + DynamicVars["FragranceLostPower"].BaseValue, base.Owner.Creature,
+            this);
+        await PowerCmd.Apply<FragranceLostPower>(Owner.Creature, DynamicVars["FragranceLostPower"].BaseValue,
+            base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["FragrancePower"].UpgradeValueBy(3);
+        DynamicVars["FragrancePower"].UpgradeValueBy(2);
         DynamicVars["FragranceLostPower"].UpgradeValueBy(1);
     }
 }

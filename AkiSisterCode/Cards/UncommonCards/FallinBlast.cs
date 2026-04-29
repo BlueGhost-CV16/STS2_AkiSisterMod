@@ -30,7 +30,9 @@ public class FallinBlast() : AkiSisterCard(2,
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => HoverTipFactory.FromEnchantment<RedLeafMarkEnchantment>().Concat([
         HoverTipFactory.FromPower<AutumnAuraPower>(),
-        HoverTipFactory.FromCard<ShepherdandApricotBlossom>()
+        HoverTipFactory.FromPower<WeakPower>(),
+        HoverTipFactory.FromPower<WitherPower>()
+        //HoverTipFactory.FromCard<ShepherdandApricotBlossom>()
     ]);
 
     protected override async Task OnPlay(
@@ -43,6 +45,7 @@ public class FallinBlast() : AkiSisterCard(2,
         for (int i = 0; i < num; i++)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+                .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
                 .Execute(choiceContext);
             await PowerCmd.Apply<WeakPower>(play.Target, DynamicVars["WeakPower"].BaseValue, Owner.Creature, this);
             await PowerCmd.Apply<WitherPower>(play.Target, DynamicVars["WitherPower"].BaseValue, Owner.Creature, this);

@@ -24,18 +24,19 @@ public class Labor() : AkiSisterCard(2,
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-            base.EnergyHoverTip,
-            HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafResonance)
+        base.EnergyHoverTip,
+        HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafResonance)
     ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(base.DynamicVars.Repeat.IntValue).FromCard(this).Targeting(play.Target)
+            .WithHitFx("vfx/vfx_attack_slash", null, "slash_attack.mp3")
             .Execute(choiceContext);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
-            .Execute(choiceContext);
+        //await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+        //    .Execute(choiceContext);
         if (this.LeafCheck())
         {
             await PlayerCmd.GainEnergy(base.DynamicVars.Energy.BaseValue, base.Owner);
@@ -45,5 +46,6 @@ public class Labor() : AkiSisterCard(2,
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars.Energy.UpgradeValueBy(1);
     }
 }

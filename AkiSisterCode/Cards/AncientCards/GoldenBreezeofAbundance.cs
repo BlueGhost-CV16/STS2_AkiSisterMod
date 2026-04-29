@@ -19,7 +19,7 @@ public class GoldenBreezeofAbundance() : AkiSisterCard(1,
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new BlockVar(16m, ValueProp.Move),
+        new BlockVar(14m, ValueProp.Move),
         new CardsVar(1)
     ];
     

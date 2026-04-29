@@ -22,6 +22,7 @@ public class TimesHaveChanged() : AkiSisterCard(0,
         CardPlay play)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
         var pile = PileType.Hand.GetPile(base.Owner).Cards.Where(card => card.Type == CardType.Status).ToList();
         await CardCmd.DiscardAndDraw(choiceContext, pile, pile.Count);
@@ -29,6 +30,7 @@ public class TimesHaveChanged() : AkiSisterCard(0,
 
     protected override void OnUpgrade()
     {
+        DynamicVars.Damage.UpgradeValueBy(1);
         RemoveKeyword(CardKeyword.Exhaust);
     }
 }

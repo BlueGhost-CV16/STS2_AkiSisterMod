@@ -94,8 +94,10 @@ internal static class AkiSisterArchaicToothPatch
     {
         if (__instance.Owner.Character is not Character.AkiSister || _starterCardAkiSizuha == null ||
             _starterCardAkiMinoriko == null) return true;
-        CardCmd.Transform(__instance.Owner.Deck.Cards.FirstOrDefault(c => c is GlowofAutumnSunset), TransformedCard(_starterCardAkiSizuha, true));
-        CardCmd.Transform(__instance.Owner.Deck.Cards.FirstOrDefault(c => c is ResentmentofAutumnColors), TransformedCard(_starterCardAkiMinoriko, false));
+        _starterCardAkiSizuha = __instance.Owner.Deck.Cards.FirstOrDefault(c => c is GlowofAutumnSunset);
+        _starterCardAkiMinoriko = __instance.Owner.Deck.Cards.FirstOrDefault(c => c is ResentmentofAutumnColors);
+        CardCmd.Transform(_starterCardAkiSizuha, TransformedCard(_starterCardAkiSizuha, true));
+        CardCmd.Transform(_starterCardAkiMinoriko, TransformedCard(_starterCardAkiMinoriko, false));
         __result = Task.CompletedTask;
         return false;
     }

@@ -31,7 +31,7 @@ public class AutumnSky() : AkiSisterCard(1,
         CardPlay play)
     {
         List<CardModel> cards = CardFactory.GetDistinctForCombat(base.Owner, from c in base.Owner.Character.CardPool.GetUnlockedCards(base.Owner.UnlockState, base.Owner.RunState.CardMultiplayerConstraint)
-            where c.Type == CardType.Skill
+            where c.Type == CardType.Skill && c.Rarity != CardRarity.Rare
             select c, 3, base.Owner.RunState.Rng.CombatCardGeneration).ToList();
         if (base.IsUpgraded)
         {

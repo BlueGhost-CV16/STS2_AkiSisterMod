@@ -20,7 +20,7 @@ public class PeakEnsemble() : AkiSisterCard(2,
     TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(15, ValueProp.Move)
+        new DamageVar(17, ValueProp.Move)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -33,6 +33,7 @@ public class PeakEnsemble() : AkiSisterCard(2,
         CardPlay play)
     {
         AttackCommand attackCommand = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
         if (this.LeafCheck())
         {
@@ -47,6 +48,6 @@ public class PeakEnsemble() : AkiSisterCard(2,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(4);
     }
 }

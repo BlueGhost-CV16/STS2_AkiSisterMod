@@ -17,7 +17,7 @@ public class ResentmentofAutumnColors() : AkiSisterCard(1,
     public override bool GainsBlock => true;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new BlockVar(11m, ValueProp.Move),
+        new BlockVar(9m, ValueProp.Move),
         new CardsVar(1)
     ];
     
@@ -30,11 +30,11 @@ public class ResentmentofAutumnColors() : AkiSisterCard(1,
         CardPlay play)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
-        await base.Owner.GrassAdd_Deck(base.CombatState, (int)DynamicVars.Cards.BaseValue);
+        await base.Owner.GrassAdd_Deck(base.CombatState, (int)DynamicVars.Cards.BaseValue, IsUpgraded);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(3m);
+        DynamicVars.Block.UpgradeValueBy(1m);
     }
 }

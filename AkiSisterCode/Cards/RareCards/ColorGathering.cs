@@ -28,7 +28,7 @@ public class ColorGathering() : AkiSisterCard(0,
             //where p.TypeForCurrentAmount == PowerType.Debuff
             //select (PowerModel)p.ClonePreservingMutability()).ToList();
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_attack_slash", null, "slash_attack.mp3")
             .Execute(choiceContext);
         foreach (Creature enemy in base.CombatState.HittableEnemies)
         {

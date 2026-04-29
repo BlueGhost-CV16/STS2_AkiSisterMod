@@ -30,7 +30,7 @@ public class WellPrepared() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        var deck = base.Owner.PlayerCombatState.AllCards;
+        var deck = base.Owner.PlayerCombatState.AllCards.Where(c => c.IsTransformable).ToList();
         foreach (CardModel allCard in deck)
         {
             if (allCard is StrikeAkiSister)

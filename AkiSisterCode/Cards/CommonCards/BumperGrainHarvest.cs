@@ -35,6 +35,7 @@ public class BumperGrainHarvest() : AkiSisterCard(1,
 
     protected override void OnUpgrade()
     {
+        DynamicVars.Cards.UpgradeValueBy(1);
         DynamicVars.Block.UpgradeValueBy(3m);
     }
 }

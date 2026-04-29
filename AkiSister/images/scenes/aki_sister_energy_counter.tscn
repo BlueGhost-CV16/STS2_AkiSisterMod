@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1aed2wrirqad"]
+[gd_scene load_steps=9 format=3 uid="uid://b1aed2wrirqad"]
 
+[ext_resource type="Texture2D" uid="uid://bv3wwwyjm22lm" path="res://AkiSister/images/scenes/vfx/layer4d.png" id="2_mmsbf"]
 [ext_resource type="Texture2D" uid="uid://cmjhvowin6d2h" path="res://AkiSister/images/charui/cardEnergyAkiSizuha.png" id="2_wlr1b"]
+[ext_resource type="Texture2D" uid="uid://dhxswfsjhtvsu" path="res://AkiSister/images/scenes/vfx/layer3d.png" id="3_lrgq4"]
+[ext_resource type="PackedScene" uid="uid://df55i8umkjug3" path="res://AkiSister/images/scenes/vfx/energy_vfx_front.tscn" id="4_c84lw"]
 
 [sub_resource type="Curve" id="Curve_umldk"]
 _data = [Vector2(0.00596422, 0.0309963), 0.0, 4.46389, 0, 0, Vector2(0.298211, 0.736162), 0.832039, 0.832039, 0, 0, Vector2(0.99006, 0.932841), -0.247478, 0.0, 0, 0]
@@ -25,12 +28,13 @@ offset_bottom = 128.0
 pivot_offset = Vector2(64, 64)
 metadata/_edit_lock_ = true
 
-[node name="EnergyVfxBack" type="Node2D" parent="."]
+[node name="EnergyVfxBack" parent="." instance=ExtResource("4_c84lw")]
 unique_name_in_owner = true
+visible = false
 
 [node name="BurstBack" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(65, 62)
+position = Vector2(64, 64)
 emitting = false
 amount = 1
 one_shot = true
@@ -87,8 +91,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(64, 64)
 mouse_filter = 2
+texture = ExtResource("2_mmsbf")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_lock_ = true
@@ -101,8 +107,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, -1)
 pivot_offset = Vector2(64, 64)
 mouse_filter = 2
+texture = ExtResource("3_lrgq4")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_lock_ = true
@@ -116,6 +124,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("3_lrgq4")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_lock_ = true
@@ -129,13 +138,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("3_lrgq4")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_lock_ = true
 
+[node name="EnergyVfxFront" parent="." instance=ExtResource("4_c84lw")]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+
 [node name="BurstFront" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(65, 62)
+position = Vector2(64, 64)
 emitting = false
 amount = 1
 lifetime = 0.5
@@ -151,9 +165,6 @@ scale_amount_max = 0.45
 scale_amount_curve = SubResource("Curve_1sepv")
 color = Color(0.894118, 0.654902, 0.215686, 0.6)
 color_ramp = SubResource("Gradient_4pfys")
-
-[node name="EnergyVfxFront" type="Node2D" parent="."]
-unique_name_in_owner = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

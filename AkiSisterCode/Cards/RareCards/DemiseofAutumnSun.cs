@@ -13,7 +13,7 @@ public class DemiseofAutumnSun() : AkiSisterCard(0,
 {
     public override bool GainsBlock => true;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(4m, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6m, ValueProp.Move)];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     
@@ -24,11 +24,18 @@ public class DemiseofAutumnSun() : AkiSisterCard(0,
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
     }
 
+    private int _count = 0;
+    
     public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner == base.Owner && cardPlay.Card.Type == CardType.Status && base.Pile.Type != PileType.Hand)
         {
-            await CardPileCmd.Add(this, PileType.Hand);
+            _count++;
+            if (_count >= 2)
+            {
+                _count = 0;
+                await CardPileCmd.Add(this, PileType.Hand);
+            }
         }
     }
 

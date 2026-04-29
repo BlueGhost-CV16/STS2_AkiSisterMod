@@ -1,6 +1,7 @@
 ﻿using AkiSister.AkiSisterCode.Cards;
 using AkiSister.AkiSisterCode.Enchantments;
 using AkiSister.AkiSisterCode.Extensions;
+using AkiSister.AkiSisterCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,7 +15,10 @@ public class BecomeNourishingSoil() : AkiSisterCard(1,
     CardType.Attack, CardRarity.Uncommon,
     TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(13, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new DamageVar(6, ValueProp.Move),
+        new PowerVar<WitherPower>(6),
+    ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => HoverTipFactory.FromEnchantment<RedLeafMarkEnchantment>();
 
@@ -23,12 +27,15 @@ public class BecomeNourishingSoil() : AkiSisterCard(1,
         CardPlay play)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
+        await PowerCmd.Apply<WitherPower>(play.Target, DynamicVars["WitherPower"].BaseValue, Owner.Creature, this);
         await CardCmd.Discard(choiceContext, PileType.Hand.GetPile(Owner).Cards.ToList().Where(a => a.LeafCheck()));
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars["WitherPower"].UpgradeValueBy(2);
     }
 }

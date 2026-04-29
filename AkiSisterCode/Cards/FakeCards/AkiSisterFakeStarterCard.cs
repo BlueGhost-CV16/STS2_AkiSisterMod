@@ -1,5 +1,5 @@
-﻿using AkiSister.AkiSisterCode.Cards;
-using AkiSister.AkiSisterCode.Cards.BasicCards;
+﻿using AkiSister.AkiSisterCode.Cards.BasicCards;
+using AkiSister.AkiSisterCode.Cards.CommonCards;
 using AkiSister.AkiSisterCode.Extensions;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;

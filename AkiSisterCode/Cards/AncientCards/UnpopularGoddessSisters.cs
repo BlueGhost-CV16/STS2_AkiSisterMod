@@ -18,12 +18,12 @@ public class UnpopularGoddessSisters() : AkiSisterCard(1,
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => 
-        HoverTipFactory.FromEnchantment<RedLeafMarkEnchantment>().Concat(
-            HoverTipFactory.FromEnchantment<SweetPotatoMarkEnchantment>()).Concat(
+        //HoverTipFactory.FromEnchantment<RedLeafMarkEnchantment>().Concat(
+            //HoverTipFactory.FromEnchantment<SweetPotatoMarkEnchantment>()).Concat(
             [
                 HoverTipFactory.FromPower<WitherPower>(),
                 HoverTipFactory.FromPower<DrainPower>()
-            ]);
+            ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,

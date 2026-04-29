@@ -29,7 +29,7 @@ public class ReturningWheelofAutumnFrost() : AkiSisterCard(1,
         CardPlay play)
     {
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_attack_slash", null, "slash_attack.mp3")
             .Execute(choiceContext);
         await PowerCmd.Apply<ReturningWheelofAutumnFrostPower>(play.Target, base.DynamicVars["ReturningWheelofAutumnFrostPower"].BaseValue, base.Owner.Creature, this);
     }

@@ -16,6 +16,10 @@ public class TimelySnowPromiseGoodHarvestPower : AkiSisterPower
 
     public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
+        if (side == CombatSide.Enemy)
+        {
+            return;
+        }
         var pile = CardPile.GetCards(base.Owner.Player, PileType.Hand).Where(card => card.Type == CardType.Status).ToList();
         if (Amount >= pile.Count)
         {
@@ -38,14 +42,12 @@ public class TimelySnowPromiseGoodHarvestPower : AkiSisterPower
             }
         }
     }
-
-    public override async Task AfterTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side)
-    {
-        
-        if (side == CombatSide.Enemy)
-        {
-            Flash();
-            await PowerCmd.Apply<FragrancePower>(Owner, Amount, Owner, null);
-        }
-    }
+    //public override async Task AfterTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side)
+    //{
+    //    if (side == CombatSide.Enemy)
+    //    {
+    //        Flash();
+    //        await PowerCmd.Apply<FragrancePower>(Owner, Amount, Owner, null);
+    //    }
+    //}
 }

@@ -14,11 +14,12 @@ public class AutumnAuraCondenses() : AkiSisterCard(2,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         //new DamageVar(6m, ValueProp.Move),
-        new PowerVar<AutumnAuraPower>(13m),
+        new PowerVar<AutumnAuraPower>(6m),
         new PowerVar<AutumnAuraLostPower>(7m)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<AutumnAuraLostPower>(),
         HoverTipFactory.FromPower<AutumnAuraPower>()
     ];
 
@@ -28,13 +29,16 @@ public class AutumnAuraCondenses() : AkiSisterCard(2,
     {
         //await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
         //    .Execute(choiceContext);
-        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<AutumnAuraLostPower>(Owner.Creature, DynamicVars["AutumnAuraLostPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature,
+            DynamicVars["AutumnAuraPower"].BaseValue + DynamicVars["AutumnAuraLostPower"].BaseValue,
+            base.Owner.Creature, this);
+        await PowerCmd.Apply<AutumnAuraLostPower>(Owner.Creature, DynamicVars["AutumnAuraLostPower"].BaseValue,
+            base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["AutumnAuraPower"].UpgradeValueBy(3);
+        DynamicVars["AutumnAuraPower"].UpgradeValueBy(2);
         DynamicVars["AutumnAuraLostPower"].UpgradeValueBy(1);
     }
 }

@@ -40,8 +40,8 @@ public class ShepherdandApricotBlossom() : CustomCardModel(1,
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CardsVar(1),
-        new PowerVar<WitherPower>(2m),
-        new PowerVar<AutumnAuraPower>(1m),
+        new PowerVar<WitherPower>(1m),
+        //new PowerVar<AutumnAuraPower>(1m),
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
@@ -49,10 +49,9 @@ public class ShepherdandApricotBlossom() : CustomCardModel(1,
         AkiSisterCardKeyWords.RedLeafFavor
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
-        HoverTipFactory.FromEnchantment<RedLeafMarkEnchantment>().Concat([
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
             HoverTipFactory.FromPower<WitherPower>()
-    ]);
+    ];
 
     //public override bool HasTurnEndInHandEffect => true;
     
@@ -61,10 +60,10 @@ public class ShepherdandApricotBlossom() : CustomCardModel(1,
         CardPlay play)
     {
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
-        if (base.IsUpgraded)
-        {
-            await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, base.DynamicVars["AutumnAuraPower"].BaseValue ,Owner.Creature, this);
-        }
+        //if (base.IsUpgraded)
+        //{
+        //    await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, base.DynamicVars["AutumnAuraPower"].BaseValue ,Owner.Creature, this);
+        //}
     }
 
     protected override void OnUpgrade()

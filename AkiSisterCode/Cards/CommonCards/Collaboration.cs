@@ -14,7 +14,9 @@ public class Collaboration() : AkiSisterCard(1,
     TargetType.AllEnemies)
 {
     
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7m, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new DamageVar(12m, ValueProp.Move)
+    ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromCard<ShepherdandApricotBlossom>(),
@@ -26,9 +28,10 @@ public class Collaboration() : AkiSisterCard(1,
         CardPlay play)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+            .WithHitFx("vfx/vfx_heavy_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
-        await base.Owner.FlowerAdd(base.CombatState);
-        await base.Owner.GrassAdd(base.CombatState);
+        await base.Owner.FlowerAdd_Deck(base.CombatState);
+        await base.Owner.GrassAdd_Deck(base.CombatState);
     }
 
     protected override void OnUpgrade()

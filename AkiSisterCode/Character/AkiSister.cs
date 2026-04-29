@@ -53,7 +53,7 @@ public class AkiSister : PlaceholderCharacterModel
         These are just some of the simplest assets, given some placeholders to differentiate your character with.
         You don't have to, but you're suggested to rename these images. */
     public override string CustomIconTexturePath => "character_icon_char_name.png".CharacterUiPath();
-    public override string CustomCharacterSelectIconPath => "char_select_char_name.png".CharacterUiPath();
+    public override string CustomCharacterSelectIconPath => "char_select_char_name_new.png".CharacterUiPath();
     public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
     public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
 
@@ -62,6 +62,7 @@ public class AkiSister : PlaceholderCharacterModel
     public override string CustomArmPaperTexturePath => "hand_paper.png".CharacterUiPath();
     public override string CustomArmScissorsTexturePath => "hand_scissors.png".CharacterUiPath();
     
+    public override string CustomRestSiteAnimPath => "res://AkiSister/images/scenes/aki_sister_rest_site_new.tscn";
     public override string CustomMerchantAnimPath => "res://AkiSister/images/scenes/aki_sister_merchant.tscn";
     public override string CustomEnergyCounterPath => "res://AkiSister/images/scenes/aki_sister_energy_counter.tscn";
     public override string CustomIconPath => "res://AkiSister/images/scenes/aki_sister_icon.tscn";

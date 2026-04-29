@@ -25,7 +25,8 @@ public class FarewellWhispersofAutumnWaters() : AkiSisterCard(0,
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<FragrancePower>(),
-        HoverTipFactory.FromCard<HarvesterandPearBlossom>()
+        HoverTipFactory.FromCard<HarvesterandPearBlossom>(),
+        base.EnergyHoverTip,
     ];
 
     protected override async Task OnPlay(

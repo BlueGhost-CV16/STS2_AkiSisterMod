@@ -25,7 +25,8 @@ public class WhirlwindAutumnRaid() : AkiSisterCard(0,
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<AutumnAuraPower>(),
-        HoverTipFactory.FromCard<ShepherdandApricotBlossom>()
+        HoverTipFactory.FromCard<ShepherdandApricotBlossom>(),
+        base.EnergyHoverTip,
     ];
 
     protected override async Task OnPlay(

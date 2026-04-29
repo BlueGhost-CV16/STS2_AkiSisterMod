@@ -45,5 +45,6 @@ public class Harvest() : AkiSisterCard(2,
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(2m);
+        DynamicVars.Energy.UpgradeValueBy(1);
     }
 }

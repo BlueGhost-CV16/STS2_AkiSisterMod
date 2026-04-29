@@ -40,8 +40,8 @@ public class HarvesterandPearBlossom() : CustomCardModel(1,
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CardsVar(1),
-        new PowerVar<DrainPower>(2m),
-        new PowerVar<FragrancePower>(1m),
+        new PowerVar<DrainPower>(1m),
+        //new PowerVar<FragrancePower>(1m),
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
@@ -49,10 +49,9 @@ public class HarvesterandPearBlossom() : CustomCardModel(1,
         AkiSisterCardKeyWords.SweetPotatoFavor
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
-        HoverTipFactory.FromEnchantment<SweetPotatoMarkEnchantment>().Concat([
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
             HoverTipFactory.FromPower<DrainPower>()
-    ]);
+    ];
     
     //public override bool HasTurnEndInHandEffect => true;
 
@@ -61,10 +60,10 @@ public class HarvesterandPearBlossom() : CustomCardModel(1,
         CardPlay play)
     {
         await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
-        if (base.IsUpgraded)
-        {
-            await PowerCmd.Apply<FragrancePower>(Owner.Creature, base.DynamicVars["FragrancePower"].BaseValue ,Owner.Creature, this);
-        }
+        //if (base.IsUpgraded)
+        //{
+        //    await PowerCmd.Apply<FragrancePower>(Owner.Creature, base.DynamicVars["FragrancePower"].BaseValue ,Owner.Creature, this);
+        //}
     }
 
     protected override void OnUpgrade()

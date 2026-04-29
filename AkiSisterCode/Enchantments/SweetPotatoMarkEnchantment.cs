@@ -17,16 +17,17 @@ public class SweetPotatoMarkEnchantment : AkiSisterEnchantment
 {
     public override bool IsStackable => true;
 
-    public override bool HasExtraCardText => true;
+    //public override bool HasExtraCardText => true;
 
     public override bool ShowAmount => false;
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new PowerVar<FragrancePower>(1m),
+        new PowerVar<WitherPower>(1m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<FragrancePower>()
+        //HoverTipFactory.FromPower<FragrancePower>()
     ];
     
     public override bool CanEnchantCardType(CardType cardType)
@@ -70,6 +71,8 @@ public class SweetPotatoMarkEnchantment : AkiSisterEnchantment
         if (card == this.Card)
         {
             await PowerCmd.Apply<FragrancePower>(Card.Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Card.Owner.Creature, Card);
+            StatusChange();
+            card.ClearEnchantmentInternal();
         }
     }
 
@@ -96,7 +99,7 @@ public class SweetPotatoMarkEnchantment : AkiSisterEnchantment
             return Task.CompletedTask;
         }
 
-        if (card.Pile?.Type != PileType.Discard && card.Pile?.Type != PileType.Exhaust)
+        if (card.Pile?.Type != PileType.Discard)
         {
             return Task.CompletedTask;
         }

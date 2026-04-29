@@ -1,8 +1,8 @@
 {
-  "AKISISTER-AKI_SIZUHA_GRASSES.description": "在每场战斗开始时，额外抽[blue]{Cards}[/blue]张牌。\n在你的回合开始时，将1张[orange]「牧凋人的杏棠花」[/orange]添加至你的[gold]抽牌堆[/gold]顶，优先为手牌中最左边的牌添加[orange]「红叶标记」[/orange]。",
+  "AKISISTER-AKI_SIZUHA_GRASSES.description": "在你的回合开始时，将1张[orange]「牧凋人的杏棠花」[/orange]添加至你的[gold]抽牌堆[/gold]顶，优先为手牌中最左边的牌添加[orange]「红叶标记」[/orange]。",
   "AKISISTER-AKI_SIZUHA_GRASSES.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
   "AKISISTER-AKI_SIZUHA_GRASSES.title": "秋福寿草",
-  "AKISISTER-AKI_MINORIKO_GRASSES.description": "在每场战斗开始时，额外抽[blue]{Cards}[/blue]张牌。\n在你的回合开始时，将1张[orange]「收实者的梨樱草」[/orange]添加至你的[gold]抽牌堆[/gold]底，优先为手牌中最右边的牌添加[orange]「番薯标记」[/orange]。",
+  "AKISISTER-AKI_MINORIKO_GRASSES.description": "在你的回合开始时，将1张[orange]「收实者的梨樱草」[/orange]添加至你的[gold]抽牌堆[/gold]底，优先为手牌中最右边的牌添加[orange]「番薯标记」[/orange]。",
   "AKISISTER-AKI_MINORIKO_GRASSES.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
   "AKISISTER-AKI_MINORIKO_GRASSES.title": "角罂粟草",
   "AKISISTER-AKI_SIZUHA_FLOWERS.description": "在每场战斗开始时，额外抽[blue]{Cards}[/blue]张牌。\n在你的回合开始时，将1张[gold]升级过[/gold]的[orange]「牧凋人的杏棠花」[/orange]添加至你的[gold]抽牌堆[/gold]顶，优先为手牌中最左边的牌添加[orange]「红叶标记」[/orange]。",
@@ -14,7 +14,7 @@
   "AKISISTER-AKI_SISTER_GRASSES.description": "[gold]我 全 都 要 。[gold]",
   "AKISISTER-AKI_SISTER_GRASSES.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
   "AKISISTER-AKI_SISTER_GRASSES.title": "秋福寿草和角罂粟草",
-  "AKISISTER-AKI_SISTER_FLOWERS.description": "[gold]我 全 都 要 。[gold]\n升级回合开始时置入抽牌堆的[orange]「牧凋人的杏棠花」[/orange]和[orange]「收实者的梨樱草」[/orange]。",
+  "AKISISTER-AKI_SISTER_FLOWERS.description": "[gold]我 全 都 要 。[gold]\n战斗开始时额外抽取[blue]2[/blue]个技能，升级回合开始时置入抽牌堆的[orange]「牧凋人的杏棠花」[/orange]和[orange]「收实者的梨樱草」[/orange]。",
   "AKISISTER-AKI_SISTER_FLOWERS.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
   "AKISISTER-AKI_SISTER_FLOWERS.title": "秋福寿花和角罂粟花"
 }

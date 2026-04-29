@@ -15,7 +15,7 @@ public class MemoriesofAutumn() : AkiSisterCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<MemoriesofAutumnPower>(1m)];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<MemoriesofAutumnPower>()
+        //HoverTipFactory.FromPower<MemoriesofAutumnPower>()
     ];
 
     protected override async Task OnPlay(

@@ -56,18 +56,18 @@ public class AkiSizuhaGrasses() : AkiSisterRelic
         await player.LeafAdd_Hand();
     }
     
-    public override decimal ModifyHandDraw(Player player, decimal count)
-    {
-        if (player != base.Owner)
-        {
-            return count;
-        }
-        if (player.Creature.CombatState.RoundNumber > 1)
-        {
-            return count;
-        }
-        return count + base.DynamicVars.Cards.BaseValue;
-    }
+    //public override decimal ModifyHandDraw(Player player, decimal count)
+    //{
+    //    if (player != base.Owner)
+    //    {
+    //        return count;
+    //    }
+    //    if (player.Creature.CombatState.RoundNumber > 1)
+    //    {
+    //        return count;
+    //    }
+    //    return count + base.DynamicVars.Cards.BaseValue;
+    //}
 
     public override RelicModel? GetUpgradeReplacement()
     {

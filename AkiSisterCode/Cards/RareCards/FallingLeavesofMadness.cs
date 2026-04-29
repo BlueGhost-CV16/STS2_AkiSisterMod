@@ -12,7 +12,7 @@ namespace AkiSister.AkiSisterCode.Cards.RareCards;
 
 public class FallingLeavesofMadness() : AkiSisterCard(1,
     CardType.Attack, CardRarity.Rare,
-    TargetType.AnyEnemy)
+    TargetType.AllEnemies)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12, ValueProp.Move)];
     
@@ -22,7 +22,8 @@ public class FallingLeavesofMadness() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
+            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
         await this.Owner.LeafAdd_Hand(999);
     }

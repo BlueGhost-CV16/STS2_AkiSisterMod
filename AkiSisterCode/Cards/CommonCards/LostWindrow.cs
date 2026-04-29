@@ -21,8 +21,8 @@ public class LostWindrow() : AkiSisterCard(0,
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-            HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafResonance),
-            HoverTipFactory.FromCard<ShepherdandApricotBlossom>()
+        HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafResonance),
+        HoverTipFactory.FromCard<ShepherdandApricotBlossom>()
     ];
 
     protected override async Task OnPlay(
@@ -33,7 +33,7 @@ public class LostWindrow() : AkiSisterCard(0,
         {
             await Owner.LeafAdd_Card(Owner.PlayerCombatState!.Hand.Cards.ToList());
         }
-        var cardModel = await CardSelectCmd.FromHand(choiceContext, base.Owner, new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 0, 999), card => CustomMethods.LeafCheck(card), this);
+        var cardModel = await CardSelectCmd.FromHand(choiceContext, base.Owner, new CardSelectorPrefs(base.SelectionScreenPrompt, 0, 999), card => CustomMethods.LeafCheck(card), this);
         var cardModels = cardModel.ToList();
         if (cardModels.Count > 0)
         { 

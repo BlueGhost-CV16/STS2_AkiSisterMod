@@ -1,41 +1,57 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqrfte3rahswt"]
+[gd_scene load_steps=4 format=3 uid="uid://cqrfte3rahswt"]
 
-[ext_resource type="Texture2D" uid="uid://dfta01porqld8" path="res://AkiSister/images/scenes/篝火.png" id="1_m4ucn"]
+[ext_resource type="Texture2D" uid="uid://8mf5p52qp4kf" path="res://AkiSister/images/scenes/篝火-缩小.png" id="1_m4ucn"]
+[ext_resource type="Script" uid="uid://xmjqjy2te4fx" path="res://AkiSisterCode/Nodes/NRestSiteCharacter.cs" id="1_rgumq"]
+[ext_resource type="Script" uid="uid://bmk07h38jany5" path="res://AkiSisterCode/Nodes/NSelectionReticle.cs" id="2_no7yw"]
 
 [node name="IroncladRestSite" type="Node2D"]
 position = Vector2(-2, 42)
 scale = Vector2(0.760006, 0.760006)
+script = ExtResource("1_rgumq")
 
-[node name="MarisaModelv2Idle" type="Sprite2D" parent="."]
-position = Vector2(38.15759, -26.31558)
-scale = Vector2(0.32017288, 0.32017294)
+[node name="SpineSprite" type="TextureRect" parent="."]
+offset_left = -290.78717
+offset_top = 49.99961
+offset_right = 309.21283
+offset_bottom = 515.99963
+rotation = -0.41364303
 texture = ExtResource("1_m4ucn")
 
 [node name="ControlRoot" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("2_no7yw")
+
+[node name="SelectionReticle" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -239.00621
+offset_top = 64.77149
+offset_right = 281.3841
+offset_bottom = 460.48825
+rotation = -0.3874631
 
 [node name="Hitbox" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 0
-offset_left = -155.0
-offset_top = -351.0
-offset_right = 266.0
-offset_bottom = 332.0
+offset_left = -205.09122
+offset_top = 73.05055
+offset_right = 292.11093
+offset_bottom = 446.28638
+rotation = -0.38920844
 
 [node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_left = 209.209
-offset_top = -317.103
-offset_right = 209.209
-offset_bottom = -317.103
+offset_left = 206.57732
+offset_top = -49.999603
+offset_right = 206.57732
+offset_bottom = -49.999603
 
 [node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_left = -73.6836
-offset_top = -324.997
-offset_right = -73.6836
-offset_bottom = -324.997
+offset_left = -73.683624
+offset_top = 57.894318
+offset_right = -73.683624
+offset_bottom = 57.894318

@@ -15,7 +15,7 @@ public class SweetPotatoRoom() : AkiSisterCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<SweetPotatoRoomPower>(3m)];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<SweetPotatoRoomPower>()
+        HoverTipFactory.FromPower<FragrancePower>()
     ];
 
     protected override async Task OnPlay(

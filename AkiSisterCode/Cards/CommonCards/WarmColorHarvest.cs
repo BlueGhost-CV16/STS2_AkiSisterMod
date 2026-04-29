@@ -33,7 +33,7 @@ public class WarmColorHarvest() : AkiSisterCard(0,
         {
             await Owner.PotatoAdd_Card(Owner.PlayerCombatState!.Hand.Cards.ToList());
         }
-        var cardModel = await CardSelectCmd.FromHand(choiceContext, base.Owner, new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 0, 999), card => CustomMethods.PotatoCheck(card), this);
+        var cardModel = await CardSelectCmd.FromHand(choiceContext, base.Owner, new CardSelectorPrefs(base.SelectionScreenPrompt, 0, 999), card => CustomMethods.PotatoCheck(card), this);
         var cardModels = cardModel.ToList();
         if (cardModels.Count > 0)
         {

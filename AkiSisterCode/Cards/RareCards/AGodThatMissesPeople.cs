@@ -25,8 +25,8 @@ public class AGodThatMissesPeople() : AkiSisterCard(1,
     //    CardKeyword.Exhaust
     //];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        base.EnergyHoverTip,
         HoverTipFactory.FromCard<ShepherdandApricotBlossom>(),
         HoverTipFactory.FromCard<HarvesterandPearBlossom>()
     ];

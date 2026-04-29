@@ -19,7 +19,7 @@ public class WitherPower : AkiSisterPower
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DamageIncrease", 1.2m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DamageIncrease", 1.3m)];
 
     public override IEnumerable<HealthBarForecastSegment>
         GetHealthBarForecastSegments(HealthBarForecastContext context) =>
@@ -48,7 +48,7 @@ public class WitherPower : AkiSisterPower
         ReturningWheelofAutumnFrostPower power = dealer.GetPower<ReturningWheelofAutumnFrostPower>();
         if (power != null)
         {
-            num = power.ModifyWitherMultiplier(dealer, num, props, dealer, cardSource);
+            num = power.ModifyWitherMultiplier(target, num, props, dealer, cardSource);
         }
         return num;
     }
@@ -79,8 +79,8 @@ public class WitherPower : AkiSisterPower
         var num3 = Amount;
         for (int i = 0; i < num2; i++)
         {
-            decimal damage = num3 / 5;
-            num3 -= num3 / 5;
+            decimal damage = num3;
+            num3 -= Math.Max(num3 / 5, 1);
             //decimal damage = base.Amount - i;
             damage = Hook.ModifyDamage(base.Owner.CombatState.RunState, base.Owner.CombatState, base.Owner, null,
                 damage, ValueProp.Unblockable | ValueProp.Unpowered, null, ModifyDamageHookType.All,
@@ -103,7 +103,7 @@ public class WitherPower : AkiSisterPower
                 ValueProp.Unblockable | ValueProp.Unpowered, null, null);
             if (base.Owner.IsAlive)
             {
-                await PowerCmd.Apply<WitherPower>(Owner, -base.Amount / 5, null, null);
+                await PowerCmd.Apply<WitherPower>(Owner, -Math.Max(base.Amount / 5, 1), null, null);
                 //await PowerCmd.Decrement(this);
             }
             else

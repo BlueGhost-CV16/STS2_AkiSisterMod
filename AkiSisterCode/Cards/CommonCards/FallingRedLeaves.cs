@@ -31,6 +31,7 @@ public class FallingRedLeaves() : AkiSisterCard(0,
         CardPlay play)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+            .WithHitFx("vfx/vfx_attack_slash", null, "slash_attack.mp3")
             .Execute(choiceContext);
         var cards = CardPile.GetCards(base.Owner, PileType.Hand).ToList();
         if (cards.Count > 0)

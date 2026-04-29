@@ -20,6 +20,7 @@ public class DesolationAutumnWind() : AkiSisterCard(1,
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<AutumnAuraLostPower>(),
         HoverTipFactory.FromPower<AutumnAuraPower>()
     ];
 

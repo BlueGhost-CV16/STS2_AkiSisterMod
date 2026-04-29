@@ -15,7 +15,7 @@ public class GlowofAutumnSunset() : AkiSisterCard(1,
 {
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(13m, ValueProp.Move),
+        new DamageVar(11m, ValueProp.Move),
         new CardsVar(1)
     ];
     
@@ -28,12 +28,13 @@ public class GlowofAutumnSunset() : AkiSisterCard(1,
         CardPlay play)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
-        await base.Owner.FlowerAdd_Deck(base.CombatState, (int)DynamicVars.Cards.BaseValue);
+        await base.Owner.FlowerAdd_Deck(base.CombatState, (int)DynamicVars.Cards.BaseValue, IsUpgraded);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(1);
     }
 }

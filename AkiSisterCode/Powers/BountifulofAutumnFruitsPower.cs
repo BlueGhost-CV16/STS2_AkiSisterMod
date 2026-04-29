@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 
 namespace AkiSister.AkiSisterCode.Powers;
 
-public class BountifulofAutumnFruitsPower :  AkiSisterPower
+public class BountifulofAutumnFruitsPower : AkiSisterPower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

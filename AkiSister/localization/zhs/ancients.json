@@ -1,7 +1,8 @@
 {
-  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-0r.ancient": "你们为何而来？",
-  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-0r.next": "继续",
   "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-0r.char": "要不要来参加我们的收获祭？",
+  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-0r.next": "邀请",
   "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-1r.ancient": "这里不是神明的游乐园，滚出去。",
-  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-attack": "如果我拒绝呢？"
+  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-1r.next": "拒绝",
+  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-2r.char": "如果我拒绝呢？",
+  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-attack": "……"
 }

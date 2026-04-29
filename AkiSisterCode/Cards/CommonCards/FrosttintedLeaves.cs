@@ -3,6 +3,7 @@ using AkiSister.AkiSisterCode.Cards.StatusCards;
 using AkiSister.AkiSisterCode.Enchantments;
 using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Nodes;
+using AkiSister.AkiSisterCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,7 +19,8 @@ public class FrosttintedLeaves() : AkiSisterCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CardsVar(1),
-        new DamageVar(10m, ValueProp.Move)
+        new PowerVar<WitherPower>(3),
+        new DamageVar(6m, ValueProp.Move)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => HoverTipFactory.FromEnchantment<RedLeafMarkEnchantment>();
@@ -28,13 +30,16 @@ public class FrosttintedLeaves() : AkiSisterCard(1,
         CardPlay play)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
+        await PowerCmd.Apply<WitherPower>(play.Target, DynamicVars["WitherPower"].BaseValue, Owner.Creature, this);
         await base.Owner.LeafAdd_Hand((int)base.DynamicVars.Cards.BaseValue);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Cards.UpgradeValueBy(1);
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars["WitherPower"].UpgradeValueBy(1);
     }
 }

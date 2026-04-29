@@ -17,16 +17,17 @@ public class RedLeafMarkEnchantment : AkiSisterEnchantment
 {
     public override bool IsStackable => true;
     
-    public override bool HasExtraCardText => true;
+    //public override bool HasExtraCardText => true;
 
     public override bool ShowAmount => false;
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new PowerVar<AutumnAuraPower>(1m),
+        new PowerVar<DrainPower>(1m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<AutumnAuraPower>()
+        //HoverTipFactory.FromPower<AutumnAuraPower>()
     ];
     
     public override bool CanEnchantCardType(CardType cardType)

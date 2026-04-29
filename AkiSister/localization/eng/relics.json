@@ -1,3 +1,20 @@
 {
-  
+  "AKISISTER-AKI_SIZUHA_GRASSES.description": "At the start of your turn, add 1 [orange]\"Shepherd and Apricot Blossom\"[/orange] to the top of your [gold]draw pile[/gold], then prioritize applying [orange]\"Red Leaf Mark\"[/orange] to the leftmost card in your hand.",
+  "AKISISTER-AKI_SIZUHA_GRASSES.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
+  "AKISISTER-AKI_SIZUHA_GRASSES.title": "Autumn Fortune Grass",
+  "AKISISTER-AKI_MINORIKO_GRASSES.description": "At the start of your turn, add 1 [orange]\"Harvester and Pear Blossom\"[/orange] to the bottom of your [gold]draw pile[/gold], then prioritize applying [orange]\"Sweet Potato Mark\"[/orange] to the rightmost card in your hand.",
+  "AKISISTER-AKI_MINORIKO_GRASSES.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
+  "AKISISTER-AKI_MINORIKO_GRASSES.title": "Golden Harvest Grass",
+  "AKISISTER-AKI_SIZUHA_FLOWERS.description": "At the start of each combat, draw [blue]{Cards}[/blue] additional cards.\nAt the start of your turn, add 1 [gold]Upgraded[/gold] [orange]\"Shepherd and Apricot Blossom\"[/orange] to the top of your [gold]draw pile[/gold], then prioritize applying [orange]\"Red Leaf Mark\"[/orange] to the leftmost card in your hand.",
+  "AKISISTER-AKI_SIZUHA_FLOWERS.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
+  "AKISISTER-AKI_SIZUHA_FLOWERS.title": "Autumn Fortune Flower",
+  "AKISISTER-AKI_MINORIKO_FLOWERS.description": "At the start of each combat, draw [blue]{Cards}[/blue] additional cards.\nAt the start of your turn, add 1 [gold]Upgraded[/gold] [orange]\"Harvester and Pear Blossom\"[/orange] to the bottom of your [gold]draw pile[/gold], then prioritize applying [orange]\"Sweet Potato Mark\"[/orange] to the rightmost card in your hand.",
+  "AKISISTER-AKI_MINORIKO_FLOWERS.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
+  "AKISISTER-AKI_MINORIKO_FLOWERS.title": "Golden Harvest Flower",
+  "AKISISTER-AKI_SISTER_GRASSES.description": "[gold]I want it all.[/gold]",
+  "AKISISTER-AKI_SISTER_GRASSES.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
+  "AKISISTER-AKI_SISTER_GRASSES.title": "Autumn Fortune Grass and Golden Harvest Grass",
+  "AKISISTER-AKI_SISTER_FLOWERS.description": "[gold]I want it all.[/gold]\nAt the start of each combat, draw [blue]2[/blue] additional Skill cards.\nThe [orange]\"Shepherd and Apricot Blossom\"[/orange] and [orange]\"Harvester and Pear Blossom\"[/orange] added at the start of your turn are upgraded.",
+  "AKISISTER-AKI_SISTER_FLOWERS.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
+  "AKISISTER-AKI_SISTER_FLOWERS.title": "Autumn Fortune Flower and Golden Harvest Flower"
 }

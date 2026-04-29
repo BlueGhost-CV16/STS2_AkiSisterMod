@@ -17,6 +17,7 @@ public class IncessantRain() : AkiSisterCard(1,
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<FragranceLostPower>(),
         HoverTipFactory.FromPower<FragrancePower>()
     ];
 

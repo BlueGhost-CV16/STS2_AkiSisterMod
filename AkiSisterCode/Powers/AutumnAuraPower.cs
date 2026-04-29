@@ -92,13 +92,13 @@ public class AutumnAuraPower : AkiSisterPower
     public override decimal ModifyHpLostAfterOstyLate(Creature target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
     {
-        if (!CombatManager.Instance.IsInProgress && props != ValueProp.Move || target != base.Owner || amount > base.Amount + Owner.Block)
+        if (!CombatManager.Instance.IsInProgress && props != ValueProp.Unblockable || target != base.Owner || amount <= Owner.Block || amount > base.Amount + Owner.Block)
         {
             return amount;
         }
         //DamageTaken = amount;
         Flash();
-        PowerCmd.ModifyAmount(this, -amount, null, null);
+        PowerCmd.ModifyAmount(this, Owner.Block - amount, null, null);
         return Math.Min(0, amount);
         //return Math.Min(Owner.Block != 0 ? Owner.Block : 0, amount);
     }

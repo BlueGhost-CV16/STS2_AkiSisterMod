@@ -15,7 +15,7 @@ public class FragranceSurrounds() : AkiSisterCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new PowerVar<FragrancePower>(5),
-        new PowerVar<FragranceSurroundsPower>(1m)
+        new PowerVar<FragranceSurroundsPower>(2m)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [

@@ -16,7 +16,7 @@ public class RedRainofFallenLeaves() : AkiSisterCard(1,
 {
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(20m, ValueProp.Move),
+        new DamageVar(18m, ValueProp.Move),
         new CardsVar(1)
     ];
     
@@ -29,6 +29,7 @@ public class RedRainofFallenLeaves() : AkiSisterCard(1,
         CardPlay play)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
         await base.Owner.FlowerAdd_Deck(base.CombatState, (int)DynamicVars.Cards.BaseValue, IsUpgraded);
         await base.Owner.FlowerAdd(base.CombatState, (int)DynamicVars.Cards.BaseValue, IsUpgraded);

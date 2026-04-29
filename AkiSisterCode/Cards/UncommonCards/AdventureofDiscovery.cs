@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using AkiSister.AkiSisterCode.Powers;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,7 +14,10 @@ public class AdventureofDiscovery() : AkiSisterCard(2,
     CardType.Attack, CardRarity.Uncommon,
     TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new DamageVar(12, ValueProp.Move),
+        new PowerVar<WitherPower>(4),
+    ];
 
     private bool HasStateUsedThisTurn => CombatManager.Instance.History.Entries.OfType<CardPlayFinishedEntry>()
         .Any((CardPlayFinishedEntry e) => e.HappenedThisTurn(base.CombatState) && e.Actor == base.Owner.Creature &&
@@ -24,12 +28,15 @@ public class AdventureofDiscovery() : AkiSisterCard(2,
         CardPlay play)
     {
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
+        await PowerCmd.Apply<WitherPower>(play.Target, DynamicVars["WitherPower"].BaseValue, Owner.Creature, this);
     }
     
     protected override void OnUpgrade()
     {
         base.DynamicVars.Damage.UpgradeValueBy(4m);
+        DynamicVars["WitherPower"].UpgradeValueBy(2);
     }
 
     public override Task AfterCardEnteredCombat(CardModel card)
