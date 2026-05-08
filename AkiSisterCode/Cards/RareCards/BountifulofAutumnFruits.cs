@@ -22,7 +22,7 @@ public class BountifulofAutumnFruits() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<BountifulofAutumnFruitsPower>(Owner.Creature, DynamicVars["BountifulofAutumnFruitsPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<BountifulofAutumnFruitsPower>(choiceContext, Owner.Creature, DynamicVars["BountifulofAutumnFruitsPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

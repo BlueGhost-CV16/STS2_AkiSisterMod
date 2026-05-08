@@ -53,7 +53,7 @@ public class RedLeafStrike() : AkiSisterCard(1,
             .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
         await Owner.FlowerAdd_Deck(base.CombatState);
-        await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature,
+        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner.Creature,
             1, base.Owner.Creature, this);
     }
 

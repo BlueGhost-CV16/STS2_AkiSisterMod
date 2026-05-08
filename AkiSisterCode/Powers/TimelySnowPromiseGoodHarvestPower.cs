@@ -27,7 +27,7 @@ public class TimelySnowPromiseGoodHarvestPower : AkiSisterPower
             {
                 await CardCmd.Exhaust(choiceContext, item);
             }
-            await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner, pile.Count, Owner, null);
+            await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, Owner, pile.Count, Owner, null);
         }
         else
         {
@@ -37,7 +37,7 @@ public class TimelySnowPromiseGoodHarvestPower : AkiSisterPower
                 if (card != null)
                 {
                     await CardCmd.Exhaust(choiceContext, card);
-                    await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner, 1, Owner, null);
+                    await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, Owner, 1, Owner, null);
                 }
             }
         }

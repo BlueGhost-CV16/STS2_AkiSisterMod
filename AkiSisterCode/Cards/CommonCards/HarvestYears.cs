@@ -37,9 +37,9 @@ public class HarvestYears() : AkiSisterCard(0,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Owner.Creature,
+        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Owner.Creature,
             this);
-        await PowerCmd.Apply<FragrancePower>(Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Owner.Creature,
+        await PowerCmd.Apply<FragrancePower>(choiceContext, Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Owner.Creature,
             this);
         await PlayerCmd.GainEnergy(base.DynamicVars.Energy.BaseValue, base.Owner);
         await Owner.FlowerAdd_Deck(base.CombatState, (int)DynamicVars.Cards.BaseValue);

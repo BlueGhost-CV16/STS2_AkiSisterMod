@@ -42,17 +42,17 @@ public class ColorGathering() : AkiSisterCard(0,
         }
         foreach (PowerModel item in originalDebuffs)
         {
-            PowerModel? powerById = cardPlay.Target.GetPowerById(item.Id);
-            if (powerById != null && !powerById.IsInstanced)
+            PowerModel powerModel = PowerCmd.FindExistingInstanceForStacking(item, cardPlay.Target, item.Applier);
+            if (powerModel != null)
             {
-                DoHackyThingsForSpecificPowers(powerById);
-                await PowerCmd.ModifyAmount(powerById, item.Amount, base.Owner.Creature, this);
+                DoHackyThingsForSpecificPowers(powerModel);
+                await PowerCmd.ModifyAmount(choiceContext, powerModel, item.Amount, base.Owner.Creature, this);
             }
             else
             {
                 PowerModel power = (PowerModel)item.ClonePreservingMutability();
                 DoHackyThingsForSpecificPowers(power);
-                await PowerCmd.Apply(power, cardPlay.Target, item.Amount, base.Owner.Creature, this);
+                await PowerCmd.Apply(choiceContext, power, cardPlay.Target, item.Amount, base.Owner.Creature, this);
             }
         }
     }

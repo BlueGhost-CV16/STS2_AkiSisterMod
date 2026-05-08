@@ -40,7 +40,7 @@ public class LeafGodForm() : AkiSisterCard(3,
                 CardCmd.Upgrade(allCard);
             }
         }
-        await PowerCmd.Apply<LeafGodFormPower>(Owner.Creature, DynamicVars["LeafGodFormPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<LeafGodFormPower>(choiceContext, Owner.Creature, DynamicVars["LeafGodFormPower"].BaseValue, Owner.Creature, this);
         //await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Owner.Creature, this);
     }
 

@@ -22,7 +22,7 @@ public class SweetPotatoRoom() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<SweetPotatoRoomPower>(Owner.Creature, DynamicVars["SweetPotatoRoomPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<SweetPotatoRoomPower>(choiceContext, Owner.Creature, DynamicVars["SweetPotatoRoomPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

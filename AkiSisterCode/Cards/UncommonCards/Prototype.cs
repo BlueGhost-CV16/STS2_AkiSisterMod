@@ -29,7 +29,7 @@ public class Prototype() : AkiSisterCard(0,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
             .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
-        await PowerCmd.Apply<WeakPower>(play.Target, DynamicVars.Weak.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<WeakPower>(choiceContext, play.Target, DynamicVars.Weak.BaseValue, Owner.Creature, this);
         //var card = PileType.Draw.GetPile(base.Owner).Cards.Where((CardModel c) => c.Type == CardType.Status).ToList()
         //    //CardPile.GetCards(Owner, PileType.Deck).Where(card => card.Type == CardType.Status).ToList()
         //    .StableShuffle(Owner.RunState.Rng.Shuffle).FirstOrDefault();

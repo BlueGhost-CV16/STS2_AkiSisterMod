@@ -35,10 +35,10 @@ public class WhirlwindAutumnRaid() : AkiSisterCard(0,
     {
         for (int i = 0; i < ResolveEnergyXValue(); i++)
         {
-            await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, base.DynamicVars["AutumnAuraPower"].BaseValue, base.Owner.Creature, this);
+            await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature, base.DynamicVars["AutumnAuraPower"].BaseValue, base.Owner.Creature, this);
         }
         await Owner.FlowerAdd_Deck(base.CombatState, ResolveEnergyXValue());
-        await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature, base.DynamicVars["EnergyNextTurnPower"].BaseValue * ResolveEnergyXValue(), base.Owner.Creature, this);
+        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner.Creature, base.DynamicVars["EnergyNextTurnPower"].BaseValue * ResolveEnergyXValue(), base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

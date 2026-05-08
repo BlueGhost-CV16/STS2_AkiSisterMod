@@ -22,7 +22,7 @@ public class GoldenAutumnLand() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<GoldenAutumnLandPower>(Owner.Creature, DynamicVars["GoldenAutumnLandPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<GoldenAutumnLandPower>(choiceContext, Owner.Creature, DynamicVars["GoldenAutumnLandPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -36,7 +36,7 @@ public class EternalAutumn() : AkiSisterCard(1,
         //        CardCmd.Upgrade(allCard);
         //    }
         //}
-        await PowerCmd.Apply<EternalAutumnPower>(Owner.Creature, DynamicVars["EternalAutumnPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<EternalAutumnPower>(choiceContext, Owner.Creature, DynamicVars["EternalAutumnPower"].BaseValue, Owner.Creature, this);
         //await PowerCmd.Apply<FragrancePower>(Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Owner.Creature, this);
     }
 

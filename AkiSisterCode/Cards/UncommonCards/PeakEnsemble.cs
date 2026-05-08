@@ -37,12 +37,12 @@ public class PeakEnsemble() : AkiSisterCard(2,
             .Execute(choiceContext);
         if (this.LeafCheck())
         {
-            await PowerCmd.Apply<WitherPower>(play.Target, attackCommand.Results.Sum((DamageResult r) => r.TotalDamage), Owner.Creature, this);
+            await PowerCmd.Apply<WitherPower>(choiceContext, play.Target, attackCommand.Results.SelectMany(r => r).Sum(r => r.TotalDamage), Owner.Creature, this);
         }
 
         if (this.PotatoCheck())
         {
-            await PowerCmd.Apply<DrainPower>(play.Target, attackCommand.Results.Sum((DamageResult r) => r.TotalDamage), Owner.Creature, this);
+            await PowerCmd.Apply<DrainPower>(choiceContext, play.Target, attackCommand.Results.SelectMany(r => r).Sum(r => r.TotalDamage), Owner.Creature, this);
         }
     }
 

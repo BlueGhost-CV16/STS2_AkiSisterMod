@@ -24,7 +24,7 @@ public class MelancholicAutumnMoonandaMaidensLove() : AkiSisterCard(2,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<MelancholicAutumnMoonandaMaidensLovePower>(Owner.Creature, DynamicVars["MelancholicAutumnMoonandaMaidensLovePower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<MelancholicAutumnMoonandaMaidensLovePower>(choiceContext, Owner.Creature, DynamicVars["MelancholicAutumnMoonandaMaidensLovePower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -19,7 +19,7 @@ public class FragranceLostPower : AkiSisterPower
             await PowerCmd.Remove(this);
             var power = Owner.GetPower<FragrancePower>();
             if (power != null)
-                await PowerCmd.ModifyAmount(power, -Math.Min(Amount, power.Amount), null, null);
+                await PowerCmd.ModifyAmount(choiceContext, power, -Math.Min(Amount, power.Amount), null, null);
         }
     }
 }

@@ -19,7 +19,7 @@ public class TimelySnowPromiseGoodHarvest() : AkiSisterCard(0,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<TimelySnowPromiseGoodHarvestPower>(Owner.Creature, DynamicVars["TimelySnowPromiseGoodHarvestPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<TimelySnowPromiseGoodHarvestPower>(choiceContext, Owner.Creature, DynamicVars["TimelySnowPromiseGoodHarvestPower"].BaseValue, Owner.Creature, this);
     }
     
     protected override void OnUpgrade()

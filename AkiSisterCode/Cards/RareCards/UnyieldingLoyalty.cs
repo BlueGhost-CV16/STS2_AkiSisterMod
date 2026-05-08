@@ -33,8 +33,8 @@ public class UnyieldingLoyalty() : AkiSisterCard(1,
         await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(play.Target)
             .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
-        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, -Owner.Creature.GetPowerAmount<AutumnAuraPower>(), Owner.Creature, this);
-        await PowerCmd.Apply<FragrancePower>(Owner.Creature, -Owner.Creature.GetPowerAmount<FragrancePower>(), Owner.Creature, this);
+        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature, -Owner.Creature.GetPowerAmount<AutumnAuraPower>(), Owner.Creature, this);
+        await PowerCmd.Apply<FragrancePower>(choiceContext, Owner.Creature, -Owner.Creature.GetPowerAmount<FragrancePower>(), Owner.Creature, this);
         //await PowerCmd.Remove<AutumnAuraPower>(Owner.Creature);
         //await PowerCmd.Remove<FragrancePower>(Owner.Creature);
     }

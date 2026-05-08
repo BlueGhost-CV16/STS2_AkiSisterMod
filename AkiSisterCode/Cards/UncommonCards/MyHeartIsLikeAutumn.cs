@@ -29,7 +29,7 @@ public class MyHeartIsLikeAutumn() : AkiSisterCard(0,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Owner.Creature, this);
         var cards = Owner.PlayerCombatState!.Hand.Cards.Where(card => card is ShepherdandApricotBlossom).ToList();
         if (cards.Count > 0)
         {

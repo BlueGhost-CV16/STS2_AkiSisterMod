@@ -22,7 +22,7 @@ public class SweetPotatoRoomPower : AkiSisterPower
         if (side == CombatSide.Player)
         {
             Flash();
-            await PowerCmd.Apply<FragrancePower>(Owner, Amount, Owner, null);
+            await PowerCmd.Apply<FragrancePower>(choiceContext, Owner, Amount, Owner, null);
         }
     }
 }

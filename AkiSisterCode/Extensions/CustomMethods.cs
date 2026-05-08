@@ -98,7 +98,7 @@ public static class CustomMethods
         }
     }
 
-    public static async Task GrassAdd(this Player player, CombatState? combatState, int amount = 1, bool upgrade = false)
+    public static async Task GrassAdd(this Player player, ICombatState? combatState, int amount = 1, bool upgrade = false)
     {
         if (combatState == null)
             return;
@@ -108,11 +108,11 @@ public static class CustomMethods
             CardModel card = combatState.CreateCard(ModelDb.Card<HarvesterandPearBlossom>(), player);
             if (upgrade)
                 CardCmd.Upgrade(card);
-            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
         }
     }
 
-    public static async Task GrassAdd_Deck(this Player player, CombatState? combatState, int amount = 1, bool upgrade = false)
+    public static async Task GrassAdd_Deck(this Player player, ICombatState? combatState, int amount = 1, bool upgrade = false)
     {
         if (combatState == null)
             return;
@@ -122,7 +122,7 @@ public static class CustomMethods
             CardModel card = combatState.CreateCard(ModelDb.Card<HarvesterandPearBlossom>(), player);
             if (upgrade)
                 CardCmd.Upgrade(card);
-            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, addedByPlayer: true));
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, player));
         }
     }
 
@@ -188,7 +188,7 @@ public static class CustomMethods
         }
     }
 
-    public static async Task FlowerAdd(this Player player, CombatState? combatState, int amount = 1, bool upgrade = false)
+    public static async Task FlowerAdd(this Player player, ICombatState? combatState, int amount = 1, bool upgrade = false)
     {
         if (combatState == null)
             return;
@@ -198,11 +198,11 @@ public static class CustomMethods
             CardModel card = combatState.CreateCard(ModelDb.Card<ShepherdandApricotBlossom>(), player);
             if (upgrade && card.IsUpgradable)
                 CardCmd.Upgrade(card);
-            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
         }
     }
 
-    public static async Task FlowerAdd_Deck(this Player player, CombatState? combatState, int amount = 1, bool upgrade = false)
+    public static async Task FlowerAdd_Deck(this Player player, ICombatState? combatState, int amount = 1, bool upgrade = false)
     {
         if (combatState == null)
             return;
@@ -212,7 +212,7 @@ public static class CustomMethods
             CardModel card = combatState.CreateCard(ModelDb.Card<ShepherdandApricotBlossom>(), player);
             if (upgrade && card.IsUpgradable)
                 CardCmd.Upgrade(card);
-            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, addedByPlayer: true, CardPilePosition.Top));
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, player, CardPilePosition.Top));
         }
     }
 }

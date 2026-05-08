@@ -26,7 +26,7 @@ public class TacitApprovalofRedLeafGod() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<TacitApprovalofRedLeafGodPower>(Owner.Creature, DynamicVars["TacitApprovalofRedLeafGodPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<TacitApprovalofRedLeafGodPower>(choiceContext, Owner.Creature, DynamicVars["TacitApprovalofRedLeafGodPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

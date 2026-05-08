@@ -30,7 +30,7 @@ public class MyHeartIsLikeBrocade() : AkiSisterCard(0,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<FragrancePower>(Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<FragrancePower>(choiceContext, Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Owner.Creature, this);
         var cards = Owner.PlayerCombatState!.Hand.Cards.Where(card => card is HarvesterandPearBlossom).ToList();
         if (cards.Count > 0)
         {

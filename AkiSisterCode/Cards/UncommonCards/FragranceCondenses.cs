@@ -26,10 +26,10 @@ public class FragranceCondenses() : AkiSisterCard(2,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<FragrancePower>(Owner.Creature,
+        await PowerCmd.Apply<FragrancePower>(choiceContext, Owner.Creature,
             DynamicVars["FragrancePower"].BaseValue + DynamicVars["FragranceLostPower"].BaseValue, base.Owner.Creature,
             this);
-        await PowerCmd.Apply<FragranceLostPower>(Owner.Creature, DynamicVars["FragranceLostPower"].BaseValue,
+        await PowerCmd.Apply<FragranceLostPower>(choiceContext, Owner.Creature, DynamicVars["FragranceLostPower"].BaseValue,
             base.Owner.Creature, this);
     }
 

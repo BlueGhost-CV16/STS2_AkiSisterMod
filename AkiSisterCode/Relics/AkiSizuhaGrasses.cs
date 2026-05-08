@@ -37,7 +37,7 @@ public class AkiSizuhaGrasses() : AkiSisterRelic
     //    Flash();
     //    //await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, player);
     //}
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
     {
         if (side != CombatSide.Player)
         {

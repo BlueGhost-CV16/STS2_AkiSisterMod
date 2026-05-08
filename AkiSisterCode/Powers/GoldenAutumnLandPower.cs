@@ -21,7 +21,7 @@ public class GoldenAutumnLandPower : AkiSisterPower
         if (side == CombatSide.Player)
         {
             Flash();
-            await PowerCmd.Apply<AutumnAuraPower>(Owner, Amount, Owner, null);
+            await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner, Amount, Owner, null);
         }
     }
 }

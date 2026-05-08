@@ -83,7 +83,7 @@ public class DrainPower : AkiSisterPower
         return (int)num;
     }
     
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != base.Owner.Side)
         {
@@ -118,7 +118,7 @@ public class DrainPower : AkiSisterPower
         {
             if (base.Owner.IsAlive)
             {
-                await PowerCmd.Apply<DrainPower>(Owner, -1, null, null);
+                await PowerCmd.Apply<DrainPower>(choiceContext, Owner, -1, null, null);
                 //    -Math.Max(base.Amount / 5, 1), null, null);
                 //await PowerCmd.Decrement(this);
             }

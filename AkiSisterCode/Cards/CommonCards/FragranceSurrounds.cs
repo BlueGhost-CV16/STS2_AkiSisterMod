@@ -27,9 +27,11 @@ public class FragranceSurrounds() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<FragrancePower>(Owner.Creature, base.DynamicVars["FragrancePower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<FragrancePower>(choiceContext, Owner.Creature, base.DynamicVars["FragrancePower"].BaseValue, base.Owner.Creature, this);
         var enemies = base.CombatState?.HittableEnemies;
-        await PowerCmd.Apply<FragranceSurroundsPower>(enemies, base.DynamicVars["FragranceSurroundsPower"].BaseValue, base.Owner.Creature, this);
+        if (enemies != null)
+            await PowerCmd.Apply<FragranceSurroundsPower>(choiceContext, enemies,
+                base.DynamicVars["FragranceSurroundsPower"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

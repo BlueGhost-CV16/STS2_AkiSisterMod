@@ -2,6 +2,7 @@
 using AkiSister.AkiSisterCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -21,12 +22,12 @@ public class MelancholicAutumnMoonandaMaidensLovePower : AkiSisterPower
         HoverTipFactory.FromPower<AutumnAuraPower>()
     ];
     
-    public override async Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
         if (card.Owner == base.Owner.Player && card is ShepherdandApricotBlossom)
         {
             Flash();
-            await PowerCmd.Apply<AutumnAuraPower>(Owner, Amount, Owner, null);
+            await PowerCmd.Apply<AutumnAuraPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
         }
     }
 }

@@ -31,7 +31,7 @@ public class DeepeningAutumn() : AkiSisterCard(0,
     {
         var block = Owner.Creature.Block;
         await CreatureCmd.LoseBlock(Owner.Creature, block);
-        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, block, Owner.Creature, this);
+        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature, block, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

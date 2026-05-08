@@ -51,11 +51,11 @@ public class RedLeafMarkEnchantment : AkiSisterEnchantment
         if (Card is HarvesterandPearBlossom)
         {
             Creature enemy = Card.Owner.RunState.Rng.CombatTargets.NextItem(Card.CombatState.HittableEnemies);
-            PowerCmd.Apply<DrainPower>(enemy, (Card as HarvesterandPearBlossom).DynamicVars["DrainPower"].BaseValue, Card.Owner.Creature, Card);
+            PowerCmd.Apply<DrainPower>(new ThrowingPlayerChoiceContext(), enemy, (Card as HarvesterandPearBlossom).DynamicVars["DrainPower"].BaseValue, Card.Owner.Creature, Card);
         }
     }
     
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
     {
         if (side == CombatSide.Player && base.Card.Pile.Type == PileType.Hand)
         {
@@ -66,23 +66,33 @@ public class RedLeafMarkEnchantment : AkiSisterEnchantment
     
     private bool AddRetain = false;
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
-    {
-        if (card == this.Card)
-        {
-            await PowerCmd.Apply<AutumnAuraPower>(Card.Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Card.Owner.Creature, Card);
-            StatusChange();
-            card.ClearEnchantmentInternal();
-        }
-    }
+    //public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
+    //{
+    //    if (card == this.Card)
+    //    {
+    //        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Card.Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Card.Owner.Creature, Card);
+    //        StatusChange();
+    //        card.ClearEnchantmentInternal();
+    //    }
+    //}
+//
+    //public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
+    //{
+    //    if (card == this.Card)
+    //    {
+    //        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Card.Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Card.Owner.Creature, Card);
+    //        StatusChange();
+    //        card.ClearEnchantmentInternal();
+    //    }
+    //}
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
-    {
-        if (cardPlay.Card == Card)
-        {
-            await PowerCmd.Apply<AutumnAuraPower>(Card.Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Card.Owner.Creature, Card);
-        }
-    }
+    //public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    //{
+    //    if (cardPlay.Card == Card)
+    //    {
+    //        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Card.Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Card.Owner.Creature, Card);
+    //    }
+    //}
 
     //public override async Task BeforeCardPlayed(CardPlay cardPlay)
     //{
@@ -92,35 +102,35 @@ public class RedLeafMarkEnchantment : AkiSisterEnchantment
     //    }
     //}
 
-    public override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
+    public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
     {
         if (card != this.Card || CombatManager.Instance.IsOverOrEnding)
         {
-            return Task.CompletedTask;
+            return;
         }
 
-        if (card.Pile?.Type != PileType.Discard)
-            //&& card.Pile?.Type != PileType.Exhaust)
+        if (card.Pile?.Type != PileType.Discard && card.Pile?.Type != PileType.Exhaust)
         {
-            return Task.CompletedTask;
+            return;
         }
 
         if (!LocalContext.NetId.HasValue)
         {
-            return Task.CompletedTask;
+            return;
         }
 
-        CombatState? combatState = card.Owner.Creature.CombatState;
-        if (combatState == null)
-        {
-            return Task.CompletedTask;
-        }
+        //ICombatState? combatState = card.Owner.Creature.CombatState;
+        //if (combatState == null)
+        //{
+        //    return;
+        //}
         
+        await PowerCmd.Apply<AutumnAuraPower>(new ThrowingPlayerChoiceContext(), Card.Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Card.Owner.Creature, Card);
         StatusChange();
         card.ClearEnchantmentInternal();
         //card.Enchantment?.ClearInternal();
         
-        return Task.CompletedTask;
+        //return Task.CompletedTask;
         //HookPlayerChoiceContext ctx = new HookPlayerChoiceContext(card, LocalContext.NetId.Value, combatState, GameActionType.Combat);
         //await CardCmd.Exhaust(ctx, card);
     }

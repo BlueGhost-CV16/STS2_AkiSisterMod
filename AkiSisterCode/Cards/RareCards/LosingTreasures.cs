@@ -31,8 +31,8 @@ public class LosingTreasures() : AkiSisterCard(1,
         CardPlay play)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.CalculatedBlock.Calculate(play.Target), DynamicVars.CalculatedBlock.Props, play);
-        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, -Owner.Creature.GetPowerAmount<AutumnAuraPower>(), Owner.Creature, this);
-        await PowerCmd.Apply<FragrancePower>(Owner.Creature, -Owner.Creature.GetPowerAmount<FragrancePower>(), Owner.Creature, this);
+        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature, -Owner.Creature.GetPowerAmount<AutumnAuraPower>(), Owner.Creature, this);
+        await PowerCmd.Apply<FragrancePower>(choiceContext, Owner.Creature, -Owner.Creature.GetPowerAmount<FragrancePower>(), Owner.Creature, this);
         //await PowerCmd.Remove<AutumnAuraPower>(Owner.Creature);
         //await PowerCmd.Remove<FragrancePower>(Owner.Creature);
     }

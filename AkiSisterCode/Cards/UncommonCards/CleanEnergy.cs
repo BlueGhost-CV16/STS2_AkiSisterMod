@@ -25,7 +25,7 @@ public class CleanEnergy() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<CleanEnergyPower>(Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<CleanEnergyPower>(choiceContext, Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
         //await PowerCmd.Apply<CleanEnergyPower>(Owner.Creature, DynamicVars["CleanEnergyPower"].BaseValue, Owner.Creature, this);
     }
 

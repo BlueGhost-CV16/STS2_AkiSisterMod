@@ -28,9 +28,9 @@ public class Protector() : AkiSisterCard(1,
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         //await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
-        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Owner.Creature, this);
-        await PowerCmd.Apply<FragrancePower>(Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Owner.Creature, this);
-        await PowerCmd.Apply<CoveredPower>(cardPlay.Target, 1m, base.Owner.Creature, this);
+        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature, DynamicVars["AutumnAuraPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<FragrancePower>(choiceContext, Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<CoveredPower>(choiceContext, cardPlay.Target, 1m, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -30,7 +30,7 @@ public class MellowFragrance() : AkiSisterCard(0,
     {
         int block = Owner.Creature.Block;
         await CreatureCmd.LoseBlock(Owner.Creature, block);
-        await PowerCmd.Apply<FragrancePower>(Owner.Creature, block, Owner.Creature, this);
+        await PowerCmd.Apply<FragrancePower>(choiceContext, Owner.Creature, block, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

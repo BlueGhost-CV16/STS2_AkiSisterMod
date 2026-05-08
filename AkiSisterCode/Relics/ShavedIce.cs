@@ -61,7 +61,7 @@ public class ShavedIce() : AkiSisterRelic
             await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, Owner);
             await PlayerCmd.GainEnergy(base.DynamicVars.Energy.BaseValue, base.Owner);
         }
-    }public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+    }public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
     {
         if (side != CombatSide.Player)
         {

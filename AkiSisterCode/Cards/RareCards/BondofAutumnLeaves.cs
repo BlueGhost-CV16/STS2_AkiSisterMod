@@ -22,7 +22,7 @@ public class BondofAutumnLeaves() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<BondofAutumnLeavesPower>(Owner.Creature, DynamicVars["BondofAutumnLeavesPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<BondofAutumnLeavesPower>(choiceContext, Owner.Creature, DynamicVars["BondofAutumnLeavesPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

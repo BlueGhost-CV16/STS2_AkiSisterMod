@@ -22,7 +22,7 @@ public class MemoriesofAutumn() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<MemoriesofAutumnPower>(Owner.Creature, DynamicVars["MemoriesofAutumnPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<MemoriesofAutumnPower>(choiceContext, Owner.Creature, DynamicVars["MemoriesofAutumnPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

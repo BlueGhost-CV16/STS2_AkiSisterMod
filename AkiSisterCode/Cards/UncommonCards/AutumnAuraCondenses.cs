@@ -29,10 +29,10 @@ public class AutumnAuraCondenses() : AkiSisterCard(2,
     {
         //await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
         //    .Execute(choiceContext);
-        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature,
+        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature,
             DynamicVars["AutumnAuraPower"].BaseValue + DynamicVars["AutumnAuraLostPower"].BaseValue,
             base.Owner.Creature, this);
-        await PowerCmd.Apply<AutumnAuraLostPower>(Owner.Creature, DynamicVars["AutumnAuraLostPower"].BaseValue,
+        await PowerCmd.Apply<AutumnAuraLostPower>(choiceContext, Owner.Creature, DynamicVars["AutumnAuraLostPower"].BaseValue,
             base.Owner.Creature, this);
     }
 

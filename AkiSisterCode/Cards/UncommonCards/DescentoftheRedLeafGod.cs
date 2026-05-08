@@ -48,7 +48,7 @@ public class DescentoftheRedLeafGod() : AkiSisterCard(1,
         {
             //CardCmd.ApplyKeyword(cardModel, CardKeyword.Exhaust);
             //cardModel.EnergyCost.AddThisCombat(-1);
-            await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, addedByPlayer: true);
+            await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, Owner);
         }
         await base.Owner.FlowerAdd_Deck(base.CombatState, (int)DynamicVars.Cards.BaseValue);
         //CardModel cardModel = CardFactory.GetDistinctForCombat(base.Owner, from c in base.Owner.Character.CardPool.GetUnlockedCards(base.Owner.UnlockState, base.Owner.RunState.CardMultiplayerConstraint)

@@ -25,7 +25,7 @@ public class TheAutumnSkyandaMaidensHeart() : AkiSisterCard(2,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<TheAutumnSkyandaMaidensHeartPower>(Owner.Creature, DynamicVars["TheAutumnSkyandaMaidensHeartPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<TheAutumnSkyandaMaidensHeartPower>(choiceContext, Owner.Creature, DynamicVars["TheAutumnSkyandaMaidensHeartPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

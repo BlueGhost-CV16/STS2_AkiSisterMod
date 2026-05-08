@@ -24,7 +24,7 @@ public class FragrantSweetPotatoes() : AkiSisterRelic
     // 遗物的数值。替换本地化中的{Cards}。
     protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side == base.Owner.Creature.Side && combatState.RoundNumber <= 1)
         {

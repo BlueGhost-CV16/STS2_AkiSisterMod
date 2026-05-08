@@ -25,7 +25,7 @@ public class PromiseoftheWheatGod() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<PromiseoftheWheatGodPower>(Owner.Creature, DynamicVars["PromiseoftheWheatGodPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<PromiseoftheWheatGodPower>(choiceContext, Owner.Creature, DynamicVars["PromiseoftheWheatGodPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -32,7 +32,7 @@ public class FrosttintedLeaves() : AkiSisterCard(1,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
             .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
-        await PowerCmd.Apply<WitherPower>(play.Target, DynamicVars["WitherPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<WitherPower>(choiceContext, play.Target, DynamicVars["WitherPower"].BaseValue, Owner.Creature, this);
         await base.Owner.LeafAdd_Hand((int)base.DynamicVars.Cards.BaseValue);
     }
 

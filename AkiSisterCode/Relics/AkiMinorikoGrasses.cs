@@ -27,7 +27,7 @@ public class AkiMinorikoGrasses() : AkiSisterRelic
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
     
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
     {
         if (side != CombatSide.Player)
         {

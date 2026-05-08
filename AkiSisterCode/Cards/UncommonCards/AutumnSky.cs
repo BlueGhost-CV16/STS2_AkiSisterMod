@@ -46,7 +46,7 @@ public class AutumnSky() : AkiSisterCard(1,
         CardModel? cardModel = await CardSelectCmd.FromChooseACardScreen(choiceContext, cards, base.Owner, canSkip: true);
         if (cardModel != null)
         {
-            await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, addedByPlayer: true);
+            await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, base.Owner);
         }
         await base.Owner.GrassAdd_Deck(base.CombatState, (int)DynamicVars.Cards.BaseValue);
         //CardModel cardModel = CardFactory.GetDistinctForCombat(base.Owner, from c in base.Owner.Character.CardPool.GetUnlockedCards(base.Owner.UnlockState, base.Owner.RunState.CardMultiplayerConstraint)

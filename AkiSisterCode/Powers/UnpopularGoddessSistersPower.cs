@@ -32,8 +32,8 @@ public class UnpopularGoddessSistersPower : AkiSisterPower
         {
             foreach (var enemy in base.CombatState.HittableEnemies)
             {
-                await PowerCmd.Apply<WitherPower>(enemy, Amount, base.Owner, null);
-                await PowerCmd.Apply<DrainPower>(enemy, Amount, base.Owner, null);
+                await PowerCmd.Apply<WitherPower>(choiceContext, enemy, Amount, base.Owner, null);
+                await PowerCmd.Apply<DrainPower>(choiceContext, enemy, Amount, base.Owner, null);
             }
         }
     }

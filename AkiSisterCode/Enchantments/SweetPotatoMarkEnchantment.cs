@@ -17,7 +17,7 @@ public class SweetPotatoMarkEnchantment : AkiSisterEnchantment
 {
     public override bool IsStackable => true;
 
-    //public override bool HasExtraCardText => true;
+    public override bool HasExtraCardText => true;
 
     public override bool ShowAmount => false;
     
@@ -51,11 +51,11 @@ public class SweetPotatoMarkEnchantment : AkiSisterEnchantment
         if (Card is ShepherdandApricotBlossom)
         {
             Creature enemy = Card.Owner.RunState.Rng.CombatTargets.NextItem(Card.CombatState.HittableEnemies);
-            PowerCmd.Apply<WitherPower>(enemy, (Card as ShepherdandApricotBlossom).DynamicVars["WitherPower"].BaseValue, Card.Owner.Creature, Card);
+            PowerCmd.Apply<WitherPower>(new ThrowingPlayerChoiceContext(), enemy, (Card as ShepherdandApricotBlossom).DynamicVars["WitherPower"].BaseValue, Card.Owner.Creature, Card);
         }
     }
     
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
     {
         if (side == CombatSide.Player && base.Card.Pile.Type == PileType.Hand)
         {
@@ -66,23 +66,33 @@ public class SweetPotatoMarkEnchantment : AkiSisterEnchantment
     
     private bool AddRetain = false;
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
-    {
-        if (card == this.Card && card.Enchantment == this)
-        {
-            await PowerCmd.Apply<FragrancePower>(Card.Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Card.Owner.Creature, Card);
-            StatusChange();
-            card.ClearEnchantmentInternal();
-        }
-    }
+    //public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
+    //{
+    //    if (card == this.Card && card.Enchantment == this)
+    //    {
+    //        await PowerCmd.Apply<FragrancePower>(choiceContext, Card.Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Card.Owner.Creature, Card);
+    //        StatusChange();
+    //        card.ClearEnchantmentInternal();
+    //    }
+    //}
+//
+    //public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
+    //{
+    //    if (card == this.Card)
+    //    {
+    //        await PowerCmd.Apply<FragrancePower>(choiceContext, Card.Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Card.Owner.Creature, Card);
+    //        StatusChange();
+    //        card.ClearEnchantmentInternal();
+    //    }
+    //}
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
-    {
-        if (cardPlay.Card == Card)
-        {
-            await PowerCmd.Apply<FragrancePower>(Card.Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Card.Owner.Creature, Card);
-        }
-    }
+    //public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    //{
+    //    if (cardPlay.Card == Card)
+    //    {
+    //        await PowerCmd.Apply<FragrancePower>(choiceContext, Card.Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Card.Owner.Creature, Card);
+    //    }
+    //}
 
     //public override async Task BeforeCardPlayed(CardPlay cardPlay)
     //{
@@ -92,34 +102,37 @@ public class SweetPotatoMarkEnchantment : AkiSisterEnchantment
     //    }
     //}
 
-    public override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
+    public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
     {
         if (card != this.Card || CombatManager.Instance.IsOverOrEnding)
         {
-            return Task.CompletedTask;
+            return;
         }
 
-        if (card.Pile?.Type != PileType.Discard)
+        if (card.Pile?.Type != PileType.Discard && card.Pile?.Type != PileType.Exhaust)
         {
-            return Task.CompletedTask;
+            return;
         }
 
         if (!LocalContext.NetId.HasValue)
         {
-            return Task.CompletedTask;
+            return;
         }
 
-        CombatState? combatState = card.Owner.Creature.CombatState;
-        if (combatState == null)
-        {
-            return Task.CompletedTask;
-        }
+        //ICombatState? combatState = card.Owner.Creature.CombatState;
+        //if (combatState == null)
+        //{
+        //    return;
+        //}
+        
+        await PowerCmd.Apply<FragrancePower>(new ThrowingPlayerChoiceContext(), Card.Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Card.Owner.Creature, Card);
+        StatusChange();
+        card.ClearEnchantmentInternal();
         
         //this.Card.EnchantmentChanged -= OnEnchant;
         //card.Enchantment?.ClearInternal();
-        StatusChange();
-        card.ClearEnchantmentInternal();
-        return Task.CompletedTask;
+        //StatusChange();
+        //card.ClearEnchantmentInternal();
         //HookPlayerChoiceContext ctx = new HookPlayerChoiceContext(card, LocalContext.NetId.Value, combatState, GameActionType.Combat);
         //await CardCmd.Exhaust(ctx, card);
     }

@@ -29,7 +29,7 @@ public class UnpopularGoddessSisters() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<UnpopularGoddessSistersPower>(Owner.Creature, DynamicVars["UnpopularGoddessSistersPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<UnpopularGoddessSistersPower>(choiceContext, Owner.Creature, DynamicVars["UnpopularGoddessSistersPower"].BaseValue, Owner.Creature, this);
     }
     
     protected override void OnUpgrade()

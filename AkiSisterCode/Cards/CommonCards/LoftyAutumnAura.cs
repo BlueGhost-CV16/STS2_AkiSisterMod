@@ -28,9 +28,11 @@ public class LoftyAutumnAura() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, base.DynamicVars["AutumnAuraPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature, base.DynamicVars["AutumnAuraPower"].BaseValue, base.Owner.Creature, this);
         var enemies = base.CombatState?.HittableEnemies;
-        await PowerCmd.Apply<WeakPower>(enemies, base.DynamicVars["WeakPower"].BaseValue, base.Owner.Creature, this);
+        if (enemies != null)
+            await PowerCmd.Apply<WeakPower>(choiceContext, enemies, base.DynamicVars["WeakPower"].BaseValue,
+                base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

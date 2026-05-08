@@ -29,7 +29,7 @@ public class AutumnAuraPower : AkiSisterPower
     {
         if (side == CombatSide.Enemy && !Owner.HasPower<EternalAutumnPower>())
         {
-            await PowerCmd.Apply<AutumnAuraLostPower>(Owner, Math.Max(Amount / 3, 1), Owner, null);
+            await PowerCmd.Apply<AutumnAuraLostPower>(choiceContext, Owner, Math.Max(Amount / 5, 1), Owner, null);
             //var num = Amount / 3;
             //for (int i = 0; i < num; i++)
             //{
@@ -104,7 +104,7 @@ public class AutumnAuraPower : AkiSisterPower
                 return amount;
             }
             Flash();
-            PowerCmd.ModifyAmount(this, Owner.Block - amount, null, null);
+            PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, Owner.Block - amount, null, null);
         }
         else
         {
@@ -113,7 +113,7 @@ public class AutumnAuraPower : AkiSisterPower
                 return amount;
             }
             Flash();
-            PowerCmd.ModifyAmount(this, -amount, null, null);
+            PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -amount, null, null);
         }
 
         return Math.Min(0, amount);
@@ -134,7 +134,7 @@ public class AutumnAuraPower : AkiSisterPower
     //    }
     //}
 
-    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
         if (power == this && amount <= 0)
         {
@@ -162,7 +162,7 @@ public class AutumnAuraPower : AkiSisterPower
             {
                 foreach (var enemy in base.CombatState.HittableEnemies)
                 {
-                    await PowerCmd.Apply<WitherPower>(enemy, num, base.Owner, null);
+                    await PowerCmd.Apply<WitherPower>(choiceContext, enemy, num, base.Owner, null);
                 }
             }
             else
@@ -170,7 +170,7 @@ public class AutumnAuraPower : AkiSisterPower
                 var enemy = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(base.CombatState.HittableEnemies);
                 if (enemy != null)
                 {
-                    await PowerCmd.Apply<WitherPower>(enemy, num, base.Owner, null);
+                    await PowerCmd.Apply<WitherPower>(choiceContext, enemy, num, base.Owner, null);
                 }
             }
         }

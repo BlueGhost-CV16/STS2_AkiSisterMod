@@ -26,7 +26,7 @@ public class PoisonedApple() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<PoisonedApplePower>(Owner.Creature, DynamicVars["PoisonedApplePower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<PoisonedApplePower>(choiceContext, Owner.Creature, DynamicVars["PoisonedApplePower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

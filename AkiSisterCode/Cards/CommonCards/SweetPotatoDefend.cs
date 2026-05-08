@@ -50,7 +50,7 @@ public class SweetPotatoDefend() : AkiSisterCard(1,
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
         await Owner.GrassAdd_Deck(base.CombatState);
-        await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature,
+        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner.Creature,
             1, base.Owner.Creature, this);
     }
 

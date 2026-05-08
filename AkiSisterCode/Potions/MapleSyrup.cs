@@ -39,7 +39,7 @@ public class MapleSyrup : AkiSisterPotion
     {
         // 这里的DynamicVars.Cards.IntValue就是我们在CanonicalVars中定义的CardsVar的数值，也就是3。
         PotionModel.AssertValidForTargetedPotion(target);
-        await PowerCmd.Apply<AutumnAuraPower>(target, DynamicVars["AutumnAuraPower"].BaseValue, base.Owner.Creature, null);
-        await PowerCmd.Apply<FragrancePower>(target, DynamicVars["FragrancePower"].BaseValue, base.Owner.Creature, null);
+        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, target, DynamicVars["AutumnAuraPower"].BaseValue, base.Owner.Creature, null);
+        await PowerCmd.Apply<FragrancePower>(choiceContext, target, DynamicVars["FragrancePower"].BaseValue, base.Owner.Creature, null);
     }
 }

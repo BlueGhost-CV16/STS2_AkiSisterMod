@@ -1,5 +1,6 @@
 ﻿using AkiSister.AkiSisterCode.Cards.StatusCards;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
@@ -15,14 +16,15 @@ public class HarvestGodFormPower : AkiSisterPower
     [
         HoverTipFactory.FromCard<HarvesterandPearBlossom>(true)
     ];
-    
-    public override async Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+
+    public override Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
         if (card.Owner == base.Owner.Player && card is HarvesterandPearBlossom)
         {
             Flash();
             CardCmd.Upgrade(card);
         }
+        return Task.CompletedTask;
     }
     //protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     //[

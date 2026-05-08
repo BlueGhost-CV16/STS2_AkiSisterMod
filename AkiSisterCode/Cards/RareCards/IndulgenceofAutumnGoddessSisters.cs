@@ -26,7 +26,7 @@ public class IndulgenceofAutumnGoddessSisters() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<IndulgenceofAutumnGoddessSistersPower>(Owner.Creature, DynamicVars["IndulgenceofAutumnGoddessSistersPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<IndulgenceofAutumnGoddessSistersPower>(choiceContext, Owner.Creature, DynamicVars["IndulgenceofAutumnGoddessSistersPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
