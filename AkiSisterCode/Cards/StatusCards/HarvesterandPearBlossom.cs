@@ -45,7 +45,7 @@ public class HarvesterandPearBlossom() : CustomCardModel(1,
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
-        CardKeyword.Exhaust,
+        //CardKeyword.Exhaust,
         AkiSisterCardKeyWords.SweetPotatoFavor
     ];
     
@@ -96,6 +96,14 @@ public class HarvesterandPearBlossom() : CustomCardModel(1,
         {
             await PowerCmd.Apply<DrainPower>(enemy, base.DynamicVars["DrainPower"].BaseValue ,card.Owner.Creature, card);
         }
+        
+        if (card.LeafCheck() || card.PotatoCheck())
+        {
+            (card.Enchantment as RedLeafMarkEnchantment)?.StatusChange();
+            (card.Enchantment as SweetPotatoMarkEnchantment)?.StatusChange();
+            card.ClearEnchantmentInternal();
+        }
+        
         HookPlayerChoiceContext ctx = new HookPlayerChoiceContext(card, LocalContext.NetId.Value, combatState, GameActionType.Combat);
         //if (Enchantment is RedLeafMarkEnchantment)
         //{

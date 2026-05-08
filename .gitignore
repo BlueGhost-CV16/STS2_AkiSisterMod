@@ -10,5 +10,6 @@ packages/
 .editorconfig
 *cs.uid
 *.user
+*.png
 animations
 AkiSister/images

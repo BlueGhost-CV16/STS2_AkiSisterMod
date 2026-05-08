@@ -12,7 +12,7 @@ public class IncessantRain() : AkiSisterCard(1,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new PowerVar<FragrancePower>(8),
+        //new PowerVar<FragrancePower>(8),
         new PowerVar<FragranceLostPower>(8)
     ];
     
@@ -25,13 +25,15 @@ public class IncessantRain() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<FragrancePower>(Owner.Creature, DynamicVars["FragrancePower"].BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<FragranceLostPower>(Owner.Creature, DynamicVars["FragranceLostPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<FragrancePower>(Owner.Creature, DynamicVars["FragranceLostPower"].BaseValue,
+            base.Owner.Creature, this);
+        await PowerCmd.Apply<FragranceLostPower>(Owner.Creature, DynamicVars["FragranceLostPower"].BaseValue,
+            base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["FragrancePower"].UpgradeValueBy(2);
+        //DynamicVars["FragrancePower"].UpgradeValueBy(2);
         DynamicVars["FragranceLostPower"].UpgradeValueBy(2);
     }
 }

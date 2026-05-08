@@ -23,8 +23,8 @@ public abstract class AkiSisterRelic : CustomRelicModel
     {
         get
         {
-            var path = $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".RelicImagePath();
-            return ResourceLoader.Exists(path) ? path : "relic_outline.png".RelicImagePath();
+            var path = $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".RelicImageOutlinePath();
+            return ResourceLoader.Exists(path) ? path : "relic_outline.png".RelicImageOutlinePath();
         }
     }
 

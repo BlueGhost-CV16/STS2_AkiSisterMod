@@ -1,4 +1,5 @@
 ﻿using AkiSister.AkiSisterCode.Cards.StatusCards;
+using AkiSister.AkiSisterCode.Enchantments;
 using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Nodes;
 using MegaCrit.Sts2.Core.Combat;
@@ -16,10 +17,11 @@ public class AkiSizuhaFlowers() : AkiSisterRelic
     public override RelicRarity Rarity =>
         RelicRarity.Starter;
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromCard<ShepherdandApricotBlossom>(true),
-        HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafMark)
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+        HoverTipFactory.FromEnchantment<RedLeafMarkEnchantment>().Concat([
+            HoverTipFactory.FromCard<ShepherdandApricotBlossom>(true),
+            //HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafMark)
+        ]);
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
     

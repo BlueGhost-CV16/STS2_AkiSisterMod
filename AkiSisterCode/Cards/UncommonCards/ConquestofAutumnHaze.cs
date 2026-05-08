@@ -18,7 +18,7 @@ public class ConquestofAutumnHaze() : AkiSisterCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(12),
-        new ExtraDamageVar(3),
+        new ExtraDamageVar(2),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((_, target) => (target?.GetPowerAmount<WitherPower>() ?? 0) + (target?.GetPowerAmount<DrainPower>() ?? 0))
     ];
 

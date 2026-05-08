@@ -1,4 +1,5 @@
-﻿using BaseLib.Extensions;
+﻿using AkiSister.AkiSisterCode.Relics;
+using BaseLib.Extensions;
 using BaseLib.Hooks;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -27,7 +28,7 @@ public class FragrancePower : AkiSisterPower
     {
         if (side == CombatSide.Enemy && !Owner.HasPower<EternalAutumnPower>())
         {
-            await PowerCmd.Apply<FragranceLostPower>(Owner, Amount / 3, Owner, null);
+            await PowerCmd.Apply<FragranceLostPower>(Owner, Math.Max(Amount / 3, 1), Owner, null);
             //var num = Amount / 3;
             //for (int i = 0; i < num; i++)
             //{
@@ -53,12 +54,31 @@ public class FragrancePower : AkiSisterPower
     public override async Task BeforeDamageReceived(PlayerChoiceContext choiceContext, Creature target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
-        if (target == base.Owner && dealer != null && (props.IsPoweredAttack_() || cardSource is Omnislice) && Owner.Block < amount && amount - Owner.Block <= base.Amount)
+        if (target == base.Owner && dealer != null && (props.IsPoweredAttack_() || cardSource is Omnislice))
         {
-            Flash();
-            var block = amount - Owner.Block;
-            await CreatureCmd.GainBlock(base.Owner, block, ValueProp.Unpowered, null);
-            await PowerCmd.ModifyAmount(this, -block, null, null);
+            if (Owner.Block > 0)
+            {
+                if (amount <= Owner.Block || amount > base.Amount + Owner.Block)
+                {
+                    return;
+                }
+                Flash();
+                await CreatureCmd.GainBlock(base.Owner, amount - Owner.Block, ValueProp.Unpowered, null);
+                await PowerCmd.ModifyAmount(this, Owner.Block - amount, null, null);
+            }
+            else
+            {
+                if (amount > base.Amount)
+                {
+                    return;
+                }
+                Flash();
+                await CreatureCmd.GainBlock(base.Owner, amount, ValueProp.Unpowered, null);
+                await PowerCmd.ModifyAmount(this, -amount, null, null);
+            }
+            //Flash();
+            //var block = amount - Owner.Block;
+            //await PowerCmd.ModifyAmount(this, -block, null, null);
             //for (int i = 0; i < amount - Owner.Block; i++)
             //{
             //    PowerCmd.Decrement(this);
@@ -70,25 +90,39 @@ public class FragrancePower : AkiSisterPower
     {
         if (power == this && amount <= 0)
         {
+            var num = 0m;
             count -= amount;
-            if (count >= 2)
+            var witheredBranches = Owner?.Player?.GetRelic<WitheredBranches>();
+            if (witheredBranches != null)
             {
-                var num = count / 2;
+                num = count;
                 count = 0;
-                if (Owner.HasPower<PoisonedApplePower>())
+            }
+            else
+            {
+                if (count >= 2)
                 {
-                    foreach (var enemy in base.CombatState.HittableEnemies)
-                    {
-                        await PowerCmd.Apply<DrainPower>(enemy, num, base.Owner, null);
-                    }
+                    num = count / 2;
+                    count = 0;
                 }
-                else
+            }
+            if (num == 0)
+            {
+                return;
+            }
+            if (Owner.HasPower<PoisonedApplePower>())
+            {
+                foreach (var enemy in base.CombatState.HittableEnemies)
                 {
-                    var enemy = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(base.CombatState.HittableEnemies);
-                    if (enemy != null)
-                    {
-                        await PowerCmd.Apply<DrainPower>(enemy, num, base.Owner, null);
-                    }
+                    await PowerCmd.Apply<DrainPower>(enemy, num, base.Owner, null);
+                }
+            }
+            else
+            {
+                var enemy = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(base.CombatState.HittableEnemies);
+                if (enemy != null)
+                {
+                    await PowerCmd.Apply<DrainPower>(enemy, num, base.Owner, null);
                 }
             }
         }

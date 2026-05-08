@@ -9,15 +9,15 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
 
-public class Protector() : AkiSisterCard(2,
+public class Protector() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Uncommon,
     TargetType.AnyAlly)
 {
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new PowerVar<AutumnAuraPower>(6),
-        new PowerVar<FragrancePower>(6)
+        new PowerVar<AutumnAuraPower>(5),
+        new PowerVar<FragrancePower>(5)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [

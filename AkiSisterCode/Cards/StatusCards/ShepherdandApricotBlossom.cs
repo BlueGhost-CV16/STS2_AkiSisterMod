@@ -45,7 +45,7 @@ public class ShepherdandApricotBlossom() : CustomCardModel(1,
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
-        CardKeyword.Exhaust,
+        //CardKeyword.Exhaust,
         AkiSisterCardKeyWords.RedLeafFavor
     ];
     
@@ -97,6 +97,14 @@ public class ShepherdandApricotBlossom() : CustomCardModel(1,
         {
             await PowerCmd.Apply<WitherPower>(enemy, DynamicVars["WitherPower"].BaseValue, card.Owner.Creature, card);
         }
+        
+        if (card.LeafCheck() || card.PotatoCheck())
+        {
+            (card.Enchantment as RedLeafMarkEnchantment)?.StatusChange();
+            (card.Enchantment as SweetPotatoMarkEnchantment)?.StatusChange();
+            card.ClearEnchantmentInternal();
+        }
+        
         HookPlayerChoiceContext ctx = new HookPlayerChoiceContext(card, LocalContext.NetId.Value, combatState, GameActionType.Combat);
         //if (Enchantment is SweetPotatoMarkEnchantment)
         //{

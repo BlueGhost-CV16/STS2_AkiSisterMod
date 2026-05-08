@@ -1,4 +1,5 @@
-﻿using BaseLib.Extensions;
+﻿using AkiSister.AkiSisterCode.Relics;
+using BaseLib.Extensions;
 using BaseLib.Hooks;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -39,19 +40,19 @@ public class DrainPower : AkiSisterPower
         {
             return 1m;
         }
-        decimal num = base.DynamicVars["DamageDecrease"].BaseValue;
-        //PaperKrane paperKrane = target?.Player?.GetRelic<PaperKrane>();
-        //if (paperKrane != null)
-        //{
-        //    num = paperKrane.ModifyWeakMultiplier(target, num, props, dealer, cardSource);
-        //}
-        ReturningWheelofAutumnFrostPower? power = dealer.GetPower<ReturningWheelofAutumnFrostPower>();
+        var num = base.DynamicVars["DamageDecrease"].BaseValue;
+        var witheredBranches = target?.Player?.GetRelic<WitheredBranches>();
+        if (witheredBranches != null)
+        {
+            num = witheredBranches.ModifyDrainMultiplier(target, num, props, dealer, cardSource);
+        }
+        var power = dealer.GetPower<ReturningWheelofAutumnFrostPower>();
         if (power != null)
         {
             num = power.ModifyDrainMultiplier(target, num, props, dealer, cardSource);
         }
         return num;
-    }
+    }   
     
     private int TriggerCount
     {
@@ -69,11 +70,11 @@ public class DrainPower : AkiSisterPower
     {
         decimal num = default(decimal);
         int num2 = Math.Min(base.Amount, TriggerCount);
-        var num3 = Amount;
+        //var num3 = Amount;
         for (int i = 0; i < num2; i++)
         {
-            decimal damage = num3;
-            num3 -= Math.Max(num3 / 5, 1);
+            decimal damage = Amount;
+            //num3 -= Math.Max(num3 / 5, 1);
             damage = Hook.ModifyDamage(base.Owner.CombatState.RunState, base.Owner.CombatState, base.Owner, null,
                 damage, ValueProp.Unblockable | ValueProp.Unpowered, null, ModifyDamageHookType.All,
                 CardPreviewMode.None, out IEnumerable<AbstractModel> _);
@@ -94,9 +95,31 @@ public class DrainPower : AkiSisterPower
             await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), base.Owner, base.Amount,
                 ValueProp.Unblockable | ValueProp.Unpowered, null, null);
             //var num = ;
+            //if (base.Owner.IsAlive)
+            //{
+            //    await PowerCmd.Apply<DrainPower>(Owner, -Math.Max(base.Amount / 5, 1), null, null);
+            //    //await PowerCmd.Decrement(this);
+            //}
+            //else
+            //{
+            //    await Cmd.CustomScaledWait(0.1f, 0.25f);
+            //}
+        }
+    }
+
+    public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    {
+        if (side != base.Owner.Side)
+        {
+            return;
+        }
+        int iterations = TriggerCount;
+        for (int i = 0; i < iterations; i++)
+        {
             if (base.Owner.IsAlive)
             {
-                await PowerCmd.Apply<DrainPower>(Owner, -Math.Max(base.Amount / 5, 1), null, null);
+                await PowerCmd.Apply<DrainPower>(Owner, -1, null, null);
+                //    -Math.Max(base.Amount / 5, 1), null, null);
                 //await PowerCmd.Decrement(this);
             }
             else

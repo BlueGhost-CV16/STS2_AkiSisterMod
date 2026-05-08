@@ -68,7 +68,7 @@ public class SweetPotatoMarkEnchantment : AkiSisterEnchantment
 
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
     {
-        if (card == this.Card)
+        if (card == this.Card && card.Enchantment == this)
         {
             await PowerCmd.Apply<FragrancePower>(Card.Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Card.Owner.Creature, Card);
             StatusChange();

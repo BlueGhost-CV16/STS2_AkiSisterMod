@@ -19,10 +19,11 @@ public class AkiMinorikoGrasses() : AkiSisterRelic
     public override RelicRarity Rarity =>
         RelicRarity.Starter;
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromCard<HarvesterandPearBlossom>(),
-        HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.SweetPotatoMark)
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+        HoverTipFactory.FromEnchantment<SweetPotatoMarkEnchantment>().Concat([
+            HoverTipFactory.FromCard<HarvesterandPearBlossom>(),
+            //HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.SweetPotatoMark)
+        ]);
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
     

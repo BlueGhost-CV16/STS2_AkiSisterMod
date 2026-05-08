@@ -21,4 +21,12 @@ public class BondofAutumnLeavesPower : AkiSisterPower
             await CardPileCmd.Draw(choiceContext, Amount, base.Owner.Player);
         }
     }
+
+    //public override async Task BeforeCardPlayed(CardPlay cardPlay)
+    //{
+    //    if (cardPlay.Card.Owner == base.Owner.Player && cardPlay.Card.LeafCheck())
+    //    {
+    //        await CardPileCmd.Draw(choiceContext, Amount, base.Owner.Player);
+    //    }
+    //}
 }

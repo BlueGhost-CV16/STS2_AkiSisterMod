@@ -20,10 +20,11 @@ public class AkiSizuhaGrasses() : AkiSisterRelic
     public override RelicRarity Rarity =>
         RelicRarity.Starter;
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromCard<ShepherdandApricotBlossom>(),
-        HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafMark)
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+        HoverTipFactory.FromEnchantment<RedLeafMarkEnchantment>().Concat([
+            HoverTipFactory.FromCard<ShepherdandApricotBlossom>(),
+            //HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafMark)
+        ]);
     
     // 遗物的数值。替换本地化中的{Cards}。
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
