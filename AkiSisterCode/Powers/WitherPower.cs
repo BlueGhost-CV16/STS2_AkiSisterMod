@@ -77,12 +77,12 @@ public class WitherPower : AkiSisterPower
     {
         decimal num = default(decimal);
         int num2 = Math.Min(base.Amount, TriggerCount);
-        //var num3 = Amount;
+        var num3 = Amount;
         for (int i = 0; i < num2; i++)
         {
-            decimal damage = Amount;
-            //num3 -= Math.Max(num3 / 5, 1);
             //decimal damage = base.Amount - i;
+            decimal damage = num3;
+            num3 -= Math.Max(num3 / 5, 1);
             damage = Hook.ModifyDamage(base.Owner.CombatState.RunState, base.Owner.CombatState, base.Owner, null,
                 damage, ValueProp.Unblockable | ValueProp.Unpowered, null, ModifyDamageHookType.All,
                 CardPreviewMode.None, out IEnumerable<AbstractModel> _);
@@ -125,8 +125,8 @@ public class WitherPower : AkiSisterPower
         {
             if (base.Owner.IsAlive)
             {
-                await PowerCmd.Apply<WitherPower>(choiceContext, Owner, -1, null, null);
-                //    -Math.Max(base.Amount / 5, 1), null, null);
+                await PowerCmd.Apply<WitherPower>(choiceContext, Owner,// -1, null, null);
+                    -Math.Max(base.Amount / 5, 1), null, null);
                 //await PowerCmd.Decrement(this);
             }
             else

@@ -25,6 +25,10 @@ public class LosingTreasures() : AkiSisterCard(1,
         HoverTipFactory.FromPower<AutumnAuraPower>(),
         HoverTipFactory.FromPower<FragrancePower>(),
     ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Retain
+    ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,

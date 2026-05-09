@@ -16,7 +16,7 @@ public class FragrantSweetPotatoes() : AkiSisterRelic
         RelicRarity.Common;
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromCard<HarvesterandPearBlossom>(true),
+        HoverTipFactory.FromCard<HarvesterandPearBlossom>(),
         HoverTipFactory.ForEnergy(this)
         //HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafMark)
     ];

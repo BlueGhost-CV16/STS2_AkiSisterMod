@@ -118,8 +118,8 @@ public class DrainPower : AkiSisterPower
         {
             if (base.Owner.IsAlive)
             {
-                await PowerCmd.Apply<DrainPower>(choiceContext, Owner, -1, null, null);
-                //    -Math.Max(base.Amount / 5, 1), null, null);
+                await PowerCmd.Apply<DrainPower>(choiceContext, Owner,// -1, null, null);
+                    -Math.Max(base.Amount / 5, 1), null, null);
                 //await PowerCmd.Decrement(this);
             }
             else

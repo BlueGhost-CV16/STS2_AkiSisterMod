@@ -17,7 +17,7 @@ public class FallingRedLeaves() : AkiSisterRelic
         RelicRarity.Common;
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-            HoverTipFactory.FromCard<ShepherdandApricotBlossom>(true),
+            HoverTipFactory.FromCard<ShepherdandApricotBlossom>(),
             HoverTipFactory.ForEnergy(this)
             //HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafMark)
         ];

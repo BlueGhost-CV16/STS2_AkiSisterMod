@@ -29,7 +29,7 @@ public class AutumnAuraPower : AkiSisterPower
     {
         if (side == CombatSide.Enemy && !Owner.HasPower<EternalAutumnPower>())
         {
-            await PowerCmd.Apply<AutumnAuraLostPower>(choiceContext, Owner, Math.Max(Amount / 5, 1), Owner, null);
+            await PowerCmd.Apply<AutumnAuraLostPower>(choiceContext, Owner, Math.Max(Amount / 3, 1), Owner, null);
             //var num = Amount / 3;
             //for (int i = 0; i < num; i++)
             //{
@@ -158,14 +158,14 @@ public class AutumnAuraPower : AkiSisterPower
             {
                 return;
             }
-            if (Owner.HasPower<PoisonedApplePower>())
-            {
-                foreach (var enemy in base.CombatState.HittableEnemies)
-                {
-                    await PowerCmd.Apply<WitherPower>(choiceContext, enemy, num, base.Owner, null);
-                }
-            }
-            else
+            //if (Owner.HasPower<PoisonedApplePower>())
+            //{
+            //    foreach (var enemy in base.CombatState.HittableEnemies)
+            //    {
+            //        await PowerCmd.Apply<WitherPower>(choiceContext, enemy, num, base.Owner, null);
+            //    }
+            //}
+            //else
             {
                 var enemy = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(base.CombatState.HittableEnemies);
                 if (enemy != null)

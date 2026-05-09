@@ -21,6 +21,10 @@ public class PoisonedApple() : AkiSisterCard(1,
         HoverTipFactory.FromPower<AutumnAuraPower>(),
         HoverTipFactory.FromPower<FragrancePower>()
     ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Ethereal
+    ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -31,6 +35,6 @@ public class PoisonedApple() : AkiSisterCard(1,
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Innate);
+        RemoveKeyword(CardKeyword.Ethereal);
     }
 }

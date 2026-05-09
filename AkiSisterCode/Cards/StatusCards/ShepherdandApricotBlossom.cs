@@ -1,6 +1,4 @@
-﻿using AkiSister.AkiSisterCode.Enchantments;
-using AkiSister.AkiSisterCode.Extensions;
-using AkiSister.AkiSisterCode.Nodes;
+﻿using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Powers;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
@@ -11,6 +9,7 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -22,7 +21,7 @@ namespace AkiSister.AkiSisterCode.Cards.StatusCards;
 [Pool(typeof(TokenCardPool))]
 public class ShepherdandApricotBlossom() : CustomCardModel(1,
     CardType.Status, CardRarity.Token,
-    TargetType.None)
+    TargetType.AnyEnemy)
 {
     public override void AfterCreated()
     {
@@ -60,13 +59,14 @@ public class ShepherdandApricotBlossom() : CustomCardModel(1,
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         //if (base.IsUpgraded)
         //{
-            await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature, base.DynamicVars["AutumnAuraPower"].BaseValue ,Owner.Creature, this);
+        await PowerCmd.Apply<WitherPower>(choiceContext, play.Target, DynamicVars["WitherPower"].BaseValue ,Owner.Creature, this);
+        //await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature, base.DynamicVars["AutumnAuraPower"].BaseValue ,Owner.Creature, this);
         //}
     }
 
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
+        EnergyCost.UpgradeBy(-1);
         //DynamicVars["WitherPower"].UpgradeValueBy(1);
         //DynamicVars["AutumnAuraPower"].UpgradeValueBy(1);
     }
@@ -122,15 +122,28 @@ public class ShepherdandApricotBlossom() : CustomCardModel(1,
                 DynamicVars["WitherPower"].BaseValue, Owner.Creature, this);
         }
 
-        if (this.PotatoCheck())
+        //if (this.PotatoCheck())
+        //{
+        //    await CardCmd.Discard(choiceContext, this);
+        //    await PowerCmd.Apply<DrawCardsNextTurnPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Cards.IntValue,
+        //        Owner.Creature, this);
+        //    //await CardCmd.DiscardAndDraw(choiceContext, new List<CardModel> { this }, DynamicVars.Cards.IntValue);
+        //    //await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+        //}
+    }
+
+    public override async Task AfterFlush(PlayerChoiceContext choiceContext, Player player, IReadOnlyCollection<CardModel> flushedCards,
+        IReadOnlyCollection<CardModel> retainedCards)
+    {
+        if (Pile?.Type == PileType.Hand && this.PotatoCheck())
         {
-            await CardCmd.DiscardAndDraw(choiceContext, new List<CardModel> { this }, 1);
+            await CardCmd.DiscardAndDraw(choiceContext, new List<CardModel> { this }, DynamicVars.Cards.IntValue);
             //await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         }
     }
 
     protected override PileType GetResultPileTypeForOnTurnEndInHandEffect()
     {
-        return base.Keywords.Contains(CardKeyword.Retain) ? PileType.Hand : PileType.Discard;
+        return Keywords.Contains(CardKeyword.Retain) ? PileType.Hand : PileType.Discard;
     }
 }
