@@ -1,5 +1,4 @@
-﻿using AkiSister.AkiSisterCode.Cards;
-using AkiSister.AkiSisterCode.Powers;
+﻿using AkiSister.AkiSisterCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -8,7 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
 
-public class PoisonedApple() : AkiSisterCard(1,
+public class PoisonedApple() : AkiSisterCard(2,
     CardType.Power, CardRarity.Rare,
     TargetType.Self)
 {
@@ -18,8 +17,8 @@ public class PoisonedApple() : AkiSisterCard(1,
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<AutumnAuraPower>(),
-        HoverTipFactory.FromPower<FragrancePower>()
+        HoverTipFactory.FromPower<WitherPower>(),
+        HoverTipFactory.FromPower<DrainPower>()
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords => [

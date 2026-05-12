@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.AncientCards;
 
-public class UnpopularGoddessSisters() : AkiSisterCard(1,
+public class UnpopularGoddessSisters() : AkiSisterCard(2,
     CardType.Power, CardRarity.Ancient,
     TargetType.Self)
 {
@@ -34,6 +34,7 @@ public class UnpopularGoddessSisters() : AkiSisterCard(1,
     
     protected override void OnUpgrade()
     {
-        base.AddKeyword(CardKeyword.Innate);
+        EnergyCost.UpgradeBy(-1);
+        //base.AddKeyword(CardKeyword.Innate);
     }
 }

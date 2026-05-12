@@ -31,6 +31,7 @@ public class IndulgenceofAutumnGoddessSisters() : AkiSisterCard(1,
 
     protected override void OnUpgrade()
     {
-        DynamicVars["IndulgenceofAutumnGoddessSistersPower"].UpgradeValueBy(1);
+        AddKeyword(CardKeyword.Innate);
+        //DynamicVars["IndulgenceofAutumnGoddessSistersPower"].UpgradeValueBy(1);
     }
 }

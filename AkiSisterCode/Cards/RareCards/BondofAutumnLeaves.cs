@@ -27,8 +27,8 @@ public class BondofAutumnLeaves() : AkiSisterCard(1,
 
     protected override void OnUpgrade()
     {
-        this.LeafAdd_Card();
-        //AddKeyword(CardKeyword.Innate);
+        //this.LeafAdd_Card();
+        AddKeyword(CardKeyword.Retain);
         //base.DynamicVars["BondofAutumnLeavesPower"].UpgradeValueBy(1m);
     }
 }

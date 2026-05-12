@@ -144,6 +144,7 @@ public class HarvesterandPearBlossom() : CustomCardModel(1,
 
     protected override PileType GetResultPileTypeForOnTurnEndInHandEffect()
     {
-        return Keywords.Contains(CardKeyword.Retain) ? PileType.Hand : PileType.Discard;
+        //return Keywords.Contains(CardKeyword.Retain) ? PileType.Hand : PileType.Discard;
+        return PileType.Hand;
     }
 }

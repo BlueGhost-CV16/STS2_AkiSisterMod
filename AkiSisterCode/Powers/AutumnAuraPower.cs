@@ -134,47 +134,47 @@ public class AutumnAuraPower : AkiSisterPower
     //    }
     //}
 
-    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
-    {
-        if (power == this && amount <= 0)
-        {
-            var num = 0m;
-            count -= amount;
-            var witheredBranches = Owner?.Player?.GetRelic<WitheredBranches>();
-            if (witheredBranches != null)
-            {
-                num = count;
-                count = 0;
-            }
-            else
-            {
-                if (count >= 2)
-                {
-                    num = count / 2;
-                    count = 0;
-                }
-            }
-            if (num == 0)
-            {
-                return;
-            }
-            //if (Owner.HasPower<PoisonedApplePower>())
-            //{
-            //    foreach (var enemy in base.CombatState.HittableEnemies)
-            //    {
-            //        await PowerCmd.Apply<WitherPower>(choiceContext, enemy, num, base.Owner, null);
-            //    }
-            //}
-            //else
-            {
-                var enemy = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(base.CombatState.HittableEnemies);
-                if (enemy != null)
-                {
-                    await PowerCmd.Apply<WitherPower>(choiceContext, enemy, num, base.Owner, null);
-                }
-            }
-        }
-    }
+    //public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    //{
+    //    if (power == this && amount <= 0)
+    //    {
+    //        var num = 0m;
+    //        count -= amount;
+    //        var witheredBranches = Owner?.Player?.GetRelic<WitheredBranches>();
+    //        if (witheredBranches != null)
+    //        {
+    //            num = count;
+    //            count = 0;
+    //        }
+    //        else
+    //        {
+    //            if (count >= 2)
+    //            {
+    //                num = count / 2;
+    //                count = 0;
+    //            }
+    //        }
+    //        if (num == 0)
+    //        {
+    //            return;
+    //        }
+    //        //if (Owner.HasPower<PoisonedApplePower>())
+    //        //{
+    //        //    foreach (var enemy in base.CombatState.HittableEnemies)
+    //        //    {
+    //        //        await PowerCmd.Apply<WitherPower>(choiceContext, enemy, num, base.Owner, null);
+    //        //    }
+    //        //}
+    //        //else
+    //        //{
+    //            var enemy = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(base.CombatState.HittableEnemies);
+    //            if (enemy != null)
+    //            {
+    //                await PowerCmd.Apply<WitherPower>(choiceContext, enemy, num, base.Owner, null);
+    //            }
+    //        //}
+    //    }
+    //}
 
     private decimal count = 0;
 }

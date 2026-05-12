@@ -15,7 +15,7 @@ public class AutumnAuraCondenses() : AkiSisterCard(2,
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         //new DamageVar(6m, ValueProp.Move),
         new PowerVar<AutumnAuraPower>(6m),
-        new PowerVar<AutumnAuraLostPower>(7m)
+        new PowerVar<AutumnAuraLostPower>(9m)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -39,6 +39,6 @@ public class AutumnAuraCondenses() : AkiSisterCard(2,
     protected override void OnUpgrade()
     {
         DynamicVars["AutumnAuraPower"].UpgradeValueBy(2);
-        DynamicVars["AutumnAuraLostPower"].UpgradeValueBy(1);
+        DynamicVars["AutumnAuraLostPower"].UpgradeValueBy(2);
     }
 }

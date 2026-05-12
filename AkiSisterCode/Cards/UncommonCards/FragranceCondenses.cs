@@ -14,7 +14,7 @@ public class FragranceCondenses() : AkiSisterCard(2,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new PowerVar<FragrancePower>(6m),
-        new PowerVar<FragranceLostPower>(7m)
+        new PowerVar<FragranceLostPower>(9m)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -36,6 +36,6 @@ public class FragranceCondenses() : AkiSisterCard(2,
     protected override void OnUpgrade()
     {
         DynamicVars["FragrancePower"].UpgradeValueBy(2);
-        DynamicVars["FragranceLostPower"].UpgradeValueBy(1);
+        DynamicVars["FragranceLostPower"].UpgradeValueBy(2);
     }
 }

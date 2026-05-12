@@ -118,13 +118,13 @@ public class FragrancePower : AkiSisterPower
             //    }
             //}
             //else
-            {
+            //{
                 var enemy = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(base.CombatState.HittableEnemies);
                 if (enemy != null)
                 {
                     await PowerCmd.Apply<DrainPower>(choiceContext, enemy, num, base.Owner, null);
                 }
-            }
+            //}
         }
     }
 

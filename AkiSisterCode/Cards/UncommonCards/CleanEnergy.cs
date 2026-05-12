@@ -31,7 +31,8 @@ public class CleanEnergy() : AkiSisterCard(1,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Energy.UpgradeValueBy(1);
+        EnergyCost.UpgradeBy(-1);
+        //DynamicVars.Energy.UpgradeValueBy(1);
         //DynamicVars["CleanEnergyPower"].UpgradeValueBy(1);
     }
 }

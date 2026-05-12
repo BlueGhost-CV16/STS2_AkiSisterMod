@@ -69,6 +69,7 @@ public class WitherPower : AkiSisterPower
             IEnumerable<Creature> source = from c in base.Owner.CombatState.GetOpponentsOf(base.Owner)
                 where c.IsAlive
                 select c;
+            return 1 + source.Sum((Creature a) => a.GetPowerAmount<IndulgenceofAutumnGoddessSistersPower>());
             return Math.Min(base.Amount, 1 + source.Sum((Creature a) => a.GetPowerAmount<IndulgenceofAutumnGoddessSistersPower>()));
         }
     }
@@ -76,13 +77,13 @@ public class WitherPower : AkiSisterPower
     public int CalculateTotalDamageNextTurn()
     {
         decimal num = default(decimal);
-        int num2 = Math.Min(base.Amount, TriggerCount);
+        //int num2 = Math.Min(base.Amount, TriggerCount);
         var num3 = Amount;
-        for (int i = 0; i < num2; i++)
+        for (int i = 0; i < TriggerCount; i++)
         {
             //decimal damage = base.Amount - i;
             decimal damage = num3;
-            num3 -= Math.Max(num3 / 5, 1);
+            //num3 -= Math.Max(num3 / 5, 1);
             damage = Hook.ModifyDamage(base.Owner.CombatState.RunState, base.Owner.CombatState, base.Owner, null,
                 damage, ValueProp.Unblockable | ValueProp.Unpowered, null, ModifyDamageHookType.All,
                 CardPreviewMode.None, out IEnumerable<AbstractModel> _);
@@ -98,9 +99,12 @@ public class WitherPower : AkiSisterPower
             return;
         }
         int iterations = TriggerCount;
+        var num = Amount;
         for (int i = 0; i < iterations; i++)
         {
-            await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), base.Owner, base.Amount,
+            decimal damage = num;
+            //num -= Math.Max(num / 5, 1);
+            await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), base.Owner, damage,
                 ValueProp.Unblockable | ValueProp.Unpowered, null, null);
             //if (base.Owner.IsAlive)
             //{
@@ -120,7 +124,7 @@ public class WitherPower : AkiSisterPower
         {
             return;
         }
-        int iterations = TriggerCount;
+        int iterations = Math.Min(base.Amount, TriggerCount);
         for (int i = 0; i < iterations; i++)
         {
             if (base.Owner.IsAlive)

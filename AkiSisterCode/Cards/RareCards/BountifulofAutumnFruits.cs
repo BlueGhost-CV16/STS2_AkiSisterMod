@@ -27,8 +27,8 @@ public class BountifulofAutumnFruits() : AkiSisterCard(1,
 
     protected override void OnUpgrade()
     {
-        this.PotatoAdd_Card();
-        //AddKeyword(CardKeyword.Innate);
+        //this.PotatoAdd_Card();
+        AddKeyword(CardKeyword.Retain);
         //base.DynamicVars["BountifulofAutumnFruitsPower"].UpgradeValueBy(1m);
     }
 }
