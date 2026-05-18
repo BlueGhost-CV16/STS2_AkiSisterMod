@@ -5,10 +5,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
-namespace AkiSister.AkiSisterCode.Cards.RareCards;
+namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
 
 public class TimelySnowPromiseGoodHarvest() : AkiSisterCard(0,
-    CardType.Power, CardRarity.Rare,
+    CardType.Power, CardRarity.Uncommon,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [

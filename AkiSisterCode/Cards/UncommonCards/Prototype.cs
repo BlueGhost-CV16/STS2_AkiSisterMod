@@ -9,11 +9,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
 
 public class Prototype() : AkiSisterCard(0,
-    CardType.Attack, CardRarity.Uncommon,
+    CardType.Skill, CardRarity.Uncommon,
     TargetType.AnyEnemy)
 {
+    public override bool GainsBlock => true;
+    
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(6, ValueProp.Move),
+        //new DamageVar(6, ValueProp.Move),
+        new BlockVar(6, ValueProp.Move),
         new PowerVar<WeakPower>(2)
     ];
     
@@ -26,9 +29,10 @@ public class Prototype() : AkiSisterCard(0,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
-            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
-            .Execute(choiceContext);
+        //await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
+        //    .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
+        //    .Execute(choiceContext);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
         await PowerCmd.Apply<WeakPower>(choiceContext, play.Target, DynamicVars.Weak.BaseValue, Owner.Creature, this);
         //var card = PileType.Draw.GetPile(base.Owner).Cards.Where((CardModel c) => c.Type == CardType.Status).ToList()
         //    //CardPile.GetCards(Owner, PileType.Deck).Where(card => card.Type == CardType.Status).ToList()
@@ -39,7 +43,7 @@ public class Prototype() : AkiSisterCard(0,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1);
+        DynamicVars.Block.UpgradeValueBy(1);
         DynamicVars.Weak.UpgradeValueBy(1);
     }
 }

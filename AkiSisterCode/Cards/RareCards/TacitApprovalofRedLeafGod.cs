@@ -8,10 +8,10 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
-namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+namespace AkiSister.AkiSisterCode.Cards.RareCards;
 
 public class TacitApprovalofRedLeafGod() : AkiSisterCard(1,
-    CardType.Power, CardRarity.Uncommon,
+    CardType.Power, CardRarity.Rare,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<TacitApprovalofRedLeafGodPower>(1m)];

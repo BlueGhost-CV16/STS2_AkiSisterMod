@@ -37,5 +37,6 @@ public class Protector() : AkiSisterCard(1,
     {
         base.DynamicVars["AutumnAuraPower"].UpgradeValueBy(2);
         base.DynamicVars["FragrancePower"].UpgradeValueBy(2);
+        AddKeyword(CardKeyword.Retain);
     }
 }

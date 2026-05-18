@@ -27,7 +27,7 @@ public class FreshSweetPotatoes() : AkiSisterRelic
                 var enemy = base.Owner.RunState.Rng.CombatTargets.NextItem(power.Owner.CombatState.HittableEnemies);
                 if (enemy != null)
                 {
-                    await PowerCmd.Apply<WitherPower>(choiceContext, enemy, -amount, base.Owner.Creature, null);
+                    await PowerCmd.Apply<WitherPower>(choiceContext, enemy, -amount / 2, base.Owner.Creature, null);
                 }
 
                 break;
@@ -37,7 +37,7 @@ public class FreshSweetPotatoes() : AkiSisterRelic
                 var enemy = base.Owner.RunState.Rng.CombatTargets.NextItem(power.Owner.CombatState.HittableEnemies);
                 if (enemy != null)
                 {
-                    await PowerCmd.Apply<DrainPower>(choiceContext, enemy, -amount, base.Owner.Creature, null);
+                    await PowerCmd.Apply<DrainPower>(choiceContext, enemy, -amount / 2, base.Owner.Creature, null);
                 }
 
                 break;

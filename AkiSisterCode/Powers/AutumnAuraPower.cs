@@ -27,9 +27,9 @@ public class AutumnAuraPower : AkiSisterPower
 
     public override async Task AfterTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side)
     {
-        if (side == CombatSide.Enemy && !Owner.HasPower<EternalAutumnPower>())
+        if (side == CombatSide.Enemy/* && !Owner.HasPower<EternalAutumnPower>()*/)
         {
-            await PowerCmd.Apply<AutumnAuraLostPower>(choiceContext, Owner, Math.Max(Amount / 3, 1), Owner, null);
+            await PowerCmd.Apply<AutumnAuraLostPower>(choiceContext, Owner, Math.Max(Amount / 5, 1), Owner, null);
             //var num = Amount / 3;
             //for (int i = 0; i < num; i++)
             //{

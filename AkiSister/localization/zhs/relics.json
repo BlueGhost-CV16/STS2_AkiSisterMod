@@ -17,9 +17,9 @@
   "AKISISTER-AKI_SISTER_FLOWERS.description": "[gold]我 全 都 要 。[gold]\n战斗开始时额外抽取[blue]2[/blue]个技能，升级回合开始时置入抽牌堆的[orange]「牧凋人的杏棠花」[/orange]和[orange]「收实者的梨樱草」[/orange]。",
   "AKISISTER-AKI_SISTER_FLOWERS.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
   "AKISISTER-AKI_SISTER_FLOWERS.title": "秋福寿花和角罂粟花",
-  "AKISISTER-FALLING_RED_LEAVES.description": "每场战斗开始时，获得{Energy:energyIcons()}并将[blue]1[/blue]张[orange]「牧凋人的杏棠花」[/orange]添加至你的[gold]手牌[/gold]中。",
-  "AKISISTER-FALLING_RED_LEAVES.flavor": "漫天飘舞的枫叶，带来了秋天的消息。",
-  "AKISISTER-FALLING_RED_LEAVES.title": "飘落的红叶",
+  "AKISISTER-FALLING_MAPLE_LEAVES.description": "每场战斗开始时，获得{Energy:energyIcons()}并将[blue]1[/blue]张[orange]「牧凋人的杏棠花」[/orange]添加至你的[gold]手牌[/gold]中。",
+  "AKISISTER-FALLING_MAPLE_LEAVES.flavor": "漫天飘舞的枫叶，带来了秋天的消息。",
+  "AKISISTER-FALLING_MAPLE_LEAVES.title": "飘落的红叶",
   "AKISISTER-FRAGRANT_SWEET_POTATOES.description": "每场战斗开始时，获得{Energy:energyIcons()}并将[blue]1[/blue]张[orange]「收实者的梨樱草」[/orange]添加至你的[gold]手牌[/gold]中。",
   "AKISISTER-FRAGRANT_SWEET_POTATOES.flavor": "香飘十里的番薯，吸引人前去品尝。",
   "AKISISTER-FRAGRANT_SWEET_POTATOES.title": "飘香的番薯",
@@ -38,7 +38,7 @@
   "AKISISTER-WITHERED_BRANCHES.description": "有[gold]凋零[/gold]状态的敌人受到的伤害增加[blue]50%[/blue]而非[blue]30%[/blue]。\n有[gold]枯萎[/gold]状态的敌人造成的伤害降低[blue]25%[/blue]而非[blue]15%[/blue]。",
   "AKISISTER-WITHERED_BRANCHES.flavor": "隆冬将至，万物萧瑟。",
   "AKISISTER-WITHERED_BRANCHES.title": "枯萎的枝丫",
-  "AKISISTER-FRESH_SWEET_POTATOES.description": "[gold]秋意[/gold]与[gold]香气[/gold]降低时，将给予等量的[gold]凋零[/gold]与[gold]枯萎[/gold]。",
+  "AKISISTER-FRESH_SWEET_POTATOES.description": "[gold]秋意[/gold]与[gold]香气[/gold]降低时，将给予降低层数一半的[gold]凋零[/gold]与[gold]枯萎[/gold]。",
   "AKISISTER-FRESH_SWEET_POTATOES.flavor": "刚刚出土的香甜番薯，和朋友们一起分享吧！",
   "AKISISTER-FRESH_SWEET_POTATOES.title": "新鲜的番薯"
 }

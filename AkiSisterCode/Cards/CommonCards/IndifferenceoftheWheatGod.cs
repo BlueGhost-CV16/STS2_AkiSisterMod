@@ -33,7 +33,7 @@ public class IndifferenceoftheWheatGod() : AkiSisterCard(0,
         {
             await Owner.PotatoAdd_Card(cardModels.ToList());
         }
-        await Owner.GrassAdd(base.CombatState, (int)DynamicVars.Cards.BaseValue);
+        await Owner.GrassAdd(base.CombatState);
     }
 
     protected override void OnUpgrade()

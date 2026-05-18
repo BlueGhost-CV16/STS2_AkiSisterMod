@@ -185,12 +185,15 @@
   "AKISISTER-ADVENTUREOF_DISCOVERY.title": "探索之旅",
   "AKISISTER-PRECIOUS_THINGS.description": "造成{Damage:diff()}点伤害。\n抽{Cards:diff()}张牌。\n丢弃抽到的非状态牌。",
   "AKISISTER-PRECIOUS_THINGS.title": "珍贵之物",
-  "AKISISTER-ETERNAL_AUTUMN.description": "每回合开始时，[gold]秋意[/gold]与[gold]香气[/gold]不再转化为[gold]临时秋意[/gold]与[gold]临时香气[/gold]。",
+  "AKISISTER-ETERNAL_AUTUMN.description": "自身给予[gold]秋意[/gold]/[gold]香气[/gold]时额外给予{EternalAutumnPower:diff()}层[gold]临时秋意[/gold]/[gold]临时香气[/gold]。",
   "AKISISTER-ETERNAL_AUTUMN.title": "永恒的秋日",
   "AKISISTER-TIMES_HAVE_CHANGED.description": "造成{Damage:diff()}点伤害。\n丢弃手中所有状态牌并抽等量的牌。",
   "AKISISTER-TIMES_HAVE_CHANGED.title": "时过境迁",
   "AKISISTER-HARVEST_YEARS.description": "获得{AutumnAuraPower:diff()}层[gold]秋意[/gold]、{FragrancePower:diff()}层[gold]香气[/gold]与{Energy:energyIcons()}。\n将{Cards:diff()}张[gold]「牧凋人的杏棠花」[/gold]添加至你的[gold]抽牌堆[/gold]顶，将{Cards:diff()}张[gold]「收实者的梨樱草」[/gold]添加至你的[gold]抽牌堆[/gold]底。",
   "AKISISTER-HARVEST_YEARS.title": "丰收年华",
   "AKISISTER-GOLDEN_YEARS.description": "将1张[gold]「牧凋人的杏棠花」[/gold]添加至你的[gold]抽牌堆[/gold]顶，将1张[gold]「收实者的梨樱草」[/gold]添加至你的[gold]抽牌堆[/gold]底。\n造成{Damage:diff()}点伤害，抽{Cards:diff()}张牌。",
-  "AKISISTER-GOLDEN_YEARS.title": "流金岁月"
+  "AKISISTER-GOLDEN_YEARS.title": "流金岁月",
+  "AKISISTER-ARTISTOF_AUTUMN.description": "将{Cards:diff()}张牌从[gold]弃牌堆[/gold]加入你的[gold]手牌[/gold]。\n将1张[gold]「牧凋人的杏棠花」[/gold]添加至你的[gold]抽牌堆[/gold]顶。",
+  "AKISISTER-ARTISTOF_AUTUMN.selectionScreenPrompt": "选择{Amount}张牌加入你的[gold]手牌[/gold]。",
+  "AKISISTER-ARTISTOF_AUTUMN.title": "秋之艺术家"
 }

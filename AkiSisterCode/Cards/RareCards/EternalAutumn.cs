@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
 
-public class EternalAutumn() : AkiSisterCard(1,
+public class EternalAutumn() : AkiSisterCard(2,
     CardType.Power, CardRarity.Rare,
     TargetType.Self)
 {
@@ -22,7 +22,10 @@ public class EternalAutumn() : AkiSisterCard(1,
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         //HoverTipFactory.FromCard<HarvesterandPearBlossom>(true)
-        HoverTipFactory.FromPower<FragrancePower>()
+        HoverTipFactory.FromPower<AutumnAuraPower>(),
+        HoverTipFactory.FromPower<AutumnAuraLostPower>(),
+        HoverTipFactory.FromPower<FragrancePower>(),
+        HoverTipFactory.FromPower<FragranceLostPower>(),
     ];
 
     protected override async Task OnPlay(
@@ -42,7 +45,7 @@ public class EternalAutumn() : AkiSisterCard(1,
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Retain);
+        AddKeyword(CardKeyword.Innate);
         //DynamicVars["FragrancePower"].UpgradeValueBy(4);
     }
 }

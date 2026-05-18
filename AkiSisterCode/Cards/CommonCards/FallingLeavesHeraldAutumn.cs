@@ -33,7 +33,7 @@ public class FallingLeavesHeraldAutumn() : AkiSisterCard(0,
         {
             await Owner.LeafAdd_Card(cardModels.ToList());
         }
-        await Owner.FlowerAdd(base.CombatState, 1);
+        await Owner.FlowerAdd(base.CombatState);
     }
 
     protected override void OnUpgrade()

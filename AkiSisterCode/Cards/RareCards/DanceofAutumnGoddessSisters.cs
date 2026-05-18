@@ -22,7 +22,7 @@ public class DanceofAutumnGoddessSisters() : AkiSisterCard(1,
             .WithHitFx("vfx/vfx_heavy_blunt", null, "heavy_attack.mp3")
             .WithHitVfxSpawnedAtBase()
             .Execute(choiceContext);
-        int num = 10 - CardPile.GetCards(base.Owner, PileType.Hand).Count();
+        int num = CardPile.MaxCardsInHand - CardPile.GetCards(base.Owner, PileType.Hand).Count();
         for (int i = 0; i < num; i++)
         {
             if (i % 2 == 0)

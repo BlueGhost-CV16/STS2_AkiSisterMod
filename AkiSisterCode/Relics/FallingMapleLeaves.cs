@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Relics;
 
-public class FallingRedLeaves() : AkiSisterRelic
+public class FallingMapleLeaves() : AkiSisterRelic
 {
     public override RelicRarity Rarity =>
         RelicRarity.Common;
