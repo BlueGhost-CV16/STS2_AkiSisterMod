@@ -39,9 +39,9 @@ public class RichHarvest() : AkiSisterCard(1,
             {
                 await item.PotatoAdd_Card();
             }
-            await CardPileCmd.Add(pile, PileType.Draw, CardPilePosition.Random);
-            //CardCmd.PreviewCardPileAdd()
+            //await CardPileCmd.Add(item, PileType.Draw, CardPilePosition.Random);
         }
+        await CardPileCmd.Add(pile, PileType.Draw, CardPilePosition.Random);
     }
 
     protected override void OnUpgrade()

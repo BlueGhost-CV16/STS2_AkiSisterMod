@@ -53,14 +53,6 @@ public class WitherPower : AkiSisterPower
         }
         return num;
     }
-
-    //public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
-    //{
-    //    if (side == CombatSide.Enemy)
-    //    {
-    //        await PowerCmd.TickDownDuration(this);
-    //    }
-    //}
     
     private int TriggerCount
     {
@@ -91,8 +83,8 @@ public class WitherPower : AkiSisterPower
         }
         return (int)num;
     }
-    
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != base.Owner.Side)
         {
@@ -118,20 +110,19 @@ public class WitherPower : AkiSisterPower
         }
     }
 
-    public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != base.Owner.Side)
         {
             return;
         }
-        int iterations = Math.Min(base.Amount, TriggerCount);
-        for (int i = 0; i < iterations; i++)
+        var iterations = Math.Min(base.Amount, TriggerCount);
+        for (var i = 0; i < iterations; i++)
         {
             if (base.Owner.IsAlive)
             {
                 await PowerCmd.Apply<WitherPower>(choiceContext, Owner,// -1, null, null);
                     -Math.Max(base.Amount / 5, 1), null, null);
-                //await PowerCmd.Decrement(this);
             }
             else
             {

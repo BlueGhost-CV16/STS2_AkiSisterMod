@@ -96,7 +96,7 @@ public class GrilledBambooShoots() : AkiSisterRelic
 		return Task.CompletedTask;
 	}
 
-	public override Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+	public override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
 	{
 		AttacksPlayedThisTurn = 0;
 		base.Status = RelicStatus.Normal;

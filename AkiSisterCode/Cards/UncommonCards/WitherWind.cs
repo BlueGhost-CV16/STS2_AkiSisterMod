@@ -13,7 +13,7 @@ public class WitherWind() : AkiSisterCard(1,
     TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(11, ValueProp.Move),
+        new DamageVar(14, ValueProp.Move),
         new CardsVar(1)
     ];
 
@@ -33,7 +33,7 @@ public class WitherWind() : AkiSisterCard(1,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(4);
         DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

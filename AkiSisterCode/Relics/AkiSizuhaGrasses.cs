@@ -5,6 +5,7 @@ using AkiSister.AkiSisterCode.Nodes;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Extensions;
@@ -37,7 +38,8 @@ public class AkiSizuhaGrasses() : AkiSisterRelic
     //    Flash();
     //    //await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, player);
     //}
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
         if (side != CombatSide.Player)
         {

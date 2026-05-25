@@ -25,6 +25,7 @@ public class StrikeAkiSister() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
+        if (this.IsInCombat && this.Pile.IsCombatPile)
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
             .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);

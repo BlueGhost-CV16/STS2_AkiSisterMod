@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
 
-public class FadingofAutumnMoon() : AkiSisterCard(0,
+public class FadingofAutumnMoon() : AkiSisterCard(1,
     CardType.Attack, CardRarity.Rare,
     TargetType.AllEnemies)
 {
@@ -24,17 +24,18 @@ public class FadingofAutumnMoon() : AkiSisterCard(0,
             .Execute(choiceContext);
     }
 
-    private int _count = 0;
+    private int _count = 0; 
 
     public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner == base.Owner && cardPlay.Card.Type == CardType.Status && base.Pile.Type != PileType.Hand)
+        if (cardPlay.Card.Owner == base.Owner && cardPlay.Card.Type == CardType.Status && base.Pile?.Type == PileType.Exhaust)
         {
             _count++;
             if (_count >= 2)
             {
                 _count = 0;
-                await CardPileCmd.Add(this, PileType.Hand);
+                await CardCmd.AutoPlay(choiceContext, this, null);
+                //await CardPileCmd.Add(this, PileType.Hand);
             }
         }
     }

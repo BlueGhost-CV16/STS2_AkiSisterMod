@@ -83,8 +83,8 @@ public class DrainPower : AkiSisterPower
         }
         return (int)num;
     }
-    
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != base.Owner.Side)
         {
@@ -111,7 +111,7 @@ public class DrainPower : AkiSisterPower
         }
     }
 
-    public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != base.Owner.Side)
         {

@@ -15,7 +15,7 @@ public class Collaboration() : AkiSisterCard(1,
 {
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(12m, ValueProp.Move)
+        new DamageVar(14m, ValueProp.Move)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -36,6 +36,6 @@ public class Collaboration() : AkiSisterCard(1,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(4);
     }
 }

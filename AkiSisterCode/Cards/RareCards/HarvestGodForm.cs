@@ -42,7 +42,7 @@ public class HarvestGodForm() : AkiSisterCard(3,
         await PowerCmd.Apply<HarvestGodFormPower>(choiceContext, Owner.Creature, DynamicVars["HarvestGodFormPower"].BaseValue, Owner.Creature, this);
         //await PowerCmd.Apply<FragrancePower>(Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Owner.Creature, this);
     }
-
+    
     protected override void OnUpgrade()
     {
         RemoveKeyword(CardKeyword.Ethereal);

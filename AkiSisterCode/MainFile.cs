@@ -1,14 +1,11 @@
-using AkiSister.AkiSisterCode.Cards.BasicCards;
+using AkiSister.AkiSisterCode.Enchantments;
 using Godot;
 using Godot.Bridge;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Relics;
+using MultiEnchantmentMod;
+using MultiEnchantmentMod.Api;
 
 namespace AkiSister.AkiSisterCode;
 
@@ -27,6 +24,13 @@ public partial class MainFile : Node
         harmony.PatchAll();
         Log.Info($"{ModId} Harmony PatchAll completed");
         ScriptManagerBridge.LookupScriptsInAssembly(typeof(MainFile).Assembly);
+        if (!MultiEnchantmentApi.RequireApiVersion(2))
+        {
+            return;
+        }
+        MultiEnchantmentApi.ScanCallingAssembly();
+        //MultiEnchantmentStackApi.RegisterCompanionProviders<RedLeafMarkEnchantment>();
+        //MultiEnchantmentStackApi.RegisterCompanionProviders<SweetPotatoMarkEnchantment>();
     }
     
     //[HarmonyPatch(typeof(CardModel), nameof(CardModel.PortraitPath), MethodType.Getter)]

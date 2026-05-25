@@ -13,8 +13,8 @@ public class FragranceLostPower : AkiSisterPower
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<FragrancePower>()];
-    
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side == CombatSide.Enemy)
         {
@@ -24,6 +24,17 @@ public class FragranceLostPower : AkiSisterPower
                 await PowerCmd.ModifyAmount(choiceContext, power, -Math.Min(Amount, power.Amount), null, null);
         }
     }
+
+    //public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    //{
+    //    if (side == CombatSide.Enemy)
+    //    {
+    //        await PowerCmd.Remove(this);
+    //        var power = Owner.GetPower<FragrancePower>();
+    //        if (power != null)
+    //            await PowerCmd.ModifyAmount(choiceContext, power, -Math.Min(Amount, power.Amount), null, null);
+    //    }
+    //}
 
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier,
         CardModel? cardSource)

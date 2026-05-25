@@ -14,7 +14,7 @@ public class RenewalWind() : AkiSisterCard(1,
     TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(9, ValueProp.Move),
+        new DamageVar(10, ValueProp.Move),
         new CardsVar(1)
     ];
 
@@ -31,7 +31,7 @@ public class RenewalWind() : AkiSisterCard(1,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1);
+        DynamicVars.Damage.UpgradeValueBy(2);
         DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

@@ -27,7 +27,9 @@ public class IndifferenceoftheWheatGod() : AkiSisterCard(0,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        var cardModel = await CardSelectCmd.FromHand(choiceContext, base.Owner, new CardSelectorPrefs(base.SelectionScreenPrompt, (int)DynamicVars.Cards.BaseValue), card => !CustomMethods.PotatoCheck(card), this);
+        var cardModel = await CardSelectCmd.FromHand(choiceContext, base.Owner,
+            new CardSelectorPrefs(base.SelectionScreenPrompt, (int)DynamicVars.Cards.BaseValue),
+            card => !CustomMethods.PotatoCheck(card), this);
         var cardModels = cardModel.ToList();
         if (cardModels.Count > 0)
         {

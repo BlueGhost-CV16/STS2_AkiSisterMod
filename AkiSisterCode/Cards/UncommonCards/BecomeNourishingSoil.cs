@@ -16,8 +16,8 @@ public class BecomeNourishingSoil() : AkiSisterCard(1,
     TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(6, ValueProp.Move),
-        new PowerVar<WitherPower>(6),
+        new DamageVar(8, ValueProp.Move),
+        new PowerVar<WitherPower>(8),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => HoverTipFactory.FromEnchantment<RedLeafMarkEnchantment>();

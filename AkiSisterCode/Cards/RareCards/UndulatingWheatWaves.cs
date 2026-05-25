@@ -25,7 +25,7 @@ public class UndulatingWheatWaves() : AkiSisterCard(1,
         CardPlay play)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
-        await this.Owner.PotatoAdd_Hand(999);
+        await this.Owner.PotatoAdd_Hand(CardPile.MaxCardsInHand);
     }
 
     protected override void OnUpgrade()

@@ -20,11 +20,7 @@ public class ReturningWheelofAutumnFrostPower : AkiSisterPower
 
     public decimal ModifyWitherMultiplier(Creature target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
-        if (target != base.Owner)
-        {
-            return amount;
-        }
-        if (!props.IsPoweredAttack())
+        if (target != base.Owner || !props.IsPoweredAttack())
         {
             return amount;
         }
@@ -44,7 +40,7 @@ public class ReturningWheelofAutumnFrostPower : AkiSisterPower
         return amount - (1m - amount);
     }
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side == base.Owner.Side)
         {

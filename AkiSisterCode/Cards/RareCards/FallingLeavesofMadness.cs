@@ -25,7 +25,7 @@ public class FallingLeavesofMadness() : AkiSisterCard(1,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(base.CombatState)
             .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
-        await this.Owner.LeafAdd_Hand(999);
+        await this.Owner.LeafAdd_Hand(CardPile.MaxCardsInHand);
     }
 
     protected override void OnUpgrade()

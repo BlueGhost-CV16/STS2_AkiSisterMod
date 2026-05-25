@@ -30,7 +30,7 @@ public class RedLeafStrike() : AkiSisterCard(1,
     ];
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(9m, ValueProp.Move),
+        new DamageVar(11m, ValueProp.Move),
         new CardsVar(1),
         new EnergyVar(1)
     ];
@@ -59,7 +59,7 @@ public class RedLeafStrike() : AkiSisterCard(1,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(4);
     }
 
     //public override async Task BeforeCombatStart()

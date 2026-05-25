@@ -18,7 +18,7 @@ public class Labor() : AkiSisterCard(2,
     protected override bool ShouldGlowGoldInternal => this.LeafCheck();
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(9, ValueProp.Move),
+        new DamageVar(10, ValueProp.Move),
         new RepeatVar(2),
         new EnergyVar(2)
     ];

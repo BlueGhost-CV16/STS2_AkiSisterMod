@@ -31,11 +31,11 @@ public class LostWindrow() : AkiSisterCard(0,
     {
         if (this.LeafCheck())
         {
-            await Owner.LeafAdd_Card(Owner.PlayerCombatState!.Hand.Cards.ToList());
+            await Owner.LeafAdd_Hand(CardPile.MaxCardsInHand);
         }
-        var cardModel = await CardSelectCmd.FromHand(choiceContext, base.Owner, new CardSelectorPrefs(base.SelectionScreenPrompt, 0, 999), card => CustomMethods.LeafCheck(card), this);
+        var cardModel = await CardSelectCmd.FromHand(choiceContext, base.Owner, new CardSelectorPrefs(base.SelectionScreenPrompt, 0, CardPile.MaxCardsInHand), card => CustomMethods.LeafCheck(card), this);
         var cardModels = cardModel.ToList();
-        if (cardModels.Count > 0)
+        if (cardModels.Count > 0)   
         { 
             await CardCmd.Discard(choiceContext, cardModels);
             await Owner.FlowerAdd(base.CombatState, cardModels.Count);

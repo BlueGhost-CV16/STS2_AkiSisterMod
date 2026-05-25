@@ -20,7 +20,7 @@ public class AkiSisterCardPool : CustomCardPoolModel
     //Color of small card icons
     public override Color DeckEntryCardColor => AkiSister.Color;
     
-    //public override Color ShaderColor => new(1f, 0.35f, 0.25f);
+    //public override Color ShaderColor => new(0.132f, 0.74f, 1.46f);
     
     public override Color EnergyOutlineColor => new("BE2624");
 

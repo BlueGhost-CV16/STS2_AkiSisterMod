@@ -10,7 +10,7 @@ namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
 
 public class ArtistofAutumn() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Uncommon,
-    TargetType.AnyEnemy)
+    TargetType.None)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CardsVar(2)

@@ -24,32 +24,13 @@ public class FragrancePower : AkiSisterPower
         new HealthBarForecastSegment(base.Amount, new Color("F5DEB3"), HealthBarForecastDirection.FromLeft)
     ];
 
-    public override async Task AfterTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side == CombatSide.Enemy/* && !Owner.HasPower<EternalAutumnPower>()*/)
         {
             await PowerCmd.Apply<FragranceLostPower>(choiceContext, Owner, Math.Max(Amount / 5, 1), Owner, null);
-            //var num = Amount / 3;
-            //for (int i = 0; i < num; i++)
-            //{
-            //    await PowerCmd.TickDownDuration(this);
-            //}
         }
     }
-    
-    //public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
-    //{
-    //    if (side == CombatSide.Enemy)
-    //    {
-    //        await PowerCmd.Apply<FragranceLostPower>(Owner, Amount / 3, Owner, null);
-    //        //var num = Amount / 3;
-    //        //for (int i = 0; i < num; i++)
-    //        //{
-    //        //    await PowerCmd.TickDownDuration(this);
-    //        //}
-    //        //await PowerCmd.TickDownDuration(this);
-    //    }
-    //}
 
     public override async Task BeforeDamageReceived(PlayerChoiceContext choiceContext, Creature target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
@@ -63,8 +44,9 @@ public class FragrancePower : AkiSisterPower
                     return;
                 }
                 Flash();
-                await CreatureCmd.GainBlock(base.Owner, amount - Owner.Block, ValueProp.Unpowered, null);
-                await PowerCmd.ModifyAmount(choiceContext, this, Owner.Block - amount, null, null);
+                var num = Owner.Block - amount;
+                await CreatureCmd.GainBlock(base.Owner, -num, ValueProp.Unpowered, null);
+                await PowerCmd.ModifyAmount(choiceContext, this, num, null, null);
             }
             else
             {
