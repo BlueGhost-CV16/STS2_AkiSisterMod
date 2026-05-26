@@ -1,12 +1,16 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Powers;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+[RegisterCard(typeof(AkiSisterCardPool))]
 
 public class CleanEnergy() : AkiSisterCard(1,
     CardType.Power, CardRarity.Uncommon,
@@ -17,7 +21,7 @@ public class CleanEnergy() : AkiSisterCard(1,
         //new PowerVar<CleanEnergyPower>(1m),
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         base.EnergyHoverTip
     ];
 

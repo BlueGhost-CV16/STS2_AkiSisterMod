@@ -1,19 +1,22 @@
 ﻿using AkiSister.AkiSisterCode.Powers;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Models;
 
 namespace AkiSister.AkiSisterCode.Relics;
+[RegisterRelic(typeof(AkiSisterRelicPool))]
 
 public class FreshSweetPotatoes() : AkiSisterRelic
 {
     public override RelicRarity Rarity =>
         RelicRarity.Shop;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromPower<AutumnAuraPower>(),
         HoverTipFactory.FromPower<FragrancePower>()
     ];

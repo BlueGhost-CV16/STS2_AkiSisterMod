@@ -1,5 +1,5 @@
-﻿using BaseLib.Extensions;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
+﻿using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2RitsuLib.Cards.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Nodes;
 
@@ -12,6 +12,6 @@ public class WitherDynamicVar : DynamicVar
 
     public WitherDynamicVar(decimal baseValue) : base(Key, baseValue)
     {
-        this.WithTooltip(LocKey);
+        this.WithSharedTooltip(LocKey);
     }
 }

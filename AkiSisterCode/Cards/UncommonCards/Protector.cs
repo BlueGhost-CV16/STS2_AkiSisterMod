@@ -1,13 +1,16 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+[RegisterCard(typeof(AkiSisterCardPool))]
 
 public class Protector() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Uncommon,
@@ -20,7 +23,7 @@ public class Protector() : AkiSisterCard(1,
         new PowerVar<FragrancePower>(5)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromPower<AutumnAuraPower>(),
         HoverTipFactory.FromPower<FragrancePower>(),
     ];

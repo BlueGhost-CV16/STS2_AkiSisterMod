@@ -1,11 +1,15 @@
 ﻿using AkiSister.AkiSisterCode.Powers;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
+[RegisterCard(typeof(AkiSisterCardPool))]
 
 public class PoisonedApple() : AkiSisterCard(2,
     CardType.Power, CardRarity.Rare,
@@ -15,7 +19,7 @@ public class PoisonedApple() : AkiSisterCard(2,
         new PowerVar<PoisonedApplePower>(1m)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     [
         HoverTipFactory.FromPower<WitherPower>(),
         HoverTipFactory.FromPower<DrainPower>()

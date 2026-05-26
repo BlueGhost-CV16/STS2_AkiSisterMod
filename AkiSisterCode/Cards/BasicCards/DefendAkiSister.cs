@@ -1,11 +1,17 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using AkiSister.Characters;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.BasicCards;
+[RegisterCard(typeof(AkiSisterCardPool))]
 
+[RegisterCharacterStarterCard(typeof(AkiSisterCharacter), 4)]
 public class DefendAkiSister() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Basic,
     TargetType.Self)

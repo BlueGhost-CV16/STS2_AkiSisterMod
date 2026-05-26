@@ -4,17 +4,21 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Enchantments;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MultiEnchantmentMod;
 using MultiEnchantmentMod.Api;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Enchantments;
-
+[RegisterEnchantment]
 [Enchantment(Stack = StackBehavior.DisallowDuplicate, Status = StatusAggregation.NotApplicable, Scope = ScopeKind.UntilCombatEnds)]
 [EnchantmentKeyword(CardKeyword.Retain, Mode = KeywordEvalMode.Custom)]
 public class SweetPotatoMarkEnchantment : AkiSisterEnchantment
@@ -28,10 +32,6 @@ public class SweetPotatoMarkEnchantment : AkiSisterEnchantment
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new PowerVar<FragrancePower>(1m),
         new PowerVar<WitherPower>(1m),
-    ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        //HoverTipFactory.FromPower<FragrancePower>()
     ];
     
     public override bool CanEnchantCardType(CardType cardType)

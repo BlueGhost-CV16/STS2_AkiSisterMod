@@ -3,6 +3,7 @@ using AkiSister.AkiSisterCode.Enchantments;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using MultiEnchantmentMod;
@@ -12,6 +13,16 @@ namespace AkiSister.AkiSisterCode.Extensions;
 
 public static class CustomMethods
 {
+    public static string RemovePrefix(this string id)
+    {
+        var str = id;
+        for (int i = 0; i < 3; i++)
+        {
+            int num = str.IndexOf('_') + 1;
+            str =  str.Substring(num, str.Length - num);
+        }
+        return str;
+    }
     
     //public static EnchantmentModel? Enchant(EnchantmentModel enchantment, CardModel card, decimal amount = 1)
     //{

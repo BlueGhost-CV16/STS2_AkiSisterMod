@@ -1,12 +1,10 @@
 ﻿using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Powers;
-using BaseLib.Abstracts;
-using BaseLib.Extensions;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -15,11 +13,12 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using STS2RitsuLib.Scaffolding.Content;
 
 namespace AkiSister.AkiSisterCode.Cards.StatusCards;
 
-[Pool(typeof(TokenCardPool))]
-public class ShepherdandApricotBlossom() : CustomCardModel(1,
+[RegisterCard(typeof(TokenCardPool))]
+public class ShepherdandApricotBlossom() : ModCardTemplate(1,
     CardType.Status, CardRarity.Token,
     TargetType.AnyEnemy)
 {
@@ -28,10 +27,14 @@ public class ShepherdandApricotBlossom() : CustomCardModel(1,
         //base.AfterCreated();
         this.LeafAdd_Card();
     }
+    // 卡图资源。
+    // 如果你按这行代码写，文件名就对应 AkiSister/images/cards/AkiSisterDefend.png。
+    public override CardAssetProfile AssetProfile => new(
+        PortraitPath: $"{Entry.ResPath}/images/cards/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png");
 
-    public override string CustomPortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigCardImagePath();
-    public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
-    public override string BetaPortraitPath => $"beta/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
+    //public override string CustomPortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigCardImagePath();
+    //public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
+    //public override string BetaPortraitPath => $"beta/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
     
     //public override int MaxUpgradeLevel => 0;
     
@@ -46,7 +49,7 @@ public class ShepherdandApricotBlossom() : CustomCardModel(1,
         //AkiSisterCardKeyWords.RedLeafFavor
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
             HoverTipFactory.FromPower<WitherPower>()
     ];
 

@@ -1,29 +1,26 @@
 ﻿using AkiSister.AkiSisterCode.Cards.BasicCards;
-using AkiSister.AkiSisterCode.Cards.CommonCards;
 using AkiSister.AkiSisterCode.Extensions;
-using BaseLib.Abstracts;
-using BaseLib.Extensions;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using STS2RitsuLib.Scaffolding.Content;
 
 namespace AkiSister.AkiSisterCode.Cards.FakeCards;
-
-[Pool(typeof(TokenCardPool))]
-public class AkiSisterFakeStarterCard() : CustomCardModel(1,
+[RegisterCard(typeof(TokenCardPool))]
+public class AkiSisterFakeStarterCard() : ModCardTemplate(1,
     CardType.Skill, CardRarity.None,
     TargetType.Self)
 {
-    public override string CustomPortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigCardImagePath();
-    public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
-    public override string BetaPortraitPath => $"beta/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
+    private const bool ShowInCardLibrary = false;
+    public override CardAssetProfile AssetProfile => new(
+        PortraitPath: $"{Entry.ResPath}/images/cards/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png");
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromCard<GlowofAutumnSunset>(),
         HoverTipFactory.FromCard<ResentmentofAutumnColors>()
     ];

@@ -1,12 +1,16 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Powers;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
+[RegisterCard(typeof(AkiSisterCardPool))]
 
 public class EternalAutumn() : AkiSisterCard(2,
     CardType.Power, CardRarity.Rare,
@@ -20,7 +24,7 @@ public class EternalAutumn() : AkiSisterCard(2,
     //    CardKeyword.Ethereal
     //];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         //HoverTipFactory.FromCard<HarvesterandPearBlossom>(true)
         HoverTipFactory.FromPower<AutumnAuraPower>(),
         HoverTipFactory.FromPower<AutumnAuraLostPower>(),

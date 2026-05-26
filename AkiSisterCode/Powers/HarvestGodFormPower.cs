@@ -3,16 +3,18 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Models;
 
 namespace AkiSister.AkiSisterCode.Powers;
+[RegisterPower]
 
 public class HarvestGodFormPower : AkiSisterPower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     [
         HoverTipFactory.FromCard<HarvesterandPearBlossom>(true)
     ];
@@ -26,7 +28,7 @@ public class HarvestGodFormPower : AkiSisterPower
         }
         return Task.CompletedTask;
     }
-    //protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    //protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     //[
     //    HoverTipFactory.FromPower<AutumnAuraPower>()
     //];

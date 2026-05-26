@@ -1,15 +1,21 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Enchantments;
 using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Nodes;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
+using STS2RitsuLib.Keywords;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
+[RegisterCard(typeof(AkiSisterCardPool))]
 
 public class Labor() : AkiSisterCard(2,
     CardType.Attack, CardRarity.Common,
@@ -23,9 +29,9 @@ public class Labor() : AkiSisterCard(2,
         new EnergyVar(2)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         base.EnergyHoverTip,
-        HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafResonance)
+        ModKeywordRegistry.CreateHoverTip(AkiSisterCardKeyWords.RedLeafResonance)
     ];
 
     protected override async Task OnPlay(

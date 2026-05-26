@@ -22,7 +22,7 @@ internal static class AkiSisterArchaicToothPatch
     {
         private static bool Prefix(ArchaicTooth __instance, Player player, ref CardModel? __result)
         {
-            if (player.Character is not Character.AkiSister) return true;
+            if (player.Character is not Characters.AkiSisterCharacter) return true;
             _starterCardAkiSizuha = player.Deck.Cards.FirstOrDefault(c => c is GlowofAutumnSunset);
             _starterCardAkiMinoriko = player.Deck.Cards.FirstOrDefault(c => c is ResentmentofAutumnColors);
             if (_starterCardAkiSizuha != null && _starterCardAkiMinoriko != null)
@@ -92,7 +92,7 @@ internal static class AkiSisterArchaicToothPatch
     [HarmonyPatch(typeof(ArchaicTooth), nameof(ArchaicTooth.AfterObtained))]
     private static bool AfterObtainedPrefix(ArchaicTooth __instance, ref Task __result)
     {
-        if (__instance.Owner.Character is not Character.AkiSister || _starterCardAkiSizuha == null ||
+        if (__instance.Owner.Character is not Characters.AkiSisterCharacter || _starterCardAkiSizuha == null ||
             _starterCardAkiMinoriko == null) return true;
         _starterCardAkiSizuha = __instance.Owner.Deck.Cards.FirstOrDefault(c => c is GlowofAutumnSunset);
         _starterCardAkiMinoriko = __instance.Owner.Deck.Cards.FirstOrDefault(c => c is ResentmentofAutumnColors);
@@ -122,7 +122,7 @@ internal static class AkiSisterArchaicToothPatch
     {
         private static bool Prefix(DustyTome __instance, Player player)
         {
-            if (player.Character is Character.AkiSister)
+            if (player.Character is Characters.AkiSisterCharacter)
             {
                 __instance.AncientCard = ModelDb.Card<UnpopularGoddessSisters>().Id;
                 return false;

@@ -1,14 +1,20 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Cards.StatusCards;
 using AkiSister.AkiSisterCode.Extensions;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
+[RegisterCard(typeof(AkiSisterCardPool))]
 
 public class AGodThatMissesPeople() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Rare,
@@ -25,7 +31,7 @@ public class AGodThatMissesPeople() : AkiSisterCard(1,
     //    CardKeyword.Exhaust
     //];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         base.EnergyHoverTip,
         HoverTipFactory.FromCard<ShepherdandApricotBlossom>(),
         HoverTipFactory.FromCard<HarvesterandPearBlossom>()

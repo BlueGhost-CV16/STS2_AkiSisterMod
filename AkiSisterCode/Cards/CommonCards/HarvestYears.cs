@@ -1,14 +1,18 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Cards.StatusCards;
 using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Powers;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
+[RegisterCard(typeof(AkiSisterCardPool))]
 
 public class HarvestYears() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Common,
@@ -25,7 +29,7 @@ public class HarvestYears() : AkiSisterCard(0,
         CardKeyword.Exhaust
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromCard<ShepherdandApricotBlossom>(),
         HoverTipFactory.FromCard<HarvesterandPearBlossom>(),
         HoverTipFactory.FromPower<AutumnAuraPower>(),

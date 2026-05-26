@@ -22,7 +22,7 @@
 //    
 //    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9m, ValueProp.Move)];
 //    
-//    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+//    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
 //            HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafResonance)
 //    ];
 //    

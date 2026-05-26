@@ -1,12 +1,15 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+[RegisterCard(typeof(AkiSisterCardPool))]
 
 public class FragranceCondenses() : AkiSisterCard(2,
     CardType.Skill, CardRarity.Uncommon,
@@ -17,7 +20,7 @@ public class FragranceCondenses() : AkiSisterCard(2,
         new PowerVar<FragranceLostPower>(9m)
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromPower<FragranceLostPower>(),
         HoverTipFactory.FromPower<FragrancePower>()
     ];

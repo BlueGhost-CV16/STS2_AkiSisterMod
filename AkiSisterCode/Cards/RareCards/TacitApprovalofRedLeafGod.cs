@@ -1,14 +1,18 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Cards.StatusCards;
 using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Powers;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
+[RegisterCard(typeof(AkiSisterCardPool))]
 
 public class TacitApprovalofRedLeafGod() : AkiSisterCard(1,
     CardType.Power, CardRarity.Rare,
@@ -16,7 +20,7 @@ public class TacitApprovalofRedLeafGod() : AkiSisterCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<TacitApprovalofRedLeafGodPower>(1m)];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     [
         HoverTipFactory.FromCard<ShepherdandApricotBlossom>(),
         HoverTipFactory.FromPower<AutumnAuraPower>()

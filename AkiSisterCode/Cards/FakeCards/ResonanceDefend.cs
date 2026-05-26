@@ -21,7 +21,7 @@
 //
 //    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(7m, ValueProp.Move)];
 //    
-//    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+//    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
 //            HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.SweetPotatoResonance)
 //    ];
 //    

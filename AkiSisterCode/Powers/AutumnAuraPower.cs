@@ -1,6 +1,4 @@
 ﻿using AkiSister.AkiSisterCode.Relics;
-using BaseLib.Extensions;
-using BaseLib.Hooks;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -11,19 +9,23 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
+using STS2RitsuLib.Combat.HealthBars;
 
 namespace AkiSister.AkiSisterCode.Powers;
+[RegisterPower]
 
-public class AutumnAuraPower : AkiSisterPower
+public class AutumnAuraPower : AkiSisterPower, IHealthBarForecastSource
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override IEnumerable<HealthBarForecastSegment>
-        GetHealthBarForecastSegments(HealthBarForecastContext context) =>
-    [
-        new HealthBarForecastSegment(base.Amount, new Color("FF8C00"), HealthBarForecastDirection.FromLeft)
-    ];
+    public IEnumerable<HealthBarForecastSegment>
+        GetHealthBarForecastSegments(HealthBarForecastContext context)
+    {
+        return HealthBarForecasts.Single(base.Amount, new Color("FF8C00"), HealthBarForecastGrowthDirection.FromLeft);
+    }
 
     public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {

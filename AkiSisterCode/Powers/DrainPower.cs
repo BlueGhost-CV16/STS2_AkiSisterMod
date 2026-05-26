@@ -1,10 +1,9 @@
 ﻿using AkiSister.AkiSisterCode.Relics;
-using BaseLib.Extensions;
-using BaseLib.Hooks;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,20 +12,29 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
+using STS2RitsuLib.Combat.HealthBars;
 
 namespace AkiSister.AkiSisterCode.Powers;
+[RegisterPower]
 
-public class DrainPower : AkiSisterPower
+public class DrainPower : AkiSisterPower, IHealthBarForecastSource
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DamageDecrease", 0.85m)];
 
-    public override IEnumerable<HealthBarForecastSegment>
-        GetHealthBarForecastSegments(HealthBarForecastContext context) =>
-    [
-        new HealthBarForecastSegment(CalculateTotalDamageNextTurn(), new Color("556B2F"), HealthBarForecastDirection.FromRight)
-    ];
+    //public override IEnumerable<HealthBarForecastSegment>
+    //    GetHealthBarForecastSegments(HealthBarForecastContext context) =>
+    //[
+    //    new HealthBarForecastSegment(CalculateTotalDamageNextTurn(), new Color("556B2F"), HealthBarForecastDirection.FromRight)
+    //];
+    public IEnumerable<HealthBarForecastSegment>
+        GetHealthBarForecastSegments(HealthBarForecastContext context)
+    {
+        return HealthBarForecasts.Single(base.Amount, new Color("556B2F"), HealthBarForecastGrowthDirection.FromRight);
+    }
     
     //public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
     
@@ -36,10 +44,10 @@ public class DrainPower : AkiSisterPower
         {
             return 1m;
         }
-        if (!props.IsPoweredAttack_())
-        {
-            return 1m;
-        }
+        //if (!props.IsPoweredAttack_())
+        //{
+        //    return 1m;
+        //}
         var num = base.DynamicVars["DamageDecrease"].BaseValue;
         var witheredBranches = target?.Player?.GetRelic<WitheredBranches>();
         if (witheredBranches != null)

@@ -1,12 +1,14 @@
 using AkiSister.AkiSisterCode.Extensions;
-using BaseLib.Abstracts;
-using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Models;
+using STS2RitsuLib.Scaffolding.Content;
 
 namespace AkiSister.AkiSisterCode.Enchantments;
 
-public abstract class AkiSisterEnchantment : CustomEnchantmentModel
+public abstract class AkiSisterEnchantment : ModEnchantmentTemplate
 {
-    protected override string? CustomIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".EnchantmentPath();
+    public override EnchantmentAssetProfile AssetProfile => new(
+        IconPath: $"res://AkiSister/images/enchantments/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png"
+    );
+    //protected override string? CustomIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".EnchantmentPath();
     //TODO
 }

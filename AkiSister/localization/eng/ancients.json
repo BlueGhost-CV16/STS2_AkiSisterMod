@@ -1,8 +1,8 @@
 {
-  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-0r.char": "Would you like to join our Harvest Festival?",
-  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-0r.next": "Invite",
-  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-1r.ancient": "Do you think this place is some sort of playground for gods? Get out.",
-  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-1r.next": "Refuse",
-  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-2r.char": "What if we refuse?",
-  "THE_ARCHITECT.talk.AKISISTER-AKI_SISTER.0-attack": "..."
+  "THE_ARCHITECT.talk.AKI_SISTER_CHARACTER_AKI_SISTER_CHARACTER.0-0r.char": "Would you like to join our Harvest Festival?",
+  "THE_ARCHITECT.talk.AKI_SISTER_CHARACTER_AKI_SISTER_CHARACTER.0-0r.next": "Invite",
+  "THE_ARCHITECT.talk.AKI_SISTER_CHARACTER_AKI_SISTER_CHARACTER.0-1r.ancient": "Do you think this place is some sort of playground for gods? Get out.",
+  "THE_ARCHITECT.talk.AKI_SISTER_CHARACTER_AKI_SISTER_CHARACTER.0-1r.next": "Refuse",
+  "THE_ARCHITECT.talk.AKI_SISTER_CHARACTER_AKI_SISTER_CHARACTER.0-2r.char": "What if we refuse?",
+  "THE_ARCHITECT.talk.AKI_SISTER_CHARACTER_AKI_SISTER_CHARACTER.0-attack": "..."
 }

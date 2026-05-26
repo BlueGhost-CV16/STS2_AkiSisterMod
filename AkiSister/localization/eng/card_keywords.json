@@ -1,14 +1,14 @@
 {
-  "AKISISTER-REDLEAFMARK.description": "Retain for 1 turn.\nWhen you play or exhaust a Skill with [orange]\"Red Leaf Mark\"[/orange], gain 1 stack of [gold]Autumn Essence[/gold].\nCan overwrite [orange]\"Sweet Potato Mark\"[/orange]; upon doing so, gain 2 stacks of [gold]Autumn Essence[/gold].\nRemoved when sent to the discard pile.",
-  "AKISISTER-REDLEAFMARK.title": "\"Red Leaf Mark\"",
-  "AKISISTER-SWEETPOTATOMARK.description": "Retain for 1 turn.\nWhen you play or exhaust a Skill with [orange]\"Sweet Potato Mark\"[/orange], gain 1 stack of [gold]Fragrance[/gold].\nCan overwrite [orange]\"Red Leaf Mark\"[/orange]; upon doing so, gain 2 stacks of [gold]Fragrance[/gold].\nRemoved when sent to the discard pile.",
-  "AKISISTER-SWEETPOTATOMARK.title": "\"Sweet Potato Mark\"",
-  "AKISISTER-REDLEAFFAVOR.description": "This card starts with [orange]\"Red Leaf Mark\"[/orange].",
-  "AKISISTER-REDLEAFFAVOR.title": "Red Leaf's Favor",
-  "AKISISTER-SWEETPOTATOFAVOR.description": "This card starts with [orange]\"Sweet Potato Mark\"[/orange].",
-  "AKISISTER-SWEETPOTATOFAVOR.title": "Sweet Potato's Favor",
-  "AKISISTER-REDLEAFRESONANCE.description": "Triggers an additional effect when this card has [orange]\"Red Leaf Mark\"[/orange].",
-  "AKISISTER-REDLEAFRESONANCE.title": "\"Red Leaf Resonance\"",
-  "AKISISTER-SWEETPOTATORESONANCE.description": "Triggers an additional effect when this card has [orange]\"Sweet Potato Mark\"[/orange].",
-  "AKISISTER-SWEETPOTATORESONANCE.title": "\"Sweet Potato Resonance\""
+  "AKI_SISTER_KEYWORD_REDLEAFMARK.description": "Retain for 1 turn.\nWhen you play or exhaust a Skill with [orange]\"Red Leaf Mark\"[/orange], gain 1 stack of [gold]Autumn Essence[/gold].\nCan overwrite [orange]\"Sweet Potato Mark\"[/orange]; upon doing so, gain 2 stacks of [gold]Autumn Essence[/gold].\nRemoved when sent to the discard pile.",
+  "AKI_SISTER_KEYWORD_REDLEAFMARK.title": "\"Red Leaf Mark\"",
+  "AKI_SISTER_KEYWORD_SWEETPOTATOMARK.description": "Retain for 1 turn.\nWhen you play or exhaust a Skill with [orange]\"Sweet Potato Mark\"[/orange], gain 1 stack of [gold]Fragrance[/gold].\nCan overwrite [orange]\"Red Leaf Mark\"[/orange]; upon doing so, gain 2 stacks of [gold]Fragrance[/gold].\nRemoved when sent to the discard pile.",
+  "AKI_SISTER_KEYWORD_SWEETPOTATOMARK.title": "\"Sweet Potato Mark\"",
+  "AKI_SISTER_KEYWORD_REDLEAFFAVOR.description": "This card starts with [orange]\"Red Leaf Mark\"[/orange].",
+  "AKI_SISTER_KEYWORD_REDLEAFFAVOR.title": "Red Leaf's Favor",
+  "AKI_SISTER_KEYWORD_SWEETPOTATOFAVOR.description": "This card starts with [orange]\"Sweet Potato Mark\"[/orange].",
+  "AKI_SISTER_KEYWORD_SWEETPOTATOFAVOR.title": "Sweet Potato's Favor",
+  "AKI_SISTER_KEYWORD_REDLEAFRESONANCE.description": "Triggers an additional effect when this card has [orange]\"Red Leaf Mark\"[/orange].",
+  "AKI_SISTER_KEYWORD_REDLEAFRESONANCE.title": "\"Red Leaf Resonance\"",
+  "AKI_SISTER_KEYWORD_SWEETPOTATORESONANCE.description": "Triggers an additional effect when this card has [orange]\"Sweet Potato Mark\"[/orange].",
+  "AKI_SISTER_KEYWORD_SWEETPOTATORESONANCE.title": "\"Sweet Potato Resonance\""
 }
