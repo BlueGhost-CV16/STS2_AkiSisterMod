@@ -1,13 +1,17 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Cards.StatusCards;
 using AkiSister.AkiSisterCode.Extensions;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+
 
 public class AwakeningofAutumnMoon() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Uncommon,
@@ -18,7 +22,7 @@ public class AwakeningofAutumnMoon() : AkiSisterCard(0,
         new CardsVar(1)
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         base.EnergyHoverTip,
         HoverTipFactory.FromCard<ShepherdandApricotBlossom>()
     ];

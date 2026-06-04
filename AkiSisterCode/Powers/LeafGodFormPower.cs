@@ -1,30 +1,34 @@
 ﻿using AkiSister.AkiSisterCode.Cards.StatusCards;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Models;
 
 namespace AkiSister.AkiSisterCode.Powers;
+
 
 public class LeafGodFormPower : AkiSisterPower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     [
         HoverTipFactory.FromCard<ShepherdandApricotBlossom>(true)
     ];
     
-    public override async Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+    public override Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {
         if (card.Owner == base.Owner.Player && card is ShepherdandApricotBlossom)
         {
             Flash();
             CardCmd.Upgrade(card);
         }
+        return Task.CompletedTask;
     }
-    //protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    //protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     //[
     //    HoverTipFactory.FromPower<AutumnAuraPower>()
     //];

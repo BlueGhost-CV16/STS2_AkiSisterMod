@@ -1,15 +1,22 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Enchantments;
 using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Nodes;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
+using STS2RitsuLib.CardTags;
+using STS2RitsuLib.Keywords;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
+
 
 public class Labor() : AkiSisterCard(2,
     CardType.Attack, CardRarity.Common,
@@ -18,14 +25,24 @@ public class Labor() : AkiSisterCard(2,
     protected override bool ShouldGlowGoldInternal => this.LeafCheck();
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(9, ValueProp.Move),
+        new DamageVar(10, ValueProp.Move),
         new RepeatVar(2),
         new EnergyVar(2)
     ];
+    
+    //protected override HashSet<CardTag> CanonicalTags =>
+    //[
+    //    ModCardTagRegistry.GetCardTag(AkiSisterCardKeyWords.RedLeafResonance)
+    //];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        AkiSisterCardKeyWords.RedLeafResonance.GetModCardKeyword()
+    ];
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         base.EnergyHoverTip,
-        HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.RedLeafResonance)
+        //ModKeywordRegistry.CreateHoverTip(AkiSisterCardKeyWords.RedLeafResonance)
     ];
 
     protected override async Task OnPlay(

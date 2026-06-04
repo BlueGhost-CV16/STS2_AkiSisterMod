@@ -1,8 +1,10 @@
 {
-  "AKISISTER-RED_LEAF_MARK_ENCHANTMENT.description": "保留1回合。\n当使用或消耗带有[orange]「红叶标记」[/orange]的牌时，获得1层[gold]秋意[/gold]。\n会被[orange]「番薯标记」[/orange]覆盖。\n进入[gold]弃牌堆[/gold]或[gold]消耗牌堆[/gold]后解除。",
-  "AKISISTER-RED_LEAF_MARK_ENCHANTMENT.extraCardText": "「红叶标记」。",
-  "AKISISTER-RED_LEAF_MARK_ENCHANTMENT.title": "「红叶标记」",
-  "AKISISTER-SWEET_POTATO_MARK_ENCHANTMENT.description": "保留1回合。\n当使用或消耗带有[orange]「番薯标记」[/orange]的牌时，获得1层[gold]香气[/gold]。\n会被[orange]「红叶标记」[/orange]覆盖。\n进入[gold]弃牌堆[/gold]或[gold]消耗牌堆[/gold]后解除。",
-  "AKISISTER-SWEET_POTATO_MARK_ENCHANTMENT.extraCardText": "「番薯标记」。",
-  "AKISISTER-SWEET_POTATO_MARK_ENCHANTMENT.title": "「番薯标记」"
+  "AKI_SISTER_ENCHANTMENT_RED_LEAF_MARK_ENCHANTMENT.description": "保留[blue]1[/blue]回合。\n进入[gold]弃牌堆[/gold]或[gold]消耗牌堆[/gold]时，获得[blue]1[/blue]层[gold]秋意[/gold]并解除。\n添加给[orange]「收实者的梨樱草」[/orange]时，给予随机敌人[blue]1[/blue]层[gold]枯萎[/gold]。",
+  "AKI_SISTER_ENCHANTMENT_RED_LEAF_MARK_ENCHANTMENT.extraCardText": "「红叶标记」。",
+  "AKI_SISTER_ENCHANTMENT_RED_LEAF_MARK_ENCHANTMENT.title": "「红叶标记」",
+  "AKI_SISTER_ENCHANTMENT_SWEET_POTATO_MARK_ENCHANTMENT.description": "保留[blue]1[/blue]回合。\n进入[gold]弃牌堆[/gold]或[gold]消耗牌堆[/gold]时，获得[blue]1[/blue]层[gold]香气[/gold]并解除。\n添加给[orange]「牧凋人的杏棠花」[/orange]时，给予随机敌人[blue]1[/blue]层[gold]凋零[/gold]。",
+  "AKI_SISTER_ENCHANTMENT_SWEET_POTATO_MARK_ENCHANTMENT.extraCardText": "「番薯标记」。",
+  "AKI_SISTER_ENCHANTMENT_SWEET_POTATO_MARK_ENCHANTMENT.title": "「番薯标记」",
+  "AKI_SISTER_ENCHANTMENT_AKI_SISTER_ENCHANTMENT.description": "",
+  "AKI_SISTER_ENCHANTMENT_AKI_SISTER_ENCHANTMENT.title": ""
 }

@@ -1,13 +1,18 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Powers;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
+
 
 public class FragranceSurrounds() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Common,
@@ -18,7 +23,7 @@ public class FragranceSurrounds() : AkiSisterCard(1,
         new PowerVar<FragranceSurroundsPower>(2m)
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromPower<FragrancePower>(),
         HoverTipFactory.FromPower<StrengthPower>()
     ];
@@ -27,9 +32,11 @@ public class FragranceSurrounds() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<FragrancePower>(Owner.Creature, base.DynamicVars["FragrancePower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<FragrancePower>(choiceContext, Owner.Creature, base.DynamicVars["FragrancePower"].BaseValue, base.Owner.Creature, this);
         var enemies = base.CombatState?.HittableEnemies;
-        await PowerCmd.Apply<FragranceSurroundsPower>(enemies, base.DynamicVars["FragranceSurroundsPower"].BaseValue, base.Owner.Creature, this);
+        if (enemies != null)
+            await PowerCmd.Apply<FragranceSurroundsPower>(choiceContext, enemies,
+                base.DynamicVars["FragranceSurroundsPower"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

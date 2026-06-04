@@ -1,15 +1,19 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Cards.BasicCards;
 using AkiSister.AkiSisterCode.Cards.CommonCards;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
+
 
 public class WellPrepared() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Rare,
@@ -21,7 +25,7 @@ public class WellPrepared() : AkiSisterCard(1,
         CardKeyword.Exhaust
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromCard<RedLeafStrike>(),
         HoverTipFactory.FromCard<SweetPotatoDefend>()
     ];

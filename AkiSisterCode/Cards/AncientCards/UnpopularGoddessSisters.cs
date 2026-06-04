@@ -1,15 +1,21 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Enchantments;
 using AkiSister.AkiSisterCode.Powers;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.AncientCards;
 
-public class UnpopularGoddessSisters() : AkiSisterCard(1,
+
+public class UnpopularGoddessSisters() : AkiSisterCard(2,
     CardType.Power, CardRarity.Ancient,
     TargetType.Self)
 {
@@ -17,7 +23,7 @@ public class UnpopularGoddessSisters() : AkiSisterCard(1,
         new PowerVar<UnpopularGoddessSistersPower>(1m)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => 
         //HoverTipFactory.FromEnchantment<RedLeafMarkEnchantment>().Concat(
             //HoverTipFactory.FromEnchantment<SweetPotatoMarkEnchantment>()).Concat(
             [
@@ -29,11 +35,12 @@ public class UnpopularGoddessSisters() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<UnpopularGoddessSistersPower>(Owner.Creature, DynamicVars["UnpopularGoddessSistersPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<UnpopularGoddessSistersPower>(choiceContext, Owner.Creature, DynamicVars["UnpopularGoddessSistersPower"].BaseValue, Owner.Creature, this);
     }
     
     protected override void OnUpgrade()
     {
-        base.AddKeyword(CardKeyword.Innate);
+        EnergyCost.UpgradeBy(-1);
+        //base.AddKeyword(CardKeyword.Innate);
     }
 }

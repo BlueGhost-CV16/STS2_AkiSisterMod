@@ -1,6 +1,4 @@
 ﻿using AkiSister.AkiSisterCode.Relics;
-using BaseLib.Extensions;
-using BaseLib.Hooks;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -11,84 +9,31 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
+using STS2RitsuLib.Combat.HealthBars;
 
 namespace AkiSister.AkiSisterCode.Powers;
 
-public class AutumnAuraPower : AkiSisterPower
+
+public class AutumnAuraPower : AkiSisterPower, IHealthBarForecastSource
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override IEnumerable<HealthBarForecastSegment>
-        GetHealthBarForecastSegments(HealthBarForecastContext context) =>
-    [
-        new HealthBarForecastSegment(base.Amount, new Color("FF8C00"), HealthBarForecastDirection.FromLeft)
-    ];
-
-    public override async Task AfterTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side)
+    public IEnumerable<HealthBarForecastSegment>
+        GetHealthBarForecastSegments(HealthBarForecastContext context)
     {
-        if (side == CombatSide.Enemy && !Owner.HasPower<EternalAutumnPower>())
-        {
-            await PowerCmd.Apply<AutumnAuraLostPower>(Owner, Math.Max(Amount / 3, 1), Owner, null);
-            //var num = Amount / 3;
-            //for (int i = 0; i < num; i++)
-            //{
-            //    await PowerCmd.TickDownDuration(this);
-            //}
-        }
+        return HealthBarForecasts.Single(base.Amount, new Color("FF8C00"), HealthBarForecastGrowthDirection.FromLeft);
     }
 
-    //public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
-    //{
-    //    if (side == CombatSide.Enemy)
-    //    {
-    //        await PowerCmd.Apply<AutumnAuraLostPower>(Owner, Amount / 3, Owner, null);
-    //        //var num = Amount / 3;
-    //        //for (int i = 0; i < num; i++)
-    //        //{
-    //        //    await PowerCmd.TickDownDuration(this);
-    //        //}
-    //    }
-    //}
-
-    //private decimal DamageTaken = 0;
-    
-    //public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
-    //    CardModel? cardSource)
-    //{
-    //    if (Owner != target)
-    //    {
-    //        return 0m;
-    //    }
-    //    if (!props.IsPoweredAttack_())
-    //    {
-    //        return 0m;
-    //    }
-    //    if (amount > base.Owner.Block && amount - base.Owner.Block <= base.Amount)
-    //    {
-    //        DamageTaken = amount - base.Owner.Block;
-    //        return -amount;
-    //    }
-    //    return 0m;
-    //}
-    
-    //public override decimal ModifyHpLostAfterOsty(Creature target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
-    //{
-    //    if (!CombatManager.Instance.IsInProgress)
-    //    {
-    //        return amount;
-    //    }
-    //    if (target != base.Owner)
-    //    {
-    //        return amount;
-    //    }
-    //    if (amount > base.Amount)
-    //    {
-    //        return amount;
-    //    }
-    //    DamageTaken = amount;
-    //    return Math.Min(0, amount);
-    //}
+    public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    {
+        if (side == CombatSide.Enemy/* && !Owner.HasPower<EternalAutumnPower>()*/)
+        {
+            await PowerCmd.Apply<AutumnAuraLostPower>(choiceContext, Owner, Math.Max(Amount / 5, 1), Owner, null);
+        }
+    }
     
     public override decimal ModifyHpLostAfterOstyLate(Creature target, decimal amount, ValueProp props, Creature? dealer,
         CardModel? cardSource)
@@ -104,7 +49,7 @@ public class AutumnAuraPower : AkiSisterPower
                 return amount;
             }
             Flash();
-            PowerCmd.ModifyAmount(this, Owner.Block - amount, null, null);
+            PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, Owner.Block - amount, null, null);
         }
         else
         {
@@ -113,7 +58,7 @@ public class AutumnAuraPower : AkiSisterPower
                 return amount;
             }
             Flash();
-            PowerCmd.ModifyAmount(this, -amount, null, null);
+            PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -amount, null, null);
         }
 
         return Math.Min(0, amount);
@@ -121,60 +66,47 @@ public class AutumnAuraPower : AkiSisterPower
         //return Math.Min(Owner.Block != 0 ? Owner.Block : 0, amount);
     }
 
-    //public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature? _, CardModel? __)
+    //public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     //{
-    //    if (target == base.Owner && props.IsPoweredAttack_() && DamageTaken > 0)
+    //    if (power == this && amount <= 0)
     //    {
-    //        for (int i = 0; i < DamageTaken; i++)
+    //        var num = 0m;
+    //        count -= amount;
+    //        var witheredBranches = Owner?.Player?.GetRelic<WitheredBranches>();
+    //        if (witheredBranches != null)
     //        {
-    //            await PowerCmd.Decrement(this);
+    //            num = count;
+    //            count = 0;
     //        }
-    //        Flash();
-    //        DamageTaken = 0;
+    //        else
+    //        {
+    //            if (count >= 2)
+    //            {
+    //                num = count / 2;
+    //                count = 0;
+    //            }
+    //        }
+    //        if (num == 0)
+    //        {
+    //            return;
+    //        }
+    //        //if (Owner.HasPower<PoisonedApplePower>())
+    //        //{
+    //        //    foreach (var enemy in base.CombatState.HittableEnemies)
+    //        //    {
+    //        //        await PowerCmd.Apply<WitherPower>(choiceContext, enemy, num, base.Owner, null);
+    //        //    }
+    //        //}
+    //        //else
+    //        //{
+    //            var enemy = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(base.CombatState.HittableEnemies);
+    //            if (enemy != null)
+    //            {
+    //                await PowerCmd.Apply<WitherPower>(choiceContext, enemy, num, base.Owner, null);
+    //            }
+    //        //}
     //    }
     //}
 
-    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
-    {
-        if (power == this && amount <= 0)
-        {
-            var num = 0m;
-            count -= amount;
-            var witheredBranches = Owner?.Player?.GetRelic<WitheredBranches>();
-            if (witheredBranches != null)
-            {
-                num = count;
-                count = 0;
-            }
-            else
-            {
-                if (count >= 2)
-                {
-                    num = count / 2;
-                    count = 0;
-                }
-            }
-            if (num == 0)
-            {
-                return;
-            }
-            if (Owner.HasPower<PoisonedApplePower>())
-            {
-                foreach (var enemy in base.CombatState.HittableEnemies)
-                {
-                    await PowerCmd.Apply<WitherPower>(enemy, num, base.Owner, null);
-                }
-            }
-            else
-            {
-                var enemy = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(base.CombatState.HittableEnemies);
-                if (enemy != null)
-                {
-                    await PowerCmd.Apply<WitherPower>(enemy, num, base.Owner, null);
-                }
-            }
-        }
-    }
-
-    private decimal count = 0;
+    //private decimal count = 0;
 }

@@ -1,14 +1,14 @@
 {
-  "AKISISTER-REDLEAFMARK.description": "保留1回合。\n当使用或消耗带有[orange]「红叶标记」[/orange]的技能时，获得1层[gold]秋意[/gold]。\n会被[orange]「番薯标记」[/orange]覆盖。\n进入[gold]弃牌堆[/gold]或[gold]消耗牌堆[/gold]后解除。",
-  "AKISISTER-REDLEAFMARK.title": "「红叶标记」",
-  "AKISISTER-SWEETPOTATOMARK.description": "保留1回合。\n当使用或消耗带有[orange]「番薯标记」[/orange]的技能时，获得1层[gold]香气[/gold]。\n会被[orange]「红叶标记」[/orange]覆盖。\n进入[gold]弃牌堆[/gold]或[gold]消耗牌堆[/gold]后解除。",
-  "AKISISTER-SWEETPOTATOMARK.title": "「番薯标记」",
-  "AKISISTER-REDLEAFFAVOR.description": "这张卡初始自带[orange]「红叶标记」[/orange]。",
-  "AKISISTER-REDLEAFFAVOR.title": "红叶眷顾",
-  "AKISISTER-SWEETPOTATOFAVOR.description": "这张卡初始自带[orange]「番薯标记」[/orange]。",
-  "AKISISTER-SWEETPOTATOFAVOR.title": "番薯眷顾",
-  "AKISISTER-REDLEAFRESONANCE.description": "这张牌带有[orange]「红叶标记」[/orange]时，触发额外效果。",
-  "AKISISTER-REDLEAFRESONANCE.title": "「红叶共鸣」",
-  "AKISISTER-SWEETPOTATORESONANCE.description": "这张牌带有[orange]「番薯标记」[/orange]时，触发额外效果。",
-  "AKISISTER-SWEETPOTATORESONANCE.title": "「番薯共鸣」"
+  "AKI_SISTER_KEYWORD_RED_LEAF_MARK.description": "保留1回合。\n当使用或消耗带有[orange]「红叶标记」[/orange]的技能时，获得1层[gold]秋意[/gold]。\n会被[orange]「番薯标记」[/orange]覆盖。\n进入[gold]弃牌堆[/gold]或[gold]消耗牌堆[/gold]后解除。",
+  "AKI_SISTER_KEYWORD_RED_LEAF_MARK.title": "「红叶标记」",
+  "AKI_SISTER_KEYWORD_SWEET_POTATO_MARK.description": "保留1回合。\n当使用或消耗带有[orange]「番薯标记」[/orange]的技能时，获得1层[gold]香气[/gold]。\n会被[orange]「红叶标记」[/orange]覆盖。\n进入[gold]弃牌堆[/gold]或[gold]消耗牌堆[/gold]后解除。",
+  "AKI_SISTER_KEYWORD_SWEET_POTATO_MARK.title": "「番薯标记」",
+  "AKI_SISTER_KEYWORD_RED_LEAF_FAVOR.description": "这张卡初始自带[orange]「红叶标记」[/orange]。",
+  "AKI_SISTER_KEYWORD_RED_LEAF_FAVOR.title": "红叶眷顾",
+  "AKI_SISTER_KEYWORD_SWEET_POTATO_FAVOR.description": "这张卡初始自带[orange]「番薯标记」[/orange]。",
+  "AKI_SISTER_KEYWORD_SWEET_POTATO_FAVOR.title": "番薯眷顾",
+  "AKI_SISTER_KEYWORD_RED_LEAF_RESONANCE.description": "这张牌带有[orange]「红叶标记」[/orange]时，触发额外效果。",
+  "AKI_SISTER_KEYWORD_RED_LEAF_RESONANCE.title": "「红叶共鸣」",
+  "AKI_SISTER_KEYWORD_SWEET_POTATO_RESONANCE.description": "这张牌带有[orange]「番薯标记」[/orange]时，触发额外效果。",
+  "AKI_SISTER_KEYWORD_SWEET_POTATO_RESONANCE.title": "「番薯共鸣」"
 }

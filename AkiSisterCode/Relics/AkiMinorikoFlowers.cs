@@ -3,23 +3,28 @@ using AkiSister.AkiSisterCode.Enchantments;
 using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Nodes;
 using AkiSister.AkiSisterCode.Relics;
-using BaseLib.Utils;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Relics;
+
 
 public class AkiMinorikoFlowers() : AkiSisterRelic
 {
     public override RelicRarity Rarity =>
         RelicRarity.Starter;
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => 
         HoverTipFactory.FromEnchantment<SweetPotatoMarkEnchantment>().Concat([
             HoverTipFactory.FromCard<HarvesterandPearBlossom>(true),
             //HoverTipFactory.FromKeyword(AkiSisterCardKeyWords.SweetPotatoMark)
@@ -27,7 +32,8 @@ public class AkiMinorikoFlowers() : AkiSisterRelic
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
     
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
         if (side != CombatSide.Player)
         {

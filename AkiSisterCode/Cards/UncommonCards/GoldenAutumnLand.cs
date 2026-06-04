@@ -1,12 +1,15 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+
 
 public class GoldenAutumnLand() : AkiSisterCard(1,
     CardType.Power, CardRarity.Uncommon,
@@ -14,7 +17,7 @@ public class GoldenAutumnLand() : AkiSisterCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<GoldenAutumnLandPower>(3m)];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromPower<AutumnAuraPower>()
     ];
 
@@ -22,7 +25,7 @@ public class GoldenAutumnLand() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<GoldenAutumnLandPower>(Owner.Creature, DynamicVars["GoldenAutumnLandPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<GoldenAutumnLandPower>(choiceContext, Owner.Creature, DynamicVars["GoldenAutumnLandPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

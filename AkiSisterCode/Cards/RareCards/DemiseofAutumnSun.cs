@@ -1,13 +1,17 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
 
-public class DemiseofAutumnSun() : AkiSisterCard(0,
+
+public class DemiseofAutumnSun() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Rare,
     TargetType.Self)
 {
@@ -28,13 +32,14 @@ public class DemiseofAutumnSun() : AkiSisterCard(0,
     
     public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner == base.Owner && cardPlay.Card.Type == CardType.Status && base.Pile.Type != PileType.Hand)
+        if (cardPlay.Card.Owner == base.Owner && cardPlay.Card.Type == CardType.Status && base.Pile?.Type == PileType.Exhaust)
         {
             _count++;
             if (_count >= 2)
             {
                 _count = 0;
-                await CardPileCmd.Add(this, PileType.Hand);
+                await CardCmd.AutoPlay(choiceContext, this, null);
+                //await CardPileCmd.Add(this, PileType.Hand);
             }
         }
     }

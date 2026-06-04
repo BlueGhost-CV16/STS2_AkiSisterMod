@@ -2,18 +2,23 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Relics;
+
 
 public class CandyApple() : AkiSisterRelic
 {
     public override RelicRarity Rarity =>
         RelicRarity.Uncommon;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromPower<AutumnAuraPower>(),
         HoverTipFactory.FromPower<FragrancePower>(),
         HoverTipFactory.Static(StaticHoverTip.Block)
@@ -22,7 +27,7 @@ public class CandyApple() : AkiSisterRelic
     
     //protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(1m, ValueProp.Unpowered)];
 
-    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
         if (power is AutumnAuraPower or FragrancePower && amount > 0m)
         {

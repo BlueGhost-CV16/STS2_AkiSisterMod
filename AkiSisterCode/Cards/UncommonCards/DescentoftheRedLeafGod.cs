@@ -1,18 +1,21 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Cards.StatusCards;
 using AkiSister.AkiSisterCode.Enchantments;
 using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Nodes;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+
 
 public class DescentoftheRedLeafGod() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Uncommon,
@@ -20,7 +23,7 @@ public class DescentoftheRedLeafGod() : AkiSisterCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => 
         HoverTipFactory.FromEnchantment<RedLeafMarkEnchantment>().Concat([
             HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
             HoverTipFactory.FromCard<ShepherdandApricotBlossom>()
@@ -48,7 +51,7 @@ public class DescentoftheRedLeafGod() : AkiSisterCard(1,
         {
             //CardCmd.ApplyKeyword(cardModel, CardKeyword.Exhaust);
             //cardModel.EnergyCost.AddThisCombat(-1);
-            await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, addedByPlayer: true);
+            await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, Owner);
         }
         await base.Owner.FlowerAdd_Deck(base.CombatState, (int)DynamicVars.Cards.BaseValue);
         //CardModel cardModel = CardFactory.GetDistinctForCombat(base.Owner, from c in base.Owner.Character.CardPool.GetUnlockedCards(base.Owner.UnlockState, base.Owner.RunState.CardMultiplayerConstraint)

@@ -1,11 +1,21 @@
 {
   "id": "AkiSister",
   "name": "AkiSister",
+  "pck_name": "AkiSister",
   "author": "BlueGhost",
-  "description": "秋静叶与秋穰子是《东方风神录》的1面道中与关底BOSS。\n这一次，让我们在这座神秘的高塔之中，举办一场盛大的收获祭吧！",
-  "version": "v0.0.0",
+  "description": "秋静叶与秋穰子是《东方风神录》的1面道中与关底BOSS。\n这一次，让我们在这座神秘的高塔之中，举办一场盛大的收获祭吧！.",
+  "version": "2.0.0",
   "has_pck": true,
   "has_dll": true,
-  "dependencies": ["BaseLib"],
-  "affects_gameplay": true
+  "affects_gameplay": true,
+  "min_game_version": "0.106.0",
+  "dependencies": [
+    {
+      "id": "STS2-RitsuLib",
+      "version": "0.3.1"
+    },
+    { "id": "MultiEnchantmentMod",
+      "min_version": "2.0.0"
+    }
+  ]
 }

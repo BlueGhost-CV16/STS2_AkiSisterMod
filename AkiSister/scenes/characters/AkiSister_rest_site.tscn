@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkmkjmhtvdyxe"]
+
+[ext_resource type="Texture2D" uid="uid://bf60k6a1hxvle" path="res://AkiSister/scenes/characters/篝火.png" id="1_bfvnp"]
+[ext_resource type="Script" uid="uid://cvbvsloqyytlg" path="res://AkiSisterCode/Nodes/AkiRestSiteCharacter.cs" id="1_rygff"]
+[ext_resource type="PackedScene" uid="uid://brpc67xjxeb8x" path="res://AkiSister/scenes/characters/selection_reticle.tscn" id="2_phnjv"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://b8nbwey4uwrqk" path="res://animations/rest_site/ironclad/rest_site_ironclad_skel_data.tres" id="2_sp8a4"]
+
+[node name="AkiSisterRestSite" type="Node2D"]
+position = Vector2(36, 62)
+scale = Vector2(0.760006, 0.760006)
+script = ExtResource("1_rygff")
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+visible = false
+skeleton_data_res = ExtResource("2_sp8a4")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+
+[node name="AkiSister" type="Sprite2D" parent="."]
+position = Vector2(55.262695, 94.736145)
+rotation = -0.36651915
+scale = Vector2(0.5001925, 0.5001925)
+texture = ExtResource("1_bfvnp")
+
+[node name="ControlRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("2_phnjv")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -356.5761
+offset_top = -49.999607
+offset_right = 795.1154
+offset_bottom = 824.35895
+rotation = -0.38920844
+scale = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -248.68217
+offset_top = 31.578682
+offset_right = 740.18097
+offset_bottom = 772.86676
+rotation = -0.38920844
+scale = Vector2(0.5, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 261.049
+offset_top = -82.999
+offset_right = 261.049
+offset_bottom = -82.999
+metadata/_edit_use_anchors_ = true
+
+[node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -159.471
+offset_top = -46.841
+offset_right = -159.471
+offset_bottom = -46.841
+metadata/_edit_use_anchors_ = true

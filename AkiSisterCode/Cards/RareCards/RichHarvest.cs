@@ -1,13 +1,16 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Extensions;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
+
 
 public class RichHarvest() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Rare,
@@ -39,9 +42,9 @@ public class RichHarvest() : AkiSisterCard(1,
             {
                 await item.PotatoAdd_Card();
             }
-            await CardPileCmd.Add(pile, PileType.Draw, CardPilePosition.Random);
-            //CardCmd.PreviewCardPileAdd()
+            //await CardPileCmd.Add(item, PileType.Draw, CardPilePosition.Random);
         }
+        await CardPileCmd.Add(pile, PileType.Draw, CardPilePosition.Random);
     }
 
     protected override void OnUpgrade()

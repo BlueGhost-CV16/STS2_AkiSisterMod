@@ -1,14 +1,18 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Cards.StatusCards;
 using AkiSister.AkiSisterCode.Powers;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
+
 
 public class HarvestGodForm() : AkiSisterCard(3,
     CardType.Power, CardRarity.Rare,
@@ -23,7 +27,7 @@ public class HarvestGodForm() : AkiSisterCard(3,
         CardKeyword.Ethereal
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromCard<HarvesterandPearBlossom>(true)
         //HoverTipFactory.FromPower<FragrancePower>()
     ];
@@ -39,10 +43,10 @@ public class HarvestGodForm() : AkiSisterCard(3,
                 CardCmd.Upgrade(allCard);
             }
         }
-        await PowerCmd.Apply<HarvestGodFormPower>(Owner.Creature, DynamicVars["HarvestGodFormPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<HarvestGodFormPower>(choiceContext, Owner.Creature, DynamicVars["HarvestGodFormPower"].BaseValue, Owner.Creature, this);
         //await PowerCmd.Apply<FragrancePower>(Owner.Creature, DynamicVars["FragrancePower"].BaseValue, Owner.Creature, this);
     }
-
+    
     protected override void OnUpgrade()
     {
         RemoveKeyword(CardKeyword.Ethereal);

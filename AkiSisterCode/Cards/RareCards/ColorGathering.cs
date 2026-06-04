@@ -1,14 +1,18 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
+
 
 public class ColorGathering() : AkiSisterCard(0,
     CardType.Attack, CardRarity.Rare,
@@ -42,17 +46,17 @@ public class ColorGathering() : AkiSisterCard(0,
         }
         foreach (PowerModel item in originalDebuffs)
         {
-            PowerModel? powerById = cardPlay.Target.GetPowerById(item.Id);
-            if (powerById != null && !powerById.IsInstanced)
+            var powerModel = PowerCmd.FindExistingInstanceForStacking(item, cardPlay.Target, item.Applier);
+            if (powerModel != null)
             {
-                DoHackyThingsForSpecificPowers(powerById);
-                await PowerCmd.ModifyAmount(powerById, item.Amount, base.Owner.Creature, this);
+                DoHackyThingsForSpecificPowers(powerModel);
+                await PowerCmd.ModifyAmount(choiceContext, powerModel, item.Amount, item.Applier, this);
             }
             else
             {
                 PowerModel power = (PowerModel)item.ClonePreservingMutability();
                 DoHackyThingsForSpecificPowers(power);
-                await PowerCmd.Apply(power, cardPlay.Target, item.Amount, base.Owner.Creature, this);
+                await PowerCmd.Apply(choiceContext, power, cardPlay.Target, item.Amount, item.Applier, this);
             }
         }
     }

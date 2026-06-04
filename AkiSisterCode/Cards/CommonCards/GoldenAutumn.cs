@@ -1,12 +1,17 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Cards.StatusCards;
 using AkiSister.AkiSisterCode.Extensions;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
+
 
 public class GoldenAutumn() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Common,
@@ -18,7 +23,7 @@ public class GoldenAutumn() : AkiSisterCard(0,
         CardKeyword.Exhaust
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromCard<ShepherdandApricotBlossom>(),
         HoverTipFactory.FromCard<HarvesterandPearBlossom>()
     ];

@@ -1,15 +1,19 @@
-﻿using AkiSister.AkiSisterCode.Cards;
-using AkiSister.AkiSisterCode.Character;
-using BaseLib.Utils;
+﻿using AkiSister.Characters;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.BasicCards;
 
+
+[RegisterCharacterStarterCard(typeof(AkiSisterCharacter), 4 , Order = 0)]
 public class StrikeAkiSister() : AkiSisterCard(1,
     CardType.Attack, CardRarity.Basic,
     TargetType.AnyEnemy)
@@ -25,6 +29,7 @@ public class StrikeAkiSister() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
+        if (this.IsInCombat && this.Pile.IsCombatPile)
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
             .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);

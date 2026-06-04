@@ -1,6 +1,4 @@
 ﻿using AkiSister.AkiSisterCode.Relics;
-using BaseLib.Extensions;
-using BaseLib.Hooks;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -10,51 +8,41 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
+using STS2RitsuLib.Combat.HealthBars;
 
 namespace AkiSister.AkiSisterCode.Powers;
 
-public class FragrancePower : AkiSisterPower
+
+public class FragrancePower : AkiSisterPower, IHealthBarForecastSource
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override IEnumerable<HealthBarForecastSegment>
-        GetHealthBarForecastSegments(HealthBarForecastContext context) =>
-    [
-        new HealthBarForecastSegment(base.Amount, new Color("F5DEB3"), HealthBarForecastDirection.FromLeft)
-    ];
-
-    public override async Task AfterTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side)
+    //public override IEnumerable<HealthBarForecastSegment>
+    //    GetHealthBarForecastSegments(HealthBarForecastContext context) =>
+    //[
+    //    new HealthBarForecastSegment(base.Amount, new Color("F5DEB3"), HealthBarForecastDirection.FromLeft)
+    //];
+    public IEnumerable<HealthBarForecastSegment>
+        GetHealthBarForecastSegments(HealthBarForecastContext context)
     {
-        if (side == CombatSide.Enemy && !Owner.HasPower<EternalAutumnPower>())
+        return HealthBarForecasts.Single(base.Amount, new Color("F5DEB3"), HealthBarForecastGrowthDirection.FromLeft);
+    }
+
+    public override async Task AfterSideTurnEndLate(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    {
+        if (side == CombatSide.Enemy/* && !Owner.HasPower<EternalAutumnPower>()*/)
         {
-            await PowerCmd.Apply<FragranceLostPower>(Owner, Math.Max(Amount / 3, 1), Owner, null);
-            //var num = Amount / 3;
-            //for (int i = 0; i < num; i++)
-            //{
-            //    await PowerCmd.TickDownDuration(this);
-            //}
+            await PowerCmd.Apply<FragranceLostPower>(choiceContext, Owner, Math.Max(Amount / 5, 1), Owner, null);
         }
     }
-    
-    //public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
-    //{
-    //    if (side == CombatSide.Enemy)
-    //    {
-    //        await PowerCmd.Apply<FragranceLostPower>(Owner, Amount / 3, Owner, null);
-    //        //var num = Amount / 3;
-    //        //for (int i = 0; i < num; i++)
-    //        //{
-    //        //    await PowerCmd.TickDownDuration(this);
-    //        //}
-    //        //await PowerCmd.TickDownDuration(this);
-    //    }
-    //}
 
     public override async Task BeforeDamageReceived(PlayerChoiceContext choiceContext, Creature target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
-        if (target == base.Owner && dealer != null && (props.IsPoweredAttack_() || cardSource is Omnislice))
+        if (target == base.Owner && dealer != null && (props.IsPoweredAttack() || cardSource is Omnislice))
         {
             if (Owner.Block > 0)
             {
@@ -63,8 +51,9 @@ public class FragrancePower : AkiSisterPower
                     return;
                 }
                 Flash();
-                await CreatureCmd.GainBlock(base.Owner, amount - Owner.Block, ValueProp.Unpowered, null);
-                await PowerCmd.ModifyAmount(this, Owner.Block - amount, null, null);
+                var num = Owner.Block - amount;
+                await CreatureCmd.GainBlock(base.Owner, -num, ValueProp.Unpowered, null);
+                await PowerCmd.ModifyAmount(choiceContext, this, num, null, null);
             }
             else
             {
@@ -74,7 +63,7 @@ public class FragrancePower : AkiSisterPower
                 }
                 Flash();
                 await CreatureCmd.GainBlock(base.Owner, amount, ValueProp.Unpowered, null);
-                await PowerCmd.ModifyAmount(this, -amount, null, null);
+                await PowerCmd.ModifyAmount(choiceContext, this, -amount, null, null);
             }
             //Flash();
             //var block = amount - Owner.Block;
@@ -86,7 +75,7 @@ public class FragrancePower : AkiSisterPower
         }
     }
 
-    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
         if (power == this && amount <= 0)
         {
@@ -110,21 +99,21 @@ public class FragrancePower : AkiSisterPower
             {
                 return;
             }
-            if (Owner.HasPower<PoisonedApplePower>())
-            {
-                foreach (var enemy in base.CombatState.HittableEnemies)
-                {
-                    await PowerCmd.Apply<DrainPower>(enemy, num, base.Owner, null);
-                }
-            }
-            else
-            {
+            //if (Owner.HasPower<PoisonedApplePower>())
+            //{
+            //    foreach (var enemy in base.CombatState.HittableEnemies)
+            //    {
+            //        await PowerCmd.Apply<DrainPower>(choiceContext, enemy, num, base.Owner, null);
+            //    }
+            //}
+            //else
+            //{
                 var enemy = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(base.CombatState.HittableEnemies);
                 if (enemy != null)
                 {
-                    await PowerCmd.Apply<DrainPower>(enemy, num, base.Owner, null);
+                    await PowerCmd.Apply<DrainPower>(choiceContext, enemy, num, base.Owner, null);
                 }
-            }
+            //}
         }
     }
 

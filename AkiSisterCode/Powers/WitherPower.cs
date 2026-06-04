@@ -1,10 +1,9 @@
 ﻿using AkiSister.AkiSisterCode.Relics;
-using BaseLib.Extensions;
-using BaseLib.Hooks;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,20 +12,29 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
+using STS2RitsuLib.Combat.HealthBars;
 
 namespace AkiSister.AkiSisterCode.Powers;
 
-public class WitherPower : AkiSisterPower
+
+public class WitherPower : AkiSisterPower, IHealthBarForecastSource
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DamageIncrease", 1.3m)];
 
-    public override IEnumerable<HealthBarForecastSegment>
-        GetHealthBarForecastSegments(HealthBarForecastContext context) =>
-    [
-        new HealthBarForecastSegment(CalculateTotalDamageNextTurn(), new Color("BA55D3"), HealthBarForecastDirection.FromRight)
-    ];
+    //public override IEnumerable<HealthBarForecastSegment>
+    //    GetHealthBarForecastSegments(HealthBarForecastContext context) =>
+    //[
+    //    new HealthBarForecastSegment(CalculateTotalDamageNextTurn(), new Color("BA55D3"), HealthBarForecastDirection.FromRight)
+    //];
+    public IEnumerable<HealthBarForecastSegment>
+        GetHealthBarForecastSegments(HealthBarForecastContext context)
+    {
+        return HealthBarForecasts.Single(base.Amount, new Color("BA55D3"), HealthBarForecastGrowthDirection.FromRight);
+    }
 
     //public override Color AmountLabelColor => PowerModel._normalAmountLabelColor;
     
@@ -36,7 +44,7 @@ public class WitherPower : AkiSisterPower
         {
             return 1m;
         }
-        if (!props.IsPoweredAttack_())
+        if (!props.IsPoweredAttack())
         {
             return 1m;
         }
@@ -53,14 +61,6 @@ public class WitherPower : AkiSisterPower
         }
         return num;
     }
-
-    //public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
-    //{
-    //    if (side == CombatSide.Enemy)
-    //    {
-    //        await PowerCmd.TickDownDuration(this);
-    //    }
-    //}
     
     private int TriggerCount
     {
@@ -69,6 +69,7 @@ public class WitherPower : AkiSisterPower
             IEnumerable<Creature> source = from c in base.Owner.CombatState.GetOpponentsOf(base.Owner)
                 where c.IsAlive
                 select c;
+            return 1 + source.Sum((Creature a) => a.GetPowerAmount<IndulgenceofAutumnGoddessSistersPower>());
             return Math.Min(base.Amount, 1 + source.Sum((Creature a) => a.GetPowerAmount<IndulgenceofAutumnGoddessSistersPower>()));
         }
     }
@@ -76,13 +77,13 @@ public class WitherPower : AkiSisterPower
     public int CalculateTotalDamageNextTurn()
     {
         decimal num = default(decimal);
-        int num2 = Math.Min(base.Amount, TriggerCount);
-        //var num3 = Amount;
-        for (int i = 0; i < num2; i++)
+        //int num2 = Math.Min(base.Amount, TriggerCount);
+        var num3 = Amount;
+        for (int i = 0; i < TriggerCount; i++)
         {
-            decimal damage = Amount;
-            //num3 -= Math.Max(num3 / 5, 1);
             //decimal damage = base.Amount - i;
+            decimal damage = num3;
+            //num3 -= Math.Max(num3 / 5, 1);
             damage = Hook.ModifyDamage(base.Owner.CombatState.RunState, base.Owner.CombatState, base.Owner, null,
                 damage, ValueProp.Unblockable | ValueProp.Unpowered, null, ModifyDamageHookType.All,
                 CardPreviewMode.None, out IEnumerable<AbstractModel> _);
@@ -90,17 +91,20 @@ public class WitherPower : AkiSisterPower
         }
         return (int)num;
     }
-    
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != base.Owner.Side)
         {
             return;
         }
         int iterations = TriggerCount;
+        var num = Amount;
         for (int i = 0; i < iterations; i++)
         {
-            await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), base.Owner, base.Amount,
+            decimal damage = num;
+            //num -= Math.Max(num / 5, 1);
+            await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), base.Owner, damage,
                 ValueProp.Unblockable | ValueProp.Unpowered, null, null);
             //if (base.Owner.IsAlive)
             //{
@@ -114,20 +118,19 @@ public class WitherPower : AkiSisterPower
         }
     }
 
-    public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != base.Owner.Side)
         {
             return;
         }
-        int iterations = TriggerCount;
-        for (int i = 0; i < iterations; i++)
+        var iterations = Math.Min(base.Amount, TriggerCount);
+        for (var i = 0; i < iterations; i++)
         {
             if (base.Owner.IsAlive)
             {
-                await PowerCmd.Apply<WitherPower>(Owner, -1, null, null);
-                //    -Math.Max(base.Amount / 5, 1), null, null);
-                //await PowerCmd.Decrement(this);
+                await PowerCmd.Apply<WitherPower>(choiceContext, Owner,// -1, null, null);
+                    -Math.Max(base.Amount / 5, 1), null, null);
             }
             else
             {

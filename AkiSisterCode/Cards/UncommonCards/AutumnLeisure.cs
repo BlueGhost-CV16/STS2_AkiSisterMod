@@ -1,13 +1,17 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Enchantments;
 using AkiSister.AkiSisterCode.Powers;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+
 
 public class AutumnLeisure() : AkiSisterCard(1,
     CardType.Power, CardRarity.Uncommon,
@@ -15,7 +19,7 @@ public class AutumnLeisure() : AkiSisterCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<AutumnLeisurePower>(1)];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => HoverTipFactory
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => HoverTipFactory
         .FromEnchantment<RedLeafMarkEnchantment>()
         .Concat(HoverTipFactory.FromEnchantment<SweetPotatoMarkEnchantment>());
 
@@ -23,7 +27,7 @@ public class AutumnLeisure() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<AutumnLeisurePower>(Owner.Creature, DynamicVars["AutumnLeisurePower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<AutumnLeisurePower>(choiceContext, Owner.Creature, DynamicVars["AutumnLeisurePower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

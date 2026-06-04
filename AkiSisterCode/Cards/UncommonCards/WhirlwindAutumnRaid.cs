@@ -1,16 +1,19 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Cards.StatusCards;
 using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Nodes;
 using AkiSister.AkiSisterCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+
 
 public class WhirlwindAutumnRaid() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Uncommon,
@@ -23,7 +26,7 @@ public class WhirlwindAutumnRaid() : AkiSisterCard(0,
         new PowerVar<EnergyNextTurnPower>(1)
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromPower<AutumnAuraPower>(),
         HoverTipFactory.FromCard<ShepherdandApricotBlossom>(),
         base.EnergyHoverTip,
@@ -35,10 +38,10 @@ public class WhirlwindAutumnRaid() : AkiSisterCard(0,
     {
         for (int i = 0; i < ResolveEnergyXValue(); i++)
         {
-            await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, base.DynamicVars["AutumnAuraPower"].BaseValue, base.Owner.Creature, this);
+            await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature, base.DynamicVars["AutumnAuraPower"].BaseValue, base.Owner.Creature, this);
         }
         await Owner.FlowerAdd_Deck(base.CombatState, ResolveEnergyXValue());
-        await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature, base.DynamicVars["EnergyNextTurnPower"].BaseValue * ResolveEnergyXValue(), base.Owner.Creature, this);
+        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner.Creature, base.DynamicVars["EnergyNextTurnPower"].BaseValue * ResolveEnergyXValue(), base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

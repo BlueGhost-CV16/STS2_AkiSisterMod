@@ -1,12 +1,16 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Powers;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+
 
 public class AutumnAuraCondenses() : AkiSisterCard(2,
     CardType.Skill, CardRarity.Uncommon,
@@ -15,10 +19,10 @@ public class AutumnAuraCondenses() : AkiSisterCard(2,
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         //new DamageVar(6m, ValueProp.Move),
         new PowerVar<AutumnAuraPower>(6m),
-        new PowerVar<AutumnAuraLostPower>(7m)
+        new PowerVar<AutumnAuraLostPower>(9m)
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromPower<AutumnAuraLostPower>(),
         HoverTipFactory.FromPower<AutumnAuraPower>()
     ];
@@ -29,16 +33,16 @@ public class AutumnAuraCondenses() : AkiSisterCard(2,
     {
         //await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(play.Target)
         //    .Execute(choiceContext);
-        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature,
+        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature,
             DynamicVars["AutumnAuraPower"].BaseValue + DynamicVars["AutumnAuraLostPower"].BaseValue,
             base.Owner.Creature, this);
-        await PowerCmd.Apply<AutumnAuraLostPower>(Owner.Creature, DynamicVars["AutumnAuraLostPower"].BaseValue,
+        await PowerCmd.Apply<AutumnAuraLostPower>(choiceContext, Owner.Creature, DynamicVars["AutumnAuraLostPower"].BaseValue,
             base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars["AutumnAuraPower"].UpgradeValueBy(2);
-        DynamicVars["AutumnAuraLostPower"].UpgradeValueBy(1);
+        DynamicVars["AutumnAuraLostPower"].UpgradeValueBy(2);
     }
 }

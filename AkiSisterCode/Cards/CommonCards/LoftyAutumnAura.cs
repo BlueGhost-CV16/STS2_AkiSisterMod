@@ -1,14 +1,19 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
+
 
 public class LoftyAutumnAura() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Common,
@@ -19,7 +24,7 @@ public class LoftyAutumnAura() : AkiSisterCard(1,
         new PowerVar<WeakPower>(1),
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromPower<AutumnAuraPower>(),
         HoverTipFactory.FromPower<WeakPower>()
     ];
@@ -28,9 +33,11 @@ public class LoftyAutumnAura() : AkiSisterCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<AutumnAuraPower>(Owner.Creature, base.DynamicVars["AutumnAuraPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<AutumnAuraPower>(choiceContext, Owner.Creature, base.DynamicVars["AutumnAuraPower"].BaseValue, base.Owner.Creature, this);
         var enemies = base.CombatState?.HittableEnemies;
-        await PowerCmd.Apply<WeakPower>(enemies, base.DynamicVars["WeakPower"].BaseValue, base.Owner.Creature, this);
+        if (enemies != null)
+            await PowerCmd.Apply<WeakPower>(choiceContext, enemies, base.DynamicVars["WeakPower"].BaseValue,
+                base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -1,17 +1,22 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Cards.StatusCards;
 using AkiSister.AkiSisterCode.Enchantments;
 using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Nodes;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
+
 
 public class FallingLeavesHeraldAutumn() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Common,
@@ -19,7 +24,7 @@ public class FallingLeavesHeraldAutumn() : AkiSisterCard(0,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => 
         HoverTipFactory.FromEnchantment<RedLeafMarkEnchantment>().Concat([
             HoverTipFactory.FromCard<ShepherdandApricotBlossom>()]);
 
@@ -27,13 +32,15 @@ public class FallingLeavesHeraldAutumn() : AkiSisterCard(0,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        var cardModel = await CardSelectCmd.FromHand(choiceContext, base.Owner, new CardSelectorPrefs(base.SelectionScreenPrompt, (int)DynamicVars.Cards.BaseValue), card => !CustomMethods.LeafCheck(card), this);
+        var cardModel = await CardSelectCmd.FromHand(choiceContext, base.Owner,
+            new CardSelectorPrefs(base.SelectionScreenPrompt, (int)DynamicVars.Cards.BaseValue),
+            card => !CustomMethods.LeafCheck(card), this);
         var cardModels = cardModel.ToList();
         if (cardModels.Count > 0)
         {
             await Owner.LeafAdd_Card(cardModels.ToList());
         }
-        await Owner.FlowerAdd(base.CombatState, 1);
+        await Owner.FlowerAdd(base.CombatState);
     }
 
     protected override void OnUpgrade()

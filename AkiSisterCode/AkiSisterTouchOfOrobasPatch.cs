@@ -20,7 +20,7 @@ internal static class AkiSisterTouchOfOrobasPatch
     {
         private static bool Prefix(TouchOfOrobas __instance, Player p, ref RelicModel? __result)
         {
-            if (p.Character is not Character.AkiSister) return true;
+            if (p.Character is not Characters.AkiSisterCharacter) return true;
             _starterRelicAkiSizuha = p.Relics.FirstOrDefault(c => c is AkiSizuhaGrasses);
             _starterRelicAkiMinoriko = p.Relics.FirstOrDefault(c => c is AkiMinorikoGrasses);
             if (_starterRelicAkiSizuha != null && _starterRelicAkiMinoriko != null)
@@ -75,7 +75,7 @@ internal static class AkiSisterTouchOfOrobasPatch
     [HarmonyPatch(typeof(TouchOfOrobas), nameof(TouchOfOrobas.AfterObtained))]
     private static bool AfterObtainedPrefix(TouchOfOrobas __instance, ref Task __result)
     {
-        if (__instance.Owner.Character is not Character.AkiSister || _starterRelicAkiSizuha == null ||
+        if (__instance.Owner.Character is not Characters.AkiSisterCharacter || _starterRelicAkiSizuha == null ||
             _starterRelicAkiMinoriko == null) return true;
         RelicCmd.Replace(__instance.Owner.GetRelicById(_starterRelicAkiSizuha.Id), _transformedRelicAkiSizuha ?? ModelDb.Relic<AkiSizuhaFlowers>().ToMutable());
         RelicCmd.Replace(__instance.Owner.GetRelicById(_starterRelicAkiMinoriko.Id), _transformedRelicAkiMinoriko ?? ModelDb.Relic<AkiMinorikoFlowers>().ToMutable());

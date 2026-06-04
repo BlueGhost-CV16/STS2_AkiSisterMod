@@ -1,19 +1,24 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+
 
 public class PeakEnsemble() : AkiSisterCard(2,
     CardType.Attack, CardRarity.Uncommon,
@@ -23,7 +28,7 @@ public class PeakEnsemble() : AkiSisterCard(2,
         new DamageVar(17, ValueProp.Move)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromPower<WitherPower>(),
         HoverTipFactory.FromPower<DrainPower>(),
     ];
@@ -37,12 +42,12 @@ public class PeakEnsemble() : AkiSisterCard(2,
             .Execute(choiceContext);
         if (this.LeafCheck())
         {
-            await PowerCmd.Apply<WitherPower>(play.Target, attackCommand.Results.Sum((DamageResult r) => r.TotalDamage), Owner.Creature, this);
+            await PowerCmd.Apply<WitherPower>(choiceContext, play.Target, attackCommand.Results.SelectMany(r => r).Sum(r => r.TotalDamage), Owner.Creature, this);
         }
 
         if (this.PotatoCheck())
         {
-            await PowerCmd.Apply<DrainPower>(play.Target, attackCommand.Results.Sum((DamageResult r) => r.TotalDamage), Owner.Creature, this);
+            await PowerCmd.Apply<DrainPower>(choiceContext, play.Target, attackCommand.Results.SelectMany(r => r).Sum(r => r.TotalDamage), Owner.Creature, this);
         }
     }
 

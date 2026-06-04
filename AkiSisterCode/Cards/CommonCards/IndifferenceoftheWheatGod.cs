@@ -1,16 +1,20 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Cards.StatusCards;
 using AkiSister.AkiSisterCode.Enchantments;
 using AkiSister.AkiSisterCode.Extensions;
 using AkiSister.AkiSisterCode.Nodes;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
+
 
 public class IndifferenceoftheWheatGod() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Common,
@@ -18,7 +22,7 @@ public class IndifferenceoftheWheatGod() : AkiSisterCard(0,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => 
         HoverTipFactory.FromEnchantment<SweetPotatoMarkEnchantment>().Concat([
             HoverTipFactory.FromCard<HarvesterandPearBlossom>()
     ]);
@@ -27,13 +31,15 @@ public class IndifferenceoftheWheatGod() : AkiSisterCard(0,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        var cardModel = await CardSelectCmd.FromHand(choiceContext, base.Owner, new CardSelectorPrefs(base.SelectionScreenPrompt, (int)DynamicVars.Cards.BaseValue), card => !CustomMethods.PotatoCheck(card), this);
+        var cardModel = await CardSelectCmd.FromHand(choiceContext, base.Owner,
+            new CardSelectorPrefs(base.SelectionScreenPrompt, (int)DynamicVars.Cards.BaseValue),
+            card => !CustomMethods.PotatoCheck(card), this);
         var cardModels = cardModel.ToList();
         if (cardModels.Count > 0)
         {
             await Owner.PotatoAdd_Card(cardModels.ToList());
         }
-        await Owner.GrassAdd(base.CombatState, (int)DynamicVars.Cards.BaseValue);
+        await Owner.GrassAdd(base.CombatState);
     }
 
     protected override void OnUpgrade()

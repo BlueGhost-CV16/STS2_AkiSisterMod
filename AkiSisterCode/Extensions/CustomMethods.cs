@@ -1,44 +1,56 @@
 ﻿using AkiSister.AkiSisterCode.Cards.StatusCards;
 using AkiSister.AkiSisterCode.Enchantments;
-using AkiSister.AkiSisterCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
+using MultiEnchantmentMod;
+using MultiEnchantmentMod.Api;
 
 namespace AkiSister.AkiSisterCode.Extensions;
 
 public static class CustomMethods
 {
-    
-    public static EnchantmentModel? Enchant(EnchantmentModel enchantment, CardModel card, decimal amount = 1)
+    public static string RemovePrefix(this string id)
     {
-        enchantment.AssertMutable();
-        if (!enchantment.CanEnchant(card))
+        var str = id;
+        for (int i = 0; i < 3; i++)
         {
-            throw new InvalidOperationException($"Cannot enchant {card.Id} with {enchantment.Id}.");
+            int num = str.IndexOf('_') + 1;
+            str =  str.Substring(num, str.Length - num);
         }
-        if (card.Enchantment == null)
-        {
-            card.EnchantInternal(enchantment, amount);
-            enchantment.ModifyCard();
-        }
-        else
-        {
-            if (!(card.Enchantment.GetType() == enchantment.GetType()))
-            {
-                throw new InvalidOperationException($"Cannot enchant {card.Id} with {enchantment.Id} because it already has enchantment {card.Enchantment.Id}.");
-            }
-            card.Enchantment.Amount += (int)amount;
-        }
-        card.FinalizeUpgradeInternal();
-        return card.Enchantment;
+        return str;
     }
+    
+    //public static EnchantmentModel? Enchant(EnchantmentModel enchantment, CardModel card, decimal amount = 1)
+    //{
+    //    enchantment.AssertMutable();
+    //    if (!enchantment.CanEnchant(card))
+    //    {
+    //        throw new InvalidOperationException($"Cannot enchant {card.Id} with {enchantment.Id}.");
+    //    }
+    //    if (card.Enchantment == null)
+    //    {
+    //        card.EnchantInternal(enchantment, amount);
+    //        enchantment.ModifyCard();
+    //    }
+    //    else
+    //    {
+    //        if (!(card.Enchantment.GetType() == enchantment.GetType()))
+    //        {
+    //            throw new InvalidOperationException($"Cannot enchant {card.Id} with {enchantment.Id} because it already has enchantment {card.Enchantment.Id}.");
+    //        }
+    //        card.Enchantment.Amount += (int)amount;
+    //    }
+    //    card.FinalizeUpgradeInternal();
+    //    return card.Enchantment;
+    //}
 
     public static bool PotatoCheck(this CardModel card)
     {
-        return card.Enchantment is SweetPotatoMarkEnchantment;
+        return MultiEnchantmentApi.HasEnchantment<SweetPotatoMarkEnchantment>(card);//card.Enchantment is SweetPotatoMarkEnchantment;
     }
     
     public static async Task PotatoAdd_Hand(this Player player, int amount = 1)
@@ -82,23 +94,24 @@ public static class CustomMethods
         int i = 0;
         foreach (var card in cards.TakeWhile(_ => i < amount))
         {
-            var enchant1 = ModelDb.Enchantment<SweetPotatoMarkEnchantment>().ToMutable();
-            if (card.LeafCheck())
-            {
-                var leaf = card.Enchantment as RedLeafMarkEnchantment;
-                //card.Enchantment.ClearInternal();
-                leaf?.StatusChange();
-                card.ClearEnchantmentInternal();
-                //await PowerCmd.Apply<AutumnAuraPower>(player.Creature, leaf.DynamicVars["AutumnAuraPower"].BaseValue, player.Creature, null);
-            }
-            CustomMethods.Enchant(enchant1, card);
+            //var enchant1 = ModelDb.Enchantment<SweetPotatoMarkEnchantment>().ToMutable();
+            //if (card.LeafCheck())
+            //{
+            //    var leaf = card.Enchantment as RedLeafMarkEnchantment;
+            //    //card.Enchantment.ClearInternal();
+            //    leaf?.StatusChange();
+            //    card.ClearEnchantmentInternal();
+            //    //await PowerCmd.Apply<AutumnAuraPower>(player.Creature, leaf.DynamicVars["AutumnAuraPower"].BaseValue, player.Creature, null);
+            //}
+            CardCmd.Enchant<SweetPotatoMarkEnchantment>(card, 1);
+            //CustomMethods.Enchant(enchant1, card);
             await Cmd.Wait(0.2f);
             //enchant = ModelDb.Enchantment<SweetPotatoMarkEnchantment>().ToMutable();
             i++;
         }
     }
 
-    public static async Task GrassAdd(this Player player, CombatState? combatState, int amount = 1, bool upgrade = false)
+    public static async Task GrassAdd(this Player player, ICombatState? combatState, int amount = 1, bool upgrade = false)
     {
         if (combatState == null)
             return;
@@ -108,11 +121,11 @@ public static class CustomMethods
             CardModel card = combatState.CreateCard(ModelDb.Card<HarvesterandPearBlossom>(), player);
             if (upgrade)
                 CardCmd.Upgrade(card);
-            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
         }
     }
 
-    public static async Task GrassAdd_Deck(this Player player, CombatState? combatState, int amount = 1, bool upgrade = false)
+    public static async Task GrassAdd_Deck(this Player player, ICombatState? combatState, int amount = 1, bool upgrade = false)
     {
         if (combatState == null)
             return;
@@ -122,13 +135,13 @@ public static class CustomMethods
             CardModel card = combatState.CreateCard(ModelDb.Card<HarvesterandPearBlossom>(), player);
             if (upgrade)
                 CardCmd.Upgrade(card);
-            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, addedByPlayer: true));
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, player));
         }
     }
 
     public static bool LeafCheck(this CardModel card)
     {
-        return card.Enchantment is RedLeafMarkEnchantment;
+        return MultiEnchantmentApi.HasEnchantment<RedLeafMarkEnchantment>(card);//card.Enchantment is RedLeafMarkEnchantment;
     }
     
     public static async Task LeafAdd_Hand(this Player player, int amount = 1)
@@ -172,23 +185,24 @@ public static class CustomMethods
         int i = 0;
         foreach (var card in cards.TakeWhile(_ => i < amount))
         {
-            var enchant1 = ModelDb.Enchantment<RedLeafMarkEnchantment>().ToMutable();
-            if (card.PotatoCheck())
-            {
-                var potato = card.Enchantment as SweetPotatoMarkEnchantment;
-                //card.Enchantment.ClearInternal();
-                potato?.StatusChange();
-                card.ClearEnchantmentInternal();
-                //await PowerCmd.Apply<FragrancePower>(player.Creature, potato.DynamicVars["FragrancePower"].BaseValue, player.Creature, null);
-            }
-            CustomMethods.Enchant(enchant1, card);
+            //var enchant1 = ModelDb.Enchantment<RedLeafMarkEnchantment>().ToMutable();
+            //if (card.PotatoCheck())
+            //{
+            //    var potato = card.Enchantment as SweetPotatoMarkEnchantment;
+            //    //card.Enchantment.ClearInternal();
+            //    potato?.StatusChange();
+            //    card.ClearEnchantmentInternal();
+            //    //await PowerCmd.Apply<FragrancePower>(player.Creature, potato.DynamicVars["FragrancePower"].BaseValue, player.Creature, null);
+            //}
+            CardCmd.Enchant<RedLeafMarkEnchantment>(card, 1);
+            //CustomMethods.Enchant(enchant1, card);
             await Cmd.Wait(0.2f);
             //enchant = ModelDb.Enchantment<SweetPotatoMarkEnchantment>().ToMutable();
             i++;
         }
     }
 
-    public static async Task FlowerAdd(this Player player, CombatState? combatState, int amount = 1, bool upgrade = false)
+    public static async Task FlowerAdd(this Player player, ICombatState? combatState, int amount = 1, bool upgrade = false)
     {
         if (combatState == null)
             return;
@@ -198,11 +212,11 @@ public static class CustomMethods
             CardModel card = combatState.CreateCard(ModelDb.Card<ShepherdandApricotBlossom>(), player);
             if (upgrade && card.IsUpgradable)
                 CardCmd.Upgrade(card);
-            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
         }
     }
 
-    public static async Task FlowerAdd_Deck(this Player player, CombatState? combatState, int amount = 1, bool upgrade = false)
+    public static async Task FlowerAdd_Deck(this Player player, ICombatState? combatState, int amount = 1, bool upgrade = false)
     {
         if (combatState == null)
             return;
@@ -212,7 +226,7 @@ public static class CustomMethods
             CardModel card = combatState.CreateCard(ModelDb.Card<ShepherdandApricotBlossom>(), player);
             if (upgrade && card.IsUpgradable)
                 CardCmd.Upgrade(card);
-            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, addedByPlayer: true, CardPilePosition.Top));
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, player, CardPilePosition.Top));
         }
     }
 }

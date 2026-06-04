@@ -1,16 +1,21 @@
-﻿using AkiSister.AkiSisterCode.Cards;
+﻿using AkiSister.Characters;
 using AkiSister.AkiSisterCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
+
 
 public class ConquestofAutumnHaze() : AkiSisterCard(1,
     CardType.Attack, CardRarity.Uncommon,
@@ -22,7 +27,7 @@ public class ConquestofAutumnHaze() : AkiSisterCard(1,
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((_, target) => (target?.GetPowerAmount<WitherPower>() ?? 0) + (target?.GetPowerAmount<DrainPower>() ?? 0))
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         HoverTipFactory.FromPower<WitherPower>(),
         HoverTipFactory.FromPower<DrainPower>(),
     ];

@@ -11,16 +11,11 @@ config_version=5
 [application]
 
 config/name="AkiSister"
-config/features=PackedStringArray("4.5", "C#", "Mobile")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 
 [dotnet]
 
 project/assembly_name="AkiSister"
-
-[editor]
-
-export/convert_text_resources_to_binary=false
 
 [rendering]
 

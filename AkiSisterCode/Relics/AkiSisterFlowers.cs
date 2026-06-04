@@ -1,8 +1,10 @@
 ﻿using AkiSister.AkiSisterCode.Relics;
-using BaseLib.Utils;
+using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace AkiSister.AkiSisterCode.Relics;
+
 
 public class AkiSisterFlowers() : AkiSisterRelic
 {
