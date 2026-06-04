@@ -6,6 +6,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace AkiSister.AkiSisterCode.Relics;
 
+[RegisterRelic(typeof(AkiSisterRelicPool), Inherit = true)]
 public abstract class AkiSisterRelic : ModRelicTemplate
 {
     // 图片资源统一放在 AssetProfile 里配置。

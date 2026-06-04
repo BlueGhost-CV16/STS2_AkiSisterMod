@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class GoldenAutumn() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Common,

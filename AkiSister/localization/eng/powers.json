@@ -73,5 +73,9 @@
   "AKI_SISTER_POWER_AUTUMN_LEISURE_POWER.title": "Autumn Leisure",
   "AKI_SISTER_POWER_ETERNAL_AUTUMN_POWER.description": "At the start of each turn, your [gold]Autumn Essence[/gold] and [gold]Fragrance[/gold] no longer convert into [gold]Temporary Autumn Essence[/gold] and [gold]Temporary Fragrance[/gold].",
   "AKI_SISTER_POWER_ETERNAL_AUTUMN_POWER.smartDescription": "At the start of {OnPlayer:your turn|its turn}, your [gold]Autumn Essence[/gold] and [gold]Fragrance[/gold] no longer convert into [gold]Temporary Autumn Essence[/gold] and [gold]Temporary Fragrance[/gold].",
-  "AKI_SISTER_POWER_ETERNAL_AUTUMN_POWER.title": "Eternal Autumn"
+  "AKI_SISTER_POWER_ETERNAL_AUTUMN_POWER.title": "Eternal Autumn",
+  "AKI_SISTER_POWER_AKI_SISTER_POWER.description": "",
+  "AKI_SISTER_POWER_AKI_SISTER_POWER.title": "",
+  "AKI_SISTER_POWER_FRAGRANCE_SURROUNDS_POWER.description": "",
+  "AKI_SISTER_POWER_FRAGRANCE_SURROUNDS_POWER.title": ""
 }

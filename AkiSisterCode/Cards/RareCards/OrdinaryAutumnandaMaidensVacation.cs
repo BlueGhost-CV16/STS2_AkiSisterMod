@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class OrdinaryAutumnandaMaidensVacation() : AkiSisterCard(-1,
     CardType.Skill, CardRarity.Rare,

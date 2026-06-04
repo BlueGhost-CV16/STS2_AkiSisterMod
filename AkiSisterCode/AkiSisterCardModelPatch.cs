@@ -3,7 +3,6 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
@@ -35,6 +34,7 @@ public static class AkiSisterCardModelPatch
                 await CardCmd.Exhaust(choiceContext, __instance, causedByEthereal: true);
                 return;
             }
+            //PileType pileType = PileType.Hand;
             PileType pileType = __instance.Keywords.Contains(CardKeyword.Retain) ? PileType.Hand : PileType.Discard;
             CardPile pile = pileType.GetPile(__instance.Owner);
             await CardPileCmd.Add(__instance, pile);

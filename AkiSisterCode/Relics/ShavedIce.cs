@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
 
 namespace AkiSister.AkiSisterCode.Relics;
-[RegisterRelic(typeof(AkiSisterRelicPool))]
+
 
 public class ShavedIce() : AkiSisterRelic
 {

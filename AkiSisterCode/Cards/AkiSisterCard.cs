@@ -9,6 +9,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace AkiSister.AkiSisterCode.Cards;
 
+[RegisterCard(typeof(AkiSisterCardPool), Inherit = true)]
 public abstract class AkiSisterCard(int cost, CardType type, CardRarity rarity, TargetType target) :
     ModCardTemplate(cost, type, rarity, target)
 {

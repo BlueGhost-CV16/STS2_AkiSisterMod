@@ -10,7 +10,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class AutumnFestival() : AkiSisterCard(2,
     CardType.Attack, CardRarity.Rare,

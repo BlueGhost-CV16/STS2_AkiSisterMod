@@ -11,7 +11,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Relics;
-[RegisterRelic(typeof(AkiSisterRelicPool))]
+
 
 public class CandyApple() : AkiSisterRelic
 {

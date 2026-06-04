@@ -9,7 +9,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Models;
 
 namespace AkiSister.AkiSisterCode.Relics;
-[RegisterRelic(typeof(AkiSisterRelicPool))]
+
 
 public class FreshSweetPotatoes() : AkiSisterRelic
 {

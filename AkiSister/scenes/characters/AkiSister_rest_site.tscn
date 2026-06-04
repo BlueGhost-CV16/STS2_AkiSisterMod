@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkmkjmhtvdyxe"]
 
 [ext_resource type="Texture2D" uid="uid://bf60k6a1hxvle" path="res://AkiSister/scenes/characters/篝火.png" id="1_bfvnp"]
-[ext_resource type="Script" uid="uid://cvbvsloqyytlg" path="res://AkiSisterCode/Nodes/AkiRestSiteCharacter.cs" id="1_phnjv"]
+[ext_resource type="Script" uid="uid://cvbvsloqyytlg" path="res://AkiSisterCode/Nodes/AkiRestSiteCharacter.cs" id="1_rygff"]
 [ext_resource type="PackedScene" uid="uid://brpc67xjxeb8x" path="res://AkiSister/scenes/characters/selection_reticle.tscn" id="2_phnjv"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://b8nbwey4uwrqk" path="res://animations/rest_site/ironclad/rest_site_ironclad_skel_data.tres" id="2_sp8a4"]
 
-[node name="IroncladRestSite" type="Node2D"]
+[node name="AkiSisterRestSite" type="Node2D"]
 position = Vector2(36, 62)
 scale = Vector2(0.760006, 0.760006)
-script = ExtResource("1_phnjv")
+script = ExtResource("1_rygff")
 
 [node name="SpineSprite" type="SpineSprite" parent="."]
 visible = false
@@ -54,17 +54,17 @@ metadata/_edit_use_anchors_ = true
 [node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_left = 221.049
-offset_top = -52.999
-offset_right = 221.049
-offset_bottom = -52.999
+offset_left = 261.049
+offset_top = -82.999
+offset_right = 261.049
+offset_bottom = -82.999
 metadata/_edit_use_anchors_ = true
 
 [node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_left = -159.471
-offset_top = 96.841
+offset_top = -46.841
 offset_right = -159.471
-offset_bottom = 96.841
+offset_bottom = -46.841
 metadata/_edit_use_anchors_ = true

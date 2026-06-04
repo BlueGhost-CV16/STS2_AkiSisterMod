@@ -194,5 +194,7 @@
   "AKI_SISTER_CARD_GOLDEN_YEARS.description": "Add 1 [gold]\"Shepherd and Apricot Blossom\"[/gold] to the top of your [gold]draw pile[/gold] and 1 [gold]\"Harvester and Pear Blossom\"[/gold] to the bottom of your [gold]draw pile[/gold].\nDeal {Damage:diff()} damage. Draw {Cards:diff()} cards.",
   "AKI_SISTER_CARD_GOLDEN_YEARS.title": "Golden Years",
   "AKI_SISTER_CARD_ARTISTOF_AUTUMN.description": "",
-  "AKI_SISTER_CARD_ARTISTOF_AUTUMN.title": "ArtistofAutunm"
+  "AKI_SISTER_CARD_ARTISTOF_AUTUMN.title": "ArtistofAutunm",
+  "AKI_SISTER_CARD_AKI_SISTER_CARD.description": "",
+  "AKI_SISTER_CARD_AKI_SISTER_CARD.title": ""
 }

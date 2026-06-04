@@ -9,7 +9,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class IncessantRain() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Common,

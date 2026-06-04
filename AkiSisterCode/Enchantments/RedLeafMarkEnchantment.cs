@@ -20,7 +20,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Enchantments;
-[RegisterEnchantment]
+
 [Enchantment(Stack = StackBehavior.DisallowDuplicate, Status = StatusAggregation.NotApplicable, Scope = ScopeKind.UntilCombatEnds)]
 [EnchantmentKeyword(CardKeyword.Retain, Mode = KeywordEvalMode.Custom)]
 public class RedLeafMarkEnchantment : AkiSisterEnchantment
@@ -158,7 +158,7 @@ public class RedLeafMarkEnchantmentDefinition : EnchantmentDefinition<RedLeafMar
     protected override void OnTurnEnd(CardModel card, RedLeafMarkEnchantment enchantment)
     {
         if (card.Pile?.Type != PileType.Hand) return;
-        Console.WriteLine("红叶附魔经过OnTurnEnd时点！");
+        //Console.WriteLine("红叶附魔经过OnTurnEnd时点！");
         enchantment.Status = EnchantmentStatus.Disabled;
         base.OnTurnEnd(card, enchantment);
     }

@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace AkiSister.AkiSisterCode.Powers;
-[RegisterPower]
+
 
 public class AutumnLeisurePower :  AkiSisterPower
 {

@@ -11,9 +11,9 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.BasicCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
 
-[RegisterCharacterStarterCard(typeof(AkiSisterCharacter), 4)]
+
+[RegisterCharacterStarterCard(typeof(AkiSisterCharacter), 4 , Order = 0)]
 public class StrikeAkiSister() : AkiSisterCard(1,
     CardType.Attack, CardRarity.Basic,
     TargetType.AnyEnemy)

@@ -4,5 +4,7 @@
   "AKI_SISTER_ENCHANTMENT_RED_LEAF_MARK_ENCHANTMENT.title": "\"Red Leaf Mark\"",
   "AKI_SISTER_ENCHANTMENT_SWEET_POTATO_MARK_ENCHANTMENT.description": "Lasts for 1 turn.\nWhen you play or exhaust a card with [orange]\"Sweet Potato Mark\"[/orange], gain 1 stack of [gold]Fragrance[/gold].\nCan be overwritten by [orange]\"Red Leaf Mark\"[/orange].\nRemoved when sent to the [gold]discard pile[/gold] or [gold]exhaust pile[/gold].",
   "AKI_SISTER_ENCHANTMENT_SWEET_POTATO_MARK_ENCHANTMENT.extraCardText": "\"Sweet Potato Mark\".",
-  "AKI_SISTER_ENCHANTMENT_SWEET_POTATO_MARK_ENCHANTMENT.title": "\"Sweet Potato Mark\""
+  "AKI_SISTER_ENCHANTMENT_SWEET_POTATO_MARK_ENCHANTMENT.title": "\"Sweet Potato Mark\"",
+  "AKI_SISTER_ENCHANTMENT_AKI_SISTER_ENCHANTMENT.description": "",
+  "AKI_SISTER_ENCHANTMENT_AKI_SISTER_ENCHANTMENT.title": ""
 }

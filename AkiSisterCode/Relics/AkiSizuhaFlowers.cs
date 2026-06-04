@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
 namespace AkiSister.AkiSisterCode.Relics;
-[RegisterRelic(typeof(AkiSisterRelicPool))]
+
 
 public class AkiSizuhaFlowers() : AkiSisterRelic
 {

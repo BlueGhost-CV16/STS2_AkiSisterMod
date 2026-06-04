@@ -9,7 +9,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class SweetPotatoRoom() : AkiSisterCard(1,
     CardType.Power, CardRarity.Uncommon,

@@ -16,7 +16,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class SweetPotatoDefend() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Common,

@@ -17,7 +17,7 @@ using AkiSister.Characters;
 using STS2RitsuLib.Combat.HealthBars;
 
 namespace AkiSister.AkiSisterCode.Powers;
-[RegisterPower]
+
 
 public class WitherPower : AkiSisterPower, IHealthBarForecastSource
 {
@@ -44,10 +44,10 @@ public class WitherPower : AkiSisterPower, IHealthBarForecastSource
         {
             return 1m;
         }
-        //if (!props.IsPoweredAttack_())
-        //{
-        //    return 1m;
-        //}
+        if (!props.IsPoweredAttack())
+        {
+            return 1m;
+        }
         var num = base.DynamicVars["DamageIncrease"].BaseValue;
         var witheredBranches = dealer?.Player?.GetRelic<WitheredBranches>();
         if (witheredBranches != null)

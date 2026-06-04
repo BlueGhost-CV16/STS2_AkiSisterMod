@@ -12,7 +12,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Relics;
-[RegisterRelic(typeof(AkiSisterRelicPool))]
+
 
 public class FallingMapleLeaves() : AkiSisterRelic
 {

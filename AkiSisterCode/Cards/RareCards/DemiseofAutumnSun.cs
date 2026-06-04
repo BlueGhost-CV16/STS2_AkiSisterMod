@@ -9,7 +9,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class DemiseofAutumnSun() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Rare,

@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class RichHarvest() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Rare,

@@ -15,7 +15,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Powers;
-[RegisterPower]
+
 
 public class MelancholicAutumnMoonandaMaidensLovePower : AkiSisterPower
 {

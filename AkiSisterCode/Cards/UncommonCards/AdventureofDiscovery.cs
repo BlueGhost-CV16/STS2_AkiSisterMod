@@ -12,7 +12,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class AdventureofDiscovery() : AkiSisterCard(2,
     CardType.Attack, CardRarity.Uncommon,

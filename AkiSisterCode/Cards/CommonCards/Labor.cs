@@ -12,10 +12,11 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
+using STS2RitsuLib.CardTags;
 using STS2RitsuLib.Keywords;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class Labor() : AkiSisterCard(2,
     CardType.Attack, CardRarity.Common,
@@ -28,10 +29,20 @@ public class Labor() : AkiSisterCard(2,
         new RepeatVar(2),
         new EnergyVar(2)
     ];
+    
+    //protected override HashSet<CardTag> CanonicalTags =>
+    //[
+    //    ModCardTagRegistry.GetCardTag(AkiSisterCardKeyWords.RedLeafResonance)
+    //];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        AkiSisterCardKeyWords.RedLeafResonance.GetModCardKeyword()
+    ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
         base.EnergyHoverTip,
-        ModKeywordRegistry.CreateHoverTip(AkiSisterCardKeyWords.RedLeafResonance)
+        //ModKeywordRegistry.CreateHoverTip(AkiSisterCardKeyWords.RedLeafResonance)
     ];
 
     protected override async Task OnPlay(

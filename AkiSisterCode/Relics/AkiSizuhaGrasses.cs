@@ -20,9 +20,9 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Relics;
-[RegisterRelic(typeof(AkiSisterRelicPool))]
-[RegisterCharacterStarterRelic(typeof(AkiSisterCharacter))]
-[RegisterTouchOfOrobasRefinement(typeof(AkiSizuhaFlowers))]
+
+[RegisterCharacterStarterRelic(typeof(AkiSisterCharacter), Order = 0)]
+//[RegisterTouchOfOrobasRefinement(typeof(AkiSizuhaFlowers))]
 public class AkiSizuhaGrasses() : AkiSisterRelic
 {
     public override RelicRarity Rarity =>

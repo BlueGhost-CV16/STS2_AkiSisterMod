@@ -24,7 +24,7 @@ public sealed class AkiSisterCardPool : TypeListCardPoolModel
     public override string? TextEnergyIconPath => $"{Entry.ResPath}/images/characters/energy_text.png";
 
     public override Color DeckEntryCardColor => AkiSisterCharacter.ThemeColor;
-    public override Color EnergyOutlineColor => new(0.08f, 0.18f, 0.24f);
+    public override Color EnergyOutlineColor => new("BE2624");//new(0.08f, 0.18f, 0.24f);
     public override Material? PoolFrameMaterial => PoolFrameTintMaterial;
 
     // false 表示这是角色专属卡池，不是事件/状态那类无色卡池。

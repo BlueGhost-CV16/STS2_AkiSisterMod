@@ -7,7 +7,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Models;
 
 namespace AkiSister.AkiSisterCode.Powers;
-[RegisterPower]
+
 
 public class LeafGodFormPower : AkiSisterPower
 {

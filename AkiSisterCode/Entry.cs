@@ -1,6 +1,8 @@
 using System.Reflection;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MultiEnchantmentMod.Api;
 using STS2RitsuLib;
 using STS2RitsuLib.Interop;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
@@ -34,5 +36,15 @@ public partial class Entry
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
 
         Logger.Info("AkiSister initialized.");
+        
+        Harmony harmony = new(ModId);
+        harmony.PatchAll();
+        Log.Info("AkiSister Harmony PatchAll completed");
+        
+        if (!MultiEnchantmentApi.RequireApiVersion(2))
+        {
+            return;
+        }
+        MultiEnchantmentApi.ScanCallingAssembly();
     }
 }

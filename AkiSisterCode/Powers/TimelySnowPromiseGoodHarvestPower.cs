@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace AkiSister.AkiSisterCode.Powers;
-[RegisterPower]
+
 
 public class TimelySnowPromiseGoodHarvestPower : AkiSisterPower
 {

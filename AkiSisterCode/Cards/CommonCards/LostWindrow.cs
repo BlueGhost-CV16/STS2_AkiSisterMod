@@ -12,10 +12,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2RitsuLib.CardTags;
 using STS2RitsuLib.Keywords;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class LostWindrow() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Common,
@@ -24,9 +25,19 @@ public class LostWindrow() : AkiSisterCard(0,
     protected override bool ShouldGlowGoldInternal => this.LeafCheck();
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
+    
+    //protected override HashSet<CardTag> CanonicalTags =>
+    //[
+    //    ModCardTagRegistry.GetCardTag(AkiSisterCardKeyWords.RedLeafResonance)
+    //];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        AkiSisterCardKeyWords.RedLeafResonance.GetModCardKeyword()
+    ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
-        ModKeywordRegistry.CreateHoverTip(AkiSisterCardKeyWords.RedLeafResonance),
+        //ModKeywordRegistry.CreateHoverTip(AkiSisterCardKeyWords.RedLeafResonance),
         HoverTipFactory.FromCard<ShepherdandApricotBlossom>()
     ];
 

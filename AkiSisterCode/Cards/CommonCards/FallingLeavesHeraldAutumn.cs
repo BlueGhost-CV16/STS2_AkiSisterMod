@@ -16,7 +16,7 @@ using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class FallingLeavesHeraldAutumn() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Common,

@@ -7,7 +7,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Models;
 
 namespace AkiSister.AkiSisterCode.Powers;
-[RegisterPower]
+
 
 public class EternalAutumnPower : AkiSisterPower
 {
@@ -22,24 +22,36 @@ public class EternalAutumnPower : AkiSisterPower
         HoverTipFactory.FromPower<FragranceLostPower>(),
     ];
     
-    private bool _isadding = false;
+    //private bool _isadding = false;
+
+    public override decimal ModifyPowerAmountGiven(PowerModel power, Creature giver, decimal amount, Creature? target,
+        CardModel? cardSource)
+    {
+        if (power is AutumnAuraPower or AutumnAuraPower && amount > 0 && giver == Owner)
+        {
+            return amount + Amount;
+        }
+        return amount;
+    }
 
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier,
         CardModel? cardSource)
     {
-        if (_isadding)
-            return;
-        _isadding = true;
-        if (power is AutumnAuraPower && amount > 0 && applier == Owner)
+        //if (_isadding)
+        //    return;
+        //_isadding = true;
+        switch (power)
         {
-            await PowerCmd.Apply<AutumnAuraPower>(choiceContext, power.Owner, Amount, applier, null);
-            await PowerCmd.Apply<AutumnAuraLostPower>(choiceContext, power.Owner, Amount, applier, null);
+            case AutumnAuraPower when amount > 0 && applier == Owner:
+                //await PowerCmd.Apply<AutumnAuraPower>(choiceContext, power.Owner, Amount, applier, null);
+                await PowerCmd.Apply<AutumnAuraLostPower>(choiceContext, power.Owner, Amount, applier, null);
+                break;
+            case FragrancePower when amount > 0 && applier == Owner:
+                //await PowerCmd.Apply<FragrancePower>(choiceContext, power.Owner, Amount, applier, null);
+                await PowerCmd.Apply<FragranceLostPower>(choiceContext, power.Owner, Amount, applier, null);
+                break;
         }
-        if (power is FragrancePower && amount > 0 && applier == Owner)
-        {
-            await PowerCmd.Apply<FragrancePower>(choiceContext, power.Owner, Amount, applier, null);
-            await PowerCmd.Apply<FragranceLostPower>(choiceContext, power.Owner, Amount, applier, null);
-        }
-        _isadding = false;
+
+        //_isadding = false;
     }
 }

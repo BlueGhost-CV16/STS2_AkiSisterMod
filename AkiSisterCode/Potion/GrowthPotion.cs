@@ -16,7 +16,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace AkiSister.AkiSisterCode.Potion;
 
-[RegisterPotion(typeof(AkiSisterPotionPool))]
+
 public class GrowthPotion : AkiSisterPotion
 {
     // 稀有度
@@ -26,7 +26,7 @@ public class GrowthPotion : AkiSisterPotion
     public override PotionUsage Usage => PotionUsage.CombatOnly;
     
     // 目标类型
-    public override TargetType TargetType => TargetType.AnyAlly;
+    public override TargetType TargetType => TargetType.Self;
     
     // 定义动态变量
     protected override IEnumerable<DynamicVar> CanonicalVars => [

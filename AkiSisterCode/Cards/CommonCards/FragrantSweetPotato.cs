@@ -12,10 +12,11 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
+using STS2RitsuLib.CardTags;
 using STS2RitsuLib.Keywords;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class FragrantSweetPotato() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Common,
@@ -30,9 +31,19 @@ public class FragrantSweetPotato() : AkiSisterCard(0,
         new CardsVar(2)
     ];
     
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
-        ModKeywordRegistry.CreateHoverTip(AkiSisterCardKeyWords.SweetPotatoResonance)
+    //protected override HashSet<CardTag> CanonicalTags =>
+    //[
+    //    ModCardTagRegistry.GetCardTag(AkiSisterCardKeyWords.SweetPotatoResonance)
+    //];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        AkiSisterCardKeyWords.SweetPotatoResonance.GetModCardKeyword()
     ];
+    
+    //protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
+    //    ModKeywordRegistry.CreateHoverTip(AkiSisterCardKeyWords.SweetPotatoResonance)
+    //];
     
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,

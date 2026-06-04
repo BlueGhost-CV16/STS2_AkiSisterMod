@@ -14,7 +14,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.AncientCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class GoldenBreezeofAbundance() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Ancient,

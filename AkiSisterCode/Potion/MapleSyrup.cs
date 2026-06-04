@@ -1,20 +1,16 @@
 ﻿using AkiSister.AkiSisterCode.Powers;
-using AkiSister.Characters;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace AkiSister.AkiSisterCode.Potion;
 
-[RegisterPotion(typeof(AkiSisterPotionPool))]
+
 public class MapleSyrup : AkiSisterPotion
 {
     // 稀有度
@@ -24,12 +20,12 @@ public class MapleSyrup : AkiSisterPotion
     public override PotionUsage Usage => PotionUsage.CombatOnly;
     
     // 目标类型
-    public override TargetType TargetType => TargetType.AnyAlly;
+    public override TargetType TargetType => TargetType.AnyPlayer;
     
     // 定义动态变量
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new PowerVar<AutumnAuraPower>(6m),
-        new PowerVar<FragrancePower>(6m),
+        new PowerVar<AutumnAuraPower>(9m),
+        new PowerVar<FragrancePower>(9m),
     ];
 
     // 这里显示预览卡牌灵魂。或者你可以添加提示关键词
@@ -42,6 +38,8 @@ public class MapleSyrup : AkiSisterPotion
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
         // 这里的DynamicVars.Cards.IntValue就是我们在CanonicalVars中定义的CardsVar的数值，也就是3。
+        if (target?.Player == null)
+            return;
         PotionModel.AssertValidForTargetedPotion(target);
         await PowerCmd.Apply<AutumnAuraPower>(choiceContext, target, DynamicVars["AutumnAuraPower"].BaseValue, base.Owner.Creature, null);
         await PowerCmd.Apply<FragrancePower>(choiceContext, target, DynamicVars["FragrancePower"].BaseValue, base.Owner.Creature, null);

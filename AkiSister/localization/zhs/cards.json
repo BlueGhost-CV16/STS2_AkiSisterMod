@@ -195,5 +195,7 @@
   "AKI_SISTER_CARD_GOLDEN_YEARS.title": "流金岁月",
   "AKI_SISTER_CARD_ARTISTOF_AUTUMN.description": "将{Cards:diff()}张牌从[gold]弃牌堆[/gold]加入你的[gold]手牌[/gold]。\n将1张[gold]「牧凋人的杏棠花」[/gold]添加至你的[gold]抽牌堆[/gold]顶。",
   "AKI_SISTER_CARD_ARTISTOF_AUTUMN.selectionScreenPrompt": "选择{Amount}张牌加入你的[gold]手牌[/gold]。",
-  "AKI_SISTER_CARD_ARTISTOF_AUTUMN.title": "秋之艺术家"
+  "AKI_SISTER_CARD_ARTISTOF_AUTUMN.title": "秋之艺术家",
+  "AKI_SISTER_CARD_AKI_SISTER_CARD.description": "",
+  "AKI_SISTER_CARD_AKI_SISTER_CARD.title": ""
 }

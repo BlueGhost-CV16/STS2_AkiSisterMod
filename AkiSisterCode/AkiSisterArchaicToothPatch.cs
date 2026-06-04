@@ -6,11 +6,13 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Relics;
+using MegaCrit.Sts2.Core.Rooms;
+using STS2RitsuLib.Patching.Models;
 
 namespace AkiSister.AkiSisterCode;
 
 [HarmonyPatch]
-internal static class AkiSisterArchaicToothPatch
+public class AkiSisterArchaicToothPatch
 {
     private static CardModel? _starterCardAkiSizuha = null;
     private static CardModel? _starterCardAkiMinoriko = null;
@@ -18,8 +20,17 @@ internal static class AkiSisterArchaicToothPatch
     //private static CardModel? _transformedCardAkiMinoriko = null;
     
     [HarmonyPatch(typeof(ArchaicTooth), "GetTranscendenceStarterCard")]
-    internal static class ArchaicToothGetTranscendenceStarterCardPatch
+    public static class ArchaicToothGetTranscendenceStarterCardPatch// : IPatchMethod
     {
+        //public static string PatchId => "AkiSister_Archaic_Tooth_Get_Transcendence_Starter_Card_Patch";
+        //public static string Description => "秋姐妹的古老牙齿patch，用于实现同时升级2个遗物。";
+        //public static bool IsCritical => true;
+//
+        //public static ModPatchTarget[] GetTargets() =>
+        //[
+        //    new(typeof(ArchaicTooth), "GetTranscendenceStarterCard"),
+        //];
+        
         private static bool Prefix(ArchaicTooth __instance, Player player, ref CardModel? __result)
         {
             if (player.Character is not Characters.AkiSisterCharacter) return true;
@@ -42,49 +53,33 @@ internal static class AkiSisterArchaicToothPatch
     }
 
     [HarmonyPatch(typeof(ArchaicTooth), "GetTranscendenceTransformedCard")]
-    internal static class ArchaicToothGetTranscendenceTransformedCardPatch
+    public static class ArchaicToothGetTranscendenceTransformedCardPatch// : IPatchMethod
     {
+        //public static string PatchId => "AkiSister_Archaic_Tooth_Get_Transcendence_Transformed_Card_Patch";
+        //public static string Description => "秋姐妹的古老牙齿patch，用于实现同时升级2个遗物。";
+        //public static bool IsCritical => true;
+//
+        //public static ModPatchTarget[] GetTargets() =>
+        //[
+        //    new(typeof(ArchaicTooth), "GetTranscendenceTransformedCard"),
+        //];
+
         private static bool Prefix(ArchaicTooth __instance, CardModel starterCard, ref CardModel? __result)
         {
-            if (starterCard is AkiSisterFakeStarterCard)
+            switch (starterCard)
             {
-                __result = starterCard.Owner.RunState.CreateCard(ModelDb.Card<AkiSisterFakeTransformedCard>(), starterCard.Owner);
-                return false;
+                case AkiSisterFakeStarterCard:
+                    __result = starterCard.Owner.RunState.CreateCard(ModelDb.Card<AkiSisterFakeTransformedCard>(), starterCard.Owner);
+                    return false;
+                case GlowofAutumnSunset:
+                    __result = TransformedCard(starterCard, true);
+                    return false;
+                case ResentmentofAutumnColors:
+                    __result = TransformedCard(starterCard, false);
+                    return false;
+                default:
+                    return true;
             }
-            else if (starterCard is GlowofAutumnSunset)
-            {
-                //_transformedCardAkiSizuha =
-                //    starterCard.Owner.RunState.CreateCard(ModelDb.Card<RedRainofFallenLeaves>(), starterCard.Owner);
-                //if (starterCard.IsUpgraded)
-                //{
-                //    CardCmd.Upgrade(_transformedCardAkiSizuha);
-                //}
-                //if (starterCard.Enchantment != null)
-                //{
-                //    EnchantmentModel enchantmentModel = (EnchantmentModel)starterCard.Enchantment.MutableClone();
-                //    CardCmd.Enchant(enchantmentModel, _transformedCardAkiSizuha, enchantmentModel.Amount);
-                //}
-                //__result = _transformedCardAkiSizuha;
-                __result = TransformedCard(starterCard, true);
-                return false;
-            }
-            else if (starterCard is ResentmentofAutumnColors)
-            {
-                //_transformedCardAkiMinoriko =
-                //    starterCard.Owner.RunState.CreateCard(ModelDb.Card<GoldenBreezeofAbundance>(), starterCard.Owner);
-                //if (starterCard.IsUpgraded)
-                //{
-                //    CardCmd.Upgrade(_transformedCardAkiMinoriko);
-                //}
-                //if (starterCard.Enchantment != null)
-                //{
-                //    EnchantmentModel enchantmentModel = (EnchantmentModel)starterCard.Enchantment.MutableClone();
-                //    CardCmd.Enchant(enchantmentModel, _transformedCardAkiMinoriko, enchantmentModel.Amount);
-                //}
-                __result = TransformedCard(starterCard, false);
-                return false;
-            }
-            return true;
         }
     }
 

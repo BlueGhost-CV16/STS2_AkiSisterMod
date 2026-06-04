@@ -14,7 +14,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class IndifferenceoftheWheatGod() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Common,

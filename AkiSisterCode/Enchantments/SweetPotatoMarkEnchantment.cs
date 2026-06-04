@@ -18,7 +18,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Enchantments;
-[RegisterEnchantment]
+
 [Enchantment(Stack = StackBehavior.DisallowDuplicate, Status = StatusAggregation.NotApplicable, Scope = ScopeKind.UntilCombatEnds)]
 [EnchantmentKeyword(CardKeyword.Retain, Mode = KeywordEvalMode.Custom)]
 public class SweetPotatoMarkEnchantment : AkiSisterEnchantment
@@ -110,7 +110,7 @@ public class SweetPotatoMarkEnchantmentDefinition : EnchantmentDefinition<SweetP
     protected override void OnTurnEnd(CardModel card, SweetPotatoMarkEnchantment enchantment)
     {
         if (card.Pile?.Type != PileType.Hand) return;
-        Console.WriteLine("番薯附魔经过OnTurnEnd时点！");
+        //Console.WriteLine("番薯附魔经过OnTurnEnd时点！");
         enchantment.Status = EnchantmentStatus.Disabled;
         base.OnTurnEnd(card, enchantment);
     }

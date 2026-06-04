@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class TimelySnowPromiseGoodHarvest() : AkiSisterCard(0,
     CardType.Power, CardRarity.Uncommon,

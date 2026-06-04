@@ -12,10 +12,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2RitsuLib.CardTags;
 using STS2RitsuLib.Keywords;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class WarmColorHarvest() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Common,
@@ -24,9 +25,19 @@ public class WarmColorHarvest() : AkiSisterCard(0,
     protected override bool ShouldGlowGoldInternal => this.PotatoCheck();
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
+    
+    //protected override HashSet<CardTag> CanonicalTags =>
+    //[
+    //    ModCardTagRegistry.GetCardTag(AkiSisterCardKeyWords.SweetPotatoResonance)
+    //];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        AkiSisterCardKeyWords.SweetPotatoResonance.GetModCardKeyword()
+    ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
-        ModKeywordRegistry.CreateHoverTip(AkiSisterCardKeyWords.SweetPotatoResonance),
+        //ModKeywordRegistry.CreateHoverTip(AkiSisterCardKeyWords.SweetPotatoResonance),
         HoverTipFactory.FromCard<ShepherdandApricotBlossom>()
     ];
 

@@ -12,7 +12,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class ColorGathering() : AkiSisterCard(0,
     CardType.Attack, CardRarity.Rare,
@@ -46,17 +46,17 @@ public class ColorGathering() : AkiSisterCard(0,
         }
         foreach (PowerModel item in originalDebuffs)
         {
-            PowerModel powerModel = PowerCmd.FindExistingInstanceForStacking(item, cardPlay.Target, item.Applier);
+            var powerModel = PowerCmd.FindExistingInstanceForStacking(item, cardPlay.Target, item.Applier);
             if (powerModel != null)
             {
                 DoHackyThingsForSpecificPowers(powerModel);
-                await PowerCmd.ModifyAmount(choiceContext, powerModel, item.Amount, base.Owner.Creature, this);
+                await PowerCmd.ModifyAmount(choiceContext, powerModel, item.Amount, item.Applier, this);
             }
             else
             {
                 PowerModel power = (PowerModel)item.ClonePreservingMutability();
                 DoHackyThingsForSpecificPowers(power);
-                await PowerCmd.Apply(choiceContext, power, cardPlay.Target, item.Amount, base.Owner.Creature, this);
+                await PowerCmd.Apply(choiceContext, power, cardPlay.Target, item.Amount, item.Applier, this);
             }
         }
     }

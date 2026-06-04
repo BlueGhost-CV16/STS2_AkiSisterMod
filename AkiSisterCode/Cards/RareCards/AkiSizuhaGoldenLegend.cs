@@ -10,10 +10,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2RitsuLib.CardTags;
 using STS2RitsuLib.Keywords;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class AkiSizuhaGoldenLegend() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Rare,
@@ -22,10 +23,20 @@ public class AkiSizuhaGoldenLegend() : AkiSisterCard(1,
     protected override bool ShouldGlowGoldInternal => this.LeafCheck();
     
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
+    
+    //protected override HashSet<CardTag> CanonicalTags =>
+    //[
+    //    ModCardTagRegistry.GetCardTag(AkiSisterCardKeyWords.RedLeafResonance)
+    //];
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
-        ModKeywordRegistry.CreateHoverTip(AkiSisterCardKeyWords.RedLeafResonance)
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        AkiSisterCardKeyWords.RedLeafResonance.GetModCardKeyword()
     ];
+
+    //protected override IEnumerable<IHoverTip> AdditionalHoverTips => [
+    //    ModKeywordRegistry.CreateHoverTip(AkiSisterCardKeyWords.RedLeafResonance)
+    //];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,

@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class MapleCrimsonLeaves() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Uncommon,

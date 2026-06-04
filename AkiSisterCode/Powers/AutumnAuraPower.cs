@@ -14,7 +14,7 @@ using AkiSister.Characters;
 using STS2RitsuLib.Combat.HealthBars;
 
 namespace AkiSister.AkiSisterCode.Powers;
-[RegisterPower]
+
 
 public class AutumnAuraPower : AkiSisterPower, IHealthBarForecastSource
 {

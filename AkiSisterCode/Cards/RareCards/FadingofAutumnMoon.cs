@@ -9,7 +9,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.RareCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class FadingofAutumnMoon() : AkiSisterCard(1,
     CardType.Attack, CardRarity.Rare,
@@ -32,7 +32,8 @@ public class FadingofAutumnMoon() : AkiSisterCard(1,
 
     public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner == base.Owner && cardPlay.Card.Type == CardType.Status && base.Pile?.Type == PileType.Exhaust)
+        if (cardPlay.Card.Owner == base.Owner && cardPlay.Card.Type == CardType.Status &&
+            base.Pile?.Type == PileType.Exhaust) 
         {
             _count++;
             if (_count >= 2)

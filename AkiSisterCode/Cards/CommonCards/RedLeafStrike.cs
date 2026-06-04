@@ -17,7 +17,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class RedLeafStrike() : AkiSisterCard(1,
     CardType.Attack, CardRarity.Common,

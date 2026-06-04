@@ -14,9 +14,9 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.BasicCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
 
-[RegisterCharacterStarterCard(typeof(AkiSisterCharacter), 1)]
+
+[RegisterCharacterStarterCard(typeof(AkiSisterCharacter), 1 , Order = 3)]
 public class ResentmentofAutumnColors() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Basic,
     TargetType.Self)

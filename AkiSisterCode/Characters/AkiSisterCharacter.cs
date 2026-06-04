@@ -5,7 +5,9 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 using STS2RitsuLib.Scaffolding.Characters;
+using STS2RitsuLib.Scaffolding.Characters.Visuals.Definition;
 using STS2RitsuLib.Scaffolding.Godot;
+using STS2RitsuLib.Scaffolding.Visuals;
 
 namespace AkiSister.Characters;
 
@@ -50,12 +52,15 @@ public sealed class
             // 商店人物场景。
             MerchantAnimPath: MerchantScenePath,
             // 篝火休息场景。
-            RestSiteAnimPath: RestSiteScenePath),
+            RestSiteAnimPath: RestSiteScenePath
+        ),
         Ui: new CharacterUiAssetSet(
             // 人物头像路径。
             IconTexturePath: $"{ImageRoot}/AkiSister_character_icon.png",
             // 人物头像轮廓。
             IconOutlineTexturePath: $"{ImageRoot}/AkiSister_character_icon_outline.png",
+            // 可选图标场景。
+            IconPath: $"{ImageRoot}/AkiSister_character_icon.tscn",
             // 人物选择背景。
             CharacterSelectBgPath: CharacterSelectBgScenePath,
             // 人物选择图标。
@@ -64,6 +69,18 @@ public sealed class
             CharacterSelectLockedIconPath: $"{ImageRoot}/AkiSister_character_select_locked.png",
             // 地图上的角色标记图标、表情轮盘上的角色头像。
             MapMarkerPath: $"{ImageRoot}/AkiSister_map_marker.png"));
+    //{
+    //    WorldProceduralVisuals = CharacterWorldProceduralVisualSetBuilder.Create()
+    //    //.Merchant(cues => cues
+    //    //    .Single("idle", "res://Test/images/character/merchant_idle.png")
+    //    //    .Sequence("talk", seq => seq
+    //    //        .Frame("res://Test/images/character/merchant_talk_01.png", 0.08f)
+    //    //        .Frame("res://Test/images/character/merchant_talk_02.png", 0.08f)
+    //    //        .Loop()))
+    //    .RestSite(cues => cues
+    //        .Single("relaxed", $"{SceneRoot}/AkiSister_rest_site.png"))
+    //    .Build()
+    //};
 
     // 某个字段没写时，RitsuLib 会从占位角色配置里补齐。
     public override string? PlaceholderCharacterId => "necrobinder";

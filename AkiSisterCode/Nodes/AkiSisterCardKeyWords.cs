@@ -3,13 +3,13 @@ using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace AkiSister.AkiSisterCode.Nodes;
-[RegisterOwnedCardKeyword("Redleafmark")]
-[RegisterOwnedCardKeyword("Sweetpotatomark")]
-[RegisterOwnedCardKeyword("Redleaffavor")]
-[RegisterOwnedCardKeyword("Sweetpotatofavor")]
-[RegisterOwnedCardKeyword("Redleafresonance")]
-[RegisterOwnedCardKeyword("Sweetpotatoresonance")]
-public static class AkiSisterCardKeyWords
+[RegisterOwnedCardKeyword("RedLeafMark")]
+[RegisterOwnedCardKeyword("SweetPotatoMark")]
+[RegisterOwnedCardKeyword("RedLeafFavor")]
+[RegisterOwnedCardKeyword("SweetPotatoFavor")]
+[RegisterOwnedCardKeyword("RedLeafResonance")]
+[RegisterOwnedCardKeyword("SweetPotatoResonance")]
+public class AkiSisterCardKeyWords
 {
     // 自定义枚举的名字。最终会变成{前缀}-{枚举值大写}的形式，例如TEST-UNIQUE
     // 放在原版卡牌描述的位置，这里是卡牌描述的前面

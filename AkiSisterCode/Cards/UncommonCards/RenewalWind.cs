@@ -11,7 +11,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using AkiSister.Characters;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class RenewalWind() : AkiSisterCard(1,
     CardType.Attack, CardRarity.Uncommon,

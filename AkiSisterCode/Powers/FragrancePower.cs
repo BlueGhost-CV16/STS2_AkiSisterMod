@@ -13,7 +13,7 @@ using AkiSister.Characters;
 using STS2RitsuLib.Combat.HealthBars;
 
 namespace AkiSister.AkiSisterCode.Powers;
-[RegisterPower]
+
 
 public class FragrancePower : AkiSisterPower, IHealthBarForecastSource
 {
@@ -42,7 +42,7 @@ public class FragrancePower : AkiSisterPower, IHealthBarForecastSource
     public override async Task BeforeDamageReceived(PlayerChoiceContext choiceContext, Creature target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
-        if (target == base.Owner && dealer != null && cardSource is Omnislice)
+        if (target == base.Owner && dealer != null && (props.IsPoweredAttack() || cardSource is Omnislice))
         {
             if (Owner.Block > 0)
             {

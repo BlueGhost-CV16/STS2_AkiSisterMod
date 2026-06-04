@@ -8,8 +8,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Models;
 
 namespace AkiSister.AkiSisterCode.Powers;
-[RegisterPower]
-[RegisterPower]
+
 public class AutumnAuraLostPower : AkiSisterPower
 {
     public override PowerType Type => PowerType.Buff;

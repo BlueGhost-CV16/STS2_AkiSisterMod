@@ -9,7 +9,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class FragranceCondenses() : AkiSisterCard(2,
     CardType.Skill, CardRarity.Uncommon,

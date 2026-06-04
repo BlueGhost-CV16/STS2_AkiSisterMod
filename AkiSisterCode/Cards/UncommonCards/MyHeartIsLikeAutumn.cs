@@ -11,7 +11,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace AkiSister.AkiSisterCode.Cards.UncommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class MyHeartIsLikeAutumn() : AkiSisterCard(0,
     CardType.Skill, CardRarity.Uncommon,

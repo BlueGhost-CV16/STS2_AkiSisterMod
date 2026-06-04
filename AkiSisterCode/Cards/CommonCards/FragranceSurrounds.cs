@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace AkiSister.AkiSisterCode.Cards.CommonCards;
-[RegisterCard(typeof(AkiSisterCardPool))]
+
 
 public class FragranceSurrounds() : AkiSisterCard(1,
     CardType.Skill, CardRarity.Common,
